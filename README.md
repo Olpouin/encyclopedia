@@ -1,7 +1,7 @@
 # gallery
 A simple Wikipedia-style way to make characters card.
 
-#Formatage de la galerie
+# Formatage de la galerie
 Le formatage de la galerie, inspiré du Markdown et HTML, permet de faire pas mal de choses :
 Titres : `[h1]Titre[/h1]`
 Paragraphes : `[p]Paragraphe[/p]`
