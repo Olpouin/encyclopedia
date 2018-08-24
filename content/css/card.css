@@ -1,0 +1,99 @@
+.card {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 251px;
+	overflow-y: auto;
+	z-index: 0;
+	padding: 20px;
+}
+/*INFOBOX*/
+.infobox {
+	width: 300px;
+	background-color: #FAFAFA;
+	float: right;
+	clear: right;
+	margin: 15px 0 15px 15px;
+}
+.infobox h1 {
+	display: inline-block;
+	background-color: #3295ff;
+	width: 100%;
+	text-align: center;
+	padding: 0.5em 0;
+	margin: 0;
+	color: #F8F8F8;
+}
+.infobox img {
+	border-radius: 0;
+	width: 100%;
+	height: 100%;
+	display: relative;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.infobox-data {
+	display: flex;
+	margin: 15px 10px;
+	hyphens: auto;
+}
+.infobox-data-title {
+	width: 90px;
+	min-width: 90px;
+	font-weight: bold;
+}
+/**/
+.card > h1:first-of-type {
+	text-align: center;
+	height: 40px;
+	margin-top: 0;
+	padding-right: 20%;
+	border-bottom: none;
+}
+.card > h1 {
+	margin: 0;
+	border-bottom: solid 1px black;
+}
+.card blockquote {
+	font-family: Georgia, serif;
+	min-height: 50px;
+	font-size: 18px;
+	font-style: italic;
+	width: 500px;
+	margin: 0.25em 40px;
+	padding: 0.25em 5px;
+	position: relative;
+	color: #383838;
+}
+.card blockquote::before {
+	display: block;
+	content: "\201C";
+	font-size: 80px;
+	position: absolute;
+	left: -40px;
+	top: -20px;
+	color: #7A7A7A;
+}
+.card blockquote > cite {
+	color: #999999;
+	font-size: 14px;
+	display: block;
+	margin-top: 5px;
+}
+.card p::before {
+	content: "\00a0\00a0\00a0\00a0";
+}
+.card > img, .card p > img {
+	cursor: pointer;
+	max-width: 50%;
+	max-height: 50%;
+	border-radius: 5px;
+	margin: 5px 0 5px 15px;
+	float: right;
+	position: relative;
+	clear: right;
+}
+.card span {
+	max-height: 100%;
+}

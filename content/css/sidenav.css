@@ -1,0 +1,67 @@
+nav {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 250px;
+	background-color: #FAFAFA;
+	overflow: hidden;
+	border-right: 1px solid rgba(0, 0, 0, 0.1);
+	z-index: 1;
+	font-size: 14px;
+	letter-spacing: 0.5px;
+}
+nav:hover {
+	overflow-y: auto !important;
+}
+nav > span {
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: center;
+}
+nav ul.type > span {
+	font-weight: bold;
+	font-size: 16px;
+}
+nav ul.type {
+	padding-left: 8px;
+}
+nav ul {
+	margin: 0;
+}
+nav a {
+	text-decoration: none;
+}
+nav a:hover {
+	text-decoration: underline;
+}
+nav ul:not(.type) > span {
+	font-weight: bold;
+}
+nav li, nav ul:not(.type) {
+	padding: 2px;
+	padding-left: 20px;
+	list-style: none;
+}
+nav a {
+	display: block;
+	margin: 0;
+	color: #000000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+nav h3 {
+	text-decoration: underline;
+	cursor: default;
+}
+nav h2 {
+	border-bottom: 1px black solid;
+	font-weight: bold;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+nav-button {
+	text-align: center
+	cursor: pointer;
+}
