@@ -49,6 +49,7 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 /*=== VARIABLES ===*/
 $markdownArray = array(
 	'/\[h1\](.*)\[\/h1\]/Ums' => '<h1>$1</h1>',
+	'/\[h2\](.*)\[\/h2\]/Ums' => '<h2>$1</h2>',
 	'/\[p\](.*)\[\/p\]/Ums' => '<p>$1</p>',
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
