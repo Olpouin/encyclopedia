@@ -1,0 +1,28 @@
+{
+	"database": {
+		"host": "sql-gallery.example.com",
+		"name": "database_gallery",
+		"username": "Username",
+		"password": "Password123"
+ 	},
+	"types": {
+		"b": "bestiaire",
+		"p": "personnages",
+		"l": "lieux",
+		"e": "entités"
+	},
+	"general": {
+		"language": "fr",
+		"path": "/gallery",
+		"sidenav_title": "On top of the sidenav"
+	},
+	"head-content": {
+		"title": "Name of the page's tab",
+		"site_name": "GALLERY"
+	},
+	"homepage": {
+		"top_description": "[h1]Page Title[/h1][p]Paragraph text.[/p]",
+		"box-default_image": "https://example.com/image.jpg",
+		"box-top_message": "La galerie a un total de [$TOTALPAGES] pages."
+	}
+}

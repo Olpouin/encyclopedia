@@ -1,2 +1,7 @@
 RewriteEngine On
 RewriteRule ^(.)/(.*)/? index.php?type=$1&name=$2
+<Files "config.json">
+Order Allow,Deny
+Deny from all
+</Files>
+ErrorDocument 404 error.php
