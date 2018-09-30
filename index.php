@@ -51,10 +51,12 @@ $markdownArray = array(
 	'/\[h1\](.*)\[\/h1\]/Ums' => '<h1>$1</h1>',
 	'/\[h2\](.*)\[\/h2\]/Ums' => '<h2>$1</h2>',
 	'/\[p\](.*)\[\/p\]/Ums' => '<p>$1</p>',
+	'/\[i\](.*)\[\/i\]/Ums' => '<i>$1</i>',
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
 	'/\[br\]/m' => '<br>',
+	'/\[tab\]/m' => '<span class="large-space"></span>',
 	'/[\!\?]\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
 );
 foreach ($markdownArray as $key => $value) {
