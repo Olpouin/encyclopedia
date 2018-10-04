@@ -95,17 +95,26 @@ body {
 		display: none;
 		position: fixed;
 		top: 0;
-		left: 0;
+		left: 0 !important;
 		right: 0 !important;
+		width: auto !important;
+	}
+	.infobox {
+		width: auto !important;
+		max-width: 300px;
+		margin: 0 !important;
 	}
 	.card {
 		position: relative;
 		left: 0 !important;
 		right: 0;
 	}
-	.card-content-desc blockquote {
-		width: auto;
-		margin-right: 0;
+	.card blockquote {
+		width: auto !important;
+		margin-right: 0 !important;
+	}
+	.card > p {
+		max-width: none !important;
 	}
 }
 @media only screen and (max-width: 1250px) and (min-width: 751px) {
