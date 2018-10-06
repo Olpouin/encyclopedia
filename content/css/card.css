@@ -16,6 +16,9 @@
 	clear: right;
 	margin: 15px 0 15px 15px;
 }
+.infobox > br , .card > br {
+	display: none;
+}
 .infobox h1 {
 	display: inline-block;
 	background-color: #3295ff;

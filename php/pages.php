@@ -9,17 +9,20 @@ if(isset($_GET['type'])) {
 			$loadedDB = $searchDB->fetch();
 			if (empty($loadedDB)) {
 				http_response_code(404);
+				header('Location: '.$config['general']['path'].'/error.php?e=404');
 				die();
 			}
 			$infoContent['g_title'] = $loadedDB['name'];
 			$loadedDB['text'] = htmlentities($loadedDB['text']);
-			$cardContent = "<h1>{$loadedDB['name']}</h1>{$loadedDB['text']}";
+			$loadedText = nl2br($loadedDB['text']);
+			$cardContent = "<h1>{$loadedDB['name']}</h1>{$loadedText}";
 		} else { /*Shows a type (Cards large groups)*/
 			$cardContent = "Page en développement. Si vous avez des idées, j'accepte :arnold:";
 			$infoContent['g_title'] = "This page is not yet done.";
 		}
 	} else {
 		http_response_code(404);
+		header('Location: '.$config['general']['path'].'/error.php?e=404');
 		die();
 	}
 } else { /*Shows the homepage*/

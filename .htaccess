@@ -4,4 +4,7 @@ RewriteRule ^(.)/(.*)/? index.php?type=$1&name=$2
 Order Allow,Deny
 Deny from all
 </Files>
-ErrorDocument 404 error.php
+ErrorDocument 403 /gallery/error.php?e=403
+ErrorDocument 404 /gallery/error.php?e=404
+ErrorDocument 408 /gallery/error.php?e=408
+ErrorDocument 414 /gallery/error.php?e=414

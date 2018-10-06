@@ -39,8 +39,8 @@ foreach ($headerContentDetectionArray as $key => $value) {
 					$matches['1'] = substr($matches['1'], 0, 290)."...";
 				}
 				$description = $matches['1'];
-				$headerContent .= '<meta property="og:description" content="'.$description.'">';
-				$headerContent .= '<meta name="description" content="'.$description.'">';
+				$headerContent .= '<meta property="og:description" content="'.htmlentities($description).'">';
+				$headerContent .= '<meta name="description" content="'.htmlentities($description).'">';
 				break;
 		}
 	}
@@ -55,8 +55,8 @@ $markdownArray = array(
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
-	'/\[br\]/m' => '<br>',
 	'/\[tab\]/m' => '<span class="large-space"></span>',
+	'/\[br\]/m' => '<br>',
 	'/[\!\?]\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
 );
 foreach ($markdownArray as $key => $value) {
@@ -66,7 +66,7 @@ foreach ($markdownArray as $key => $value) {
 <!DOCTYPE html>
 <html lang="<?php echo $config['general']['language'] ?>">
 	<head>
-		<title><?php echo $config['head-content']['title'] ?></title>
+		<title>Pages<?php echo $config['head-content']['title'] ?></title>
 		<?php echo $headerContent ?>
 		<meta property="og:type" content="article">
 		<meta property="og:site_name" content="<?php echo $config['head-content']['site_name'] ?>">
