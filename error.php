@@ -5,15 +5,7 @@ $config = json_decode($config_JSON, true);
 if (isset($_GET['e'])) $error = $_GET['e'];
 else $error = "Unknown error";
 
-$errorMessages = array(
-	'400' => 'Bad Request: "The 400 (Bad Request) status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)." - <a href="https://tools.ietf.org/html/rfc7231#section-6.5.1" target="_blank">ietf.org</a>',
-	'401' => 'Unauthorized: You are trying to access something you should not have the right to use. Sorry, but that\'s a nope.',
-	'403' => 'Forbidden: You are not allowed to look at that. Wherever you are, it probably is a file that will just create a lot of errors if used alone. or something you shouldn\'t use at all.',
-	'404' => 'Not Found: We can\'t find this page. The entry may have changed name, been moved to another category or even removed. If you weren\'t looking for a card, you are somewhere you should not be.',
-	'408' => 'Request Timeout: It seems you have a problem right now. Please come back later.',
-	'414' => 'URI Too Long: The URL is too long. Don\'t know what you are trying to do, but it certainly isn\'t right.',
-	'Unknown error' => 'We can\'t find what error you got or (most likely) there are no error message prepared for this case. Sorry.'
-);
+$errorMessages = $config['error']['error_messages'];
 
 if (array_key_exists($error,$errorMessages)) $errorMessage = $errorMessages[$error];
 else $errorMessage = $errorMessages['Unknown error'];
@@ -78,12 +70,12 @@ else $errorMessage = $errorMessages['Unknown error'];
 		</style>
 	</head>
 	<body>
-		<h1><?php echo htmlentities($error);  ?></h1>
-		<h2><a href="<?php echo $config['general']['path']; ?>/">Homepage</a> • <a href="#error-code">Report error</a></h2>
-		<div><p><?php echo $errorMessage; ?></p></div>
+		<h1><?php echo htmlentities($error); ?></h1>
+		<h2><a href="<?php echo htmlentities($config['general']['path']); ?>/"><?php echo htmlentities($config['error']['homepage']); ?></a> • <a href="#error-code"><?php echo htmlentities($config['error']['menu-open']); ?></a></h2>
+		<div><p><?php echo htmlentities($errorMessage); ?></p></div>
 		<div id="error-code" style="top: 100%;">
-			<a href="#">&times; Close the error report</a><br><br>
-			Please send the following to the owner of the website:
+			<a href="#">&times; <?php echo htmlentities($config['error']['menu-close_message']); ?></a><br><br>
+			<?php echo $config['error']['menu-send_message']; ?>
 			<pre><?php echo "====== ERROR CODE REPORT\r\nERROR: ".htmlentities($error)."\r\nDATE : ".date('o-m-d H:i:s P')."\r\nURL  : ".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']."\r\n======"; ?></pre>
 		</div>
 	</body>
