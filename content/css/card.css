@@ -7,6 +7,8 @@
 	overflow-y: auto;
 	z-index: 0;
 	padding: 20px;
+	padding-left: 10%;
+	padding-right: 10%;
 }
 /*INFOBOX*/
 .infobox {
@@ -16,7 +18,7 @@
 	clear: right;
 	margin: 15px 0 15px 15px;
 }
-.infobox > br , .card > br {
+.infobox > br {
 	display: none;
 }
 .infobox h1 {
@@ -64,9 +66,6 @@
 	margin: 0;
 	display: block;
 	padding-right: 20px;
-}
-.card > p {
-	max-width: 75%;
 }
 .large-space {
 	width: 35px;

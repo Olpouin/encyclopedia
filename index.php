@@ -64,19 +64,19 @@ foreach ($markdownArray as $key => $value) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $config['general']['language'] ?>">
+<html lang="<?=$config['general']['language']?>">
 	<head>
-		<title>Pages<?php echo $config['head-content']['title'] ?></title>
-		<?php echo $headerContent ?>
+		<title>Pages<?=$config['head-content']['title']?></title>
+		<?=$headerContent?>
 		<meta property="og:type" content="article">
-		<meta property="og:site_name" content="<?php echo $config['head-content']['site_name'] ?>">
+		<meta property="og:site_name" content="<?=$config['head-content']['site_name']?>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="utf-8">
-		<link rel="icon" href="<?php echo $config['general']['path']; ?>/content/favicon.ico">
-		<link rel="stylesheet" href="<?php echo $config['general']['path']; ?>/content/css/main.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="<?php echo $config['general']['path']; ?>/content/css/sidenav.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="<?php echo $config['general']['path']; ?>/content/css/card.css" type="text/css" media="screen">
-		<script src="<?php echo $config['general']['path']; ?>/content/script.js" type="text/javascript" defer="defer"></script>
+		<link rel="icon" href="<?=$config['general']['path']?>/content/favicon.ico">
+		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/sidenav.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/card.css" type="text/css" media="screen">
+		<script src="<?=$config['general']['path']?>/content/script.js" type="text/javascript" defer="defer"></script>
 	</head>
 	<body>
 		<div id="fullscreen-image" class="fullscreen-image">
@@ -87,11 +87,11 @@ foreach ($markdownArray as $key => $value) {
 			<span class="button-x" onclick="closeImg();">&times;</span>
 		</div>
 		<nav id="sidenav">
-			<?php echo $sidenavContent; ?>
+			<?=$sidenavContent?>
 		</nav>
 		<section class="card" id="card">
 			<div class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</div>
-			<?php echo $cardContent; ?>
+			<?=$cardContent?>
 		</section>
 	</body>
 </html>

@@ -15,6 +15,7 @@ if(isset($_GET['type'])) {
 			$infoContent['g_title'] = $loadedDB['name'];
 			$loadedDB['text'] = htmlentities($loadedDB['text']);
 			$loadedText = nl2br($loadedDB['text']);
+			$loadedText = preg_replace('/\t/', '&emsp;', $loadedText);
 			$cardContent = "<h1>{$loadedDB['name']}</h1>{$loadedText}";
 		} else { /*Shows a type (Cards large groups)*/
 			$cardContent = "Page en développement. Si vous avez des idées, j'accepte :arnold:";
@@ -30,7 +31,7 @@ if(isset($_GET['type'])) {
 	$totalDBCounter = $db->query('select count(*) from bestiaire')->fetchColumn();
 	$config['homepage']['box-top_message'] = str_replace('[$TOTALPAGES]', $totalDBCounter, $config['homepage']['box-top_message']);
 	$cardContent = $config['homepage']['top_description']."<div class='previewBoxes'><h2>".$config['homepage']['box-top_message']."</h2>";
-	$boxList = $db->prepare('SELECT * FROM bestiaire ORDER BY rand() LIMIT 12');
+	$boxList = $db->prepare('SELECT * FROM bestiaire ORDER BY rand() LIMIT 8');
 	$boxList->execute();
 	while ($listing = $boxList->fetch()) {
 		preg_match('/\?\[(.*)\]\((.*)\)/m', $listing['text'], $matches);
