@@ -12,14 +12,14 @@ else $errorMessage = $errorMessages['Unknown error'];
 ?>
 <html>
 	<head>
-		<title><?php echo "Erreur".$config['head-content']['title'] ?></title>
+		<title><?="Erreur".$config['head-content']['title']?></title>
 		<meta property="og:type" content="article">
-		<meta property="og:site_name" content="<?php echo $config['head-content']['site_name'] ?>">
-		<meta property="og:description" content="<?php echo htmlentities($error)." : ".htmlentities($errorMessage) ?>">
-		<meta name="description" content="<?php echo htmlentities($error)." : ".htmlentities($errorMessage) ?>">
+		<meta property="og:site_name" content="<?=$config['head-content']['site_name']?>">
+		<meta property="og:description" content="<?=htmlentities($error)." : ".htmlentities($errorMessage)?>">
+		<meta name="description" content="<?=htmlentities($error)." : ".htmlentities($errorMessage)?>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="utf-8">
-		<link rel="icon" href="<?php echo $config['general']['path']; ?>/content/favicon.ico">
+		<link rel="icon" href="<?=$config['general']['path']?>/content/favicon.ico">
 		<style>
 			@font-face {
 				font-family: 'opensans-regular';
@@ -70,13 +70,13 @@ else $errorMessage = $errorMessages['Unknown error'];
 		</style>
 	</head>
 	<body>
-		<h1><?php echo htmlentities($error); ?></h1>
-		<h2><a href="<?php echo htmlentities($config['general']['path']); ?>/"><?php echo htmlentities($config['error']['homepage']); ?></a> • <a href="#error-code"><?php echo htmlentities($config['error']['menu-open']); ?></a></h2>
-		<div><p><?php echo htmlentities($errorMessage); ?></p></div>
+		<h1><?=htmlentities($error)?></h1>
+		<h2><a href="<?=htmlentities($config['general']['path'])?>/"><?=htmlentities($config['error']['homepage'])?></a> • <a href="#error-code"><?=htmlentities($config['error']['menu-open'])?></a></h2>
+		<div><p><?=htmlentities($errorMessage)?></p></div>
 		<div id="error-code" style="top: 100%;">
-			<a href="#">&times; <?php echo htmlentities($config['error']['menu-close_message']); ?></a><br><br>
+			<a href="#">&times; <?=htmlentities($config['error']['menu-close_message'])?></a><br><br>
 			<?php echo $config['error']['menu-send_message']; ?>
-			<pre><?php echo "====== ERROR CODE REPORT\r\nERROR: ".htmlentities($error)."\r\nDATE : ".date('o-m-d H:i:s P')."\r\nURL  : ".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']."\r\n======"; ?></pre>
+			<pre><?="====== ERROR CODE REPORT\r\nERROR: ".htmlentities($error)."\r\nDATE : ".date('o-m-d H:i:s P')."\r\nURL  : ".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']."\r\n======"?></pre>
 		</div>
 	</body>
 </html>

@@ -28,9 +28,25 @@ if(isset($_GET['type'])) {
 	}
 } else { /*Shows the homepage*/
 	$infoContent['g_title'] = "Galerie de Windersteel";
+	$cardContent = $config['homepage']['top_description'];
+	$cardContent .= "<form action=\"\" class=\"cardSearchBox\"><input class=\"cardSearch\" type=\"text\" name=\"search\" placeholder=\"Recherche d'une fiche...\"><input class=\"cardSearch-button\" type=\"submit\" value=\"Chercher\"></form><div class='previewBoxes'>";
+	if (isset($_GET['search'])) {
+		$searchDB = $db->prepare('SELECT * FROM bestiaire WHERE name REGEXP ? OR groupe REGEXP ?');
+		$searchDB->execute(array($_GET['search'],$_GET['search']));
+		while ($listing = $searchDB->fetch()) {
+			preg_match('/\?\[(.*)\]\((.*)\)/m', $listing['text'], $matches);
+			if (empty($matches)) {
+				$matches['2'] = $config['homepage']['box-default_image'];
+			}
+			$cardContent .= '<a href="'.$config['general']['path'].'/'.$listing['type'].'/'.str_replace(' ','-', $listing['name']).'" title="'.$listing['name'].'" ><div class="previewBox" style="background-image: url('.$matches['2'].');"><span>'.$listing['name'].'</span></div></a>';
+		}
+	$cardContent .= "</div>";
+	}
+
+
 	$totalDBCounter = $db->query('select count(*) from bestiaire')->fetchColumn();
 	$config['homepage']['box-top_message'] = str_replace('[$TOTALPAGES]', $totalDBCounter, $config['homepage']['box-top_message']);
-	$cardContent = $config['homepage']['top_description']."<div class='previewBoxes'><h2>".$config['homepage']['box-top_message']."</h2>";
+	$cardContent .= "<div class='previewBoxes'><h2>".$config['homepage']['box-top_message']."</h2>";
 	$boxList = $db->prepare('SELECT * FROM bestiaire ORDER BY rand() LIMIT 8');
 	$boxList->execute();
 	while ($listing = $boxList->fetch()) {
