@@ -40,6 +40,7 @@ body {
 .cardSearch-button {
 	flex: 1;
 	background-color: #DCDCDC;
+	cursor: pointer;
 }
 /*Homepage boxes*/
 .previewBoxes {
