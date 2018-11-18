@@ -1,23 +1,9 @@
-<?php /*Here come all global variables so I don't have to edit this in every files*/
-/*=== READ & TREAT config.json ===*/
-$config_JSON = file_get_contents("config.json");
-$config = json_decode($config_JSON, true);
-
-$dsn = "mysql:host={$config['database']['host']};dbname={$config['database']['name']};charset=utf8";
-try {
-	$db = new PDO($dsn,
-		$config['database']['username'],
-		$config['database']['password'],
-		array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-	);
-} catch (Exception $e) {
-	die('Error : '.$e->getMessage());
-}
-
-$configTypes = $config['types'];
+<?php
 /*==== BASIC FILES ====*/
-include 'php/pages.php'; /*Everything in the pages*/
-include 'php/sidenav.php'; /*Well... The sidenav.*/
+require_once 'config.php'; /*Various functions*/
+require_once 'php/functions.inc.php'; /*Various functions*/
+require_once 'php/pages.php'; /*Everything in the pages*/
+require_once 'php/sidenav.php'; /*Well... The sidenav.*/
 /*=== HEADER ===*/
 $headerContentDetectionArray = array(
 	'img' => '/\?\[(.*)\]\((.*)\)/m',
@@ -56,8 +42,10 @@ $markdownArray = array(
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
 	'/[\!\?]\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
 );
-foreach ($markdownArray as $key => $value) {
-	$cardContent = preg_replace($key, $value, $cardContent);
+if (!isset($_GET['edit'])) {
+	foreach ($markdownArray as $key => $value) {
+		$cardContent = preg_replace($key, $value, $cardContent);
+	}
 }
 ?>
 <!DOCTYPE html>

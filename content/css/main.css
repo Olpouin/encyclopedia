@@ -116,7 +116,44 @@ body {
 .sidenav-button {
 	cursor: pointer;
 }
+/*FLEXBOX*/
+.flexboxData {
+	display: flex;
+	border: 2px solid #DCDCDC;
+	flex-wrap: wrap;
+}
+.flexboxData > div {
+	padding: 20px;
+	flex: 1 0 45%;
+	overflow: auto;
 
+}
+.flexboxData pre {
+	margin: 0;
+	text-overflow: clip;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}
+.flexboxData h2 {
+	margin: 0;
+	text-align: center;
+}
+/*EDITOR*/
+.cardEditor > textarea {
+	width: 100%;
+	height: 500px;
+}
+.cardEditor > textarea, .cardEditor > input {
+	resize: none;
+	border: 2px solid #DCDCDC;
+	transition: border 200ms linear 0s;
+	border-radius: 5px;
+	padding: 10px 15px;
+}
+.cardEditor > textarea:focus, .cardEditor > input:focus {
+	border: 2px solid #3295FF;
+	transition: border 200ms linear 0s;
+}
 @media only screen and (max-width: 750px) {
 	nav {
 		display: none;
