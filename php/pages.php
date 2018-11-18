@@ -23,7 +23,7 @@ if(isset($_GET['type'])) {
 						$cardContent = "Mot de passe incorrect ou aucun texte n'a été envoyé.";
 					}
 				} else {
-					$infoContent['g_title'] = "Mot de passe requis";
+					$infoContent['g_title'] = "Édition de fiche";
 					$cardContent = <<<CONTENT
 					<form action="" method="post" class="cardEditor">
 						<textarea id="textEdit" required="" name="text">{$loadedDB['text']}</textarea>

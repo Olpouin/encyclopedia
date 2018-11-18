@@ -144,11 +144,12 @@ body {
 	height: 500px;
 }
 .cardEditor > textarea, .cardEditor > input {
-	resize: none;
+	resize: vertical;
 	border: 2px solid #DCDCDC;
 	transition: border 200ms linear 0s;
 	border-radius: 5px;
 	padding: 10px 15px;
+	max-height: 2000px;
 }
 .cardEditor > textarea:focus, .cardEditor > input:focus {
 	border: 2px solid #3295FF;
