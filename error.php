@@ -1,6 +1,5 @@
 <?php
-$config_JSON = file_get_contents("config.json");
-$config = json_decode($config_JSON, true);
+require_once 'config.php';
 
 if (isset($_GET['e'])) $error = $_GET['e'];
 else $error = "Unknown error";
