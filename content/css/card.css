@@ -13,7 +13,7 @@
 /*INFOBOX*/
 .infobox {
 	width: 300px;
-	background-color: #FAFAFA;
+	background-color: var(--color_sidenav);
 	float: right;
 	clear: right;
 	margin: 15px 0 15px 15px;
@@ -23,13 +23,13 @@
 }
 .infobox h1 {
 	display: inline-block;
-	background-color: #3295ff;
+	background-color: var(--color_secondary);
 	width: 100%;
 	height: auto;
 	text-align: center;
 	padding: 0.5em 0;
 	margin: 0;
-	color: #F8F8F8;
+	color: var(--color_infobox-text_color);
 }
 .infobox img {
 	border-radius: 0;
@@ -80,7 +80,7 @@
 	margin: 0.25em 40px;
 	padding: 0.25em 5px;
 	position: relative;
-	color: #383838;
+	color: var(--color_quote-text_color);
 }
 .card blockquote::before {
 	display: block;
@@ -89,7 +89,7 @@
 	position: absolute;
 	left: -40px;
 	top: -20px;
-	color: #7A7A7A;
+	color: var(--color_quote-before_color);
 }
 .card blockquote > cite {
 	color: #999999;

@@ -31,7 +31,7 @@ if(isset($_GET['type'])) {
 						$editorFunctionBar .= '<div class="editor-bar_group">';
 						foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
 							$editorFunction = $config['general']['editor-bar'][$groupNumber][$formatNumber];
-							$editorFunctionBar .= '<img src="'.$config['general']['path'].'/content/icons/'.$editorFunction['icon'].'.svg" title="'.$editorFunction['name'].'" alt="'.$editorFunction['name'].'" onclick="addTextElement(\''.$editorFunction['format'].'\', '.$editorFunction['cursor_move'].')">';
+							$editorFunctionBar .= '<img class="edit-object" src="'.$config['general']['path'].'/content/icons/'.$editorFunction['icon'].'.svg" title="'.$editorFunction['name'].'" alt="'.$editorFunction['name'].'" onclick="addTextElement(\''.$editorFunction['format'].'\', '.$editorFunction['cursor_move'].')">';
 						}
 						$editorFunctionBar .= '</div>';
 					}

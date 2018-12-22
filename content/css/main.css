@@ -3,12 +3,25 @@
 	src: url('../content/OpenSans-Regular.ttf');
 }
 
+:root {
+	--color_main: #FFFFFF;
+	--color_borders: #DCDCDC;
+	--color_sidenav: #FAFAFA;
+	--color_main-opposite: #000000;
+	--color_secondary: #3295FF;
+	--color_infobox-text_color: #F8F8F8;
+	--color_quote-text_color: #383838;
+	--color_quote-before_color: #7A7A7A;
+	--invert-value: 0%;
+}
+
 html {
 	font-family: opensans-regular, sans-serif;
-	background-color: #FFFFFF;
+	background-color: var(--color_main);
 }
 body {
 	margin: 0;
+	color: var(--color_main-opposite)
 }
 .error {
 	border: 1px solid red;
@@ -20,13 +33,15 @@ body {
 	margin: 10px 0;
 	display: flex;
 	width: 100%;
-	border: 2px solid #DCDCDC;
+	border: 2px solid var(--color_borders);
 	border-radius: 5px;
 	transition: border 200ms linear 0s;
 }
 .cardSearchBox > input {
 	border: none;
 	padding: 10px 15px;
+	background-color: var(----color_main);
+	color: var(--color_main-opposite);
 }
 .cardSearch {
 	flex: 6;
@@ -34,12 +49,12 @@ body {
 	transition: border 200ms linear 0s;
 }
 .cardSearchBox ~ .cardSearch:focus, .cardSearch:focus .cardSearch-button {
-	border: 2px solid #3295FF;
+	border: 2px solid var(----color_borders);
 	transition: border 200ms linear 0s;
 }
 .cardSearch-button {
 	flex: 1;
-	background-color: #DCDCDC;
+	background-color: var(--color_borders);
 	cursor: pointer;
 }
 /*Homepage boxes*/
@@ -119,7 +134,7 @@ body {
 /*FLEXBOX*/
 .flexboxData {
 	display: flex;
-	border: 2px solid #DCDCDC;
+	border: 2px solid var(--color_borders);
 	flex-wrap: wrap;
 }
 .flexboxData > div {
@@ -147,21 +162,23 @@ body {
 	display: inline-block;
 	padding: 3px 5px;
 }
-.cardEditor .editor-bar_group img {
+.edit-object {
 	cursor: pointer;
-	border: 2px solid #DDDDDD;
+	border: 2px solid #DCDCDC;
 	border-right: 0;
 	padding: 5px;
+	fill: red;
+	filter: invert(var(--invert-value));
 }
-.cardEditor .editor-bar_group img:hover {
-	background-color: #DDDDDD;
+.edit-object:hover {
+	background-color: #DCDCDC;
 }
-.cardEditor .editor-bar_group img:first-of-type {
+.edit-object:first-of-type {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 }
-.cardEditor .editor-bar_group img:last-of-type {
-	border-right: 2px solid #DDDDDD;
+.edit-object:last-of-type {
+	border-right: 2px solid #DCDCDC;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
@@ -170,18 +187,22 @@ body {
 	width: 100%;
 	height: 500px;
 	margin-bottom: 5px;
+	background-color: var(--color_main);
+	color: var(--color_main-opposite)
 	font: fixed;
 }
 .cardEditor > #textEdit, .cardEditor > input {
 	resize: vertical;
-	border: 2px solid #DCDCDC;
+	background-color: var(--color_main);
+	color: var(--color_main-opposite)
+	border: 2px solid var(--color_borders);
 	transition: border 200ms linear 0s;
 	border-radius: 5px;
 	padding: 10px 15px;
 	max-height: 2000px;
 }
 .cardEditor > #textEdit:focus, .cardEditor > input:focus {
-	border: 2px solid #3295FF;
+	border: 2px solid var(--color_secondary);
 	transition: border 200ms linear 0s;
 }
 @media only screen and (max-width: 750px) {
