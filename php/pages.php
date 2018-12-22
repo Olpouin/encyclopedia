@@ -20,18 +20,24 @@ if(isset($_GET['type'])) {
 							$cardContent = "Texte trop long. Retournez en arrière pour récupérer le texte";
 						}
 					} else {
-						$cardContent = "Mot de passe incorrect ou aucun texte n'a été envoyé.";
+						http_response_code(401);
+						header('Location: '.$config['general']['path'].'/error.php?e=401');
+						die();
 					}
 				} else {
 					$infoContent['g_title'] = "Édition de fiche";
-					$cardContent = <<<CONTENT
-					<form action="" method="post" class="cardEditor">
-						<textarea id="textEdit" required="" name="text">{$loadedDB['text']}</textarea>
-						<input type="password" required="" name="pass" placeholder="Mot de passe">
-						<input type="submit">
-					</form>
-					<hr>
-CONTENT;
+					$editorFunctionBar = '<div class="editor-bar">';
+					foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
+						$editorFunctionBar .= '<div class="editor-bar_group">';
+						foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
+							$editorFunction = $config['general']['editor-bar'][$groupNumber][$formatNumber];
+							$editorFunctionBar .= '<img src="'.$config['general']['path'].'/content/icons/'.$editorFunction['icon'].'.svg" title="'.$editorFunction['name'].'" alt="'.$editorFunction['name'].'" onclick="addTextElement(\''.$editorFunction['format'].'\', '.$editorFunction['cursor_move'].')">';
+						}
+						$editorFunctionBar .= '</div>';
+					}
+					$editorFunctionBar .= '</div>';
+					$cardContent = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $HTMLdata['editor-form']);
+					$cardContent = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $cardContent);
 					$cardContent .= $HTMLdata['format-info'];
 				}
 			} else { /*DISPLAY PAGE*/

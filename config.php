@@ -17,7 +17,7 @@ $config['head-content'] = array(
 	"site_name" => "Gallery"
 );
 $config['general'] = array(
-	"globalPassword" => "", //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);"
+	"globalPassword" => '', //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);"
 	"language" => "fr",
 	"sidenav_title" => "Galerie"
 );
@@ -26,9 +26,7 @@ $config['homepage'] = array(
 	"box-top_message" => "La galerie a un total de [TOTALPAGES] pages."
 );
 $config['homepage']['top_description'] = <<<HOMEPAGETOPDESC
-[h1]Title[/h1]
-![Img desc](URL)
-Text
+Homepage
 HOMEPAGETOPDESC;
 $config['error'] = array(
 	"menu-close_message" => "Close the error report",
@@ -37,7 +35,7 @@ $config['error'] = array(
 	"menu-open" => "Report error",
 	"error_messages" => array(
 		"400" => "Bad Request: \"The 400 (Bad Request) status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\" - <a href=\"https://tools.ietf.org/html/rfc7231#section-6.5.1\" target=\"_blank\">ietf.org</a>",
-		"401" => "Unauthorized: You are trying to access something you should not have the right to use. Sorry, but that's a nope.",
+		"401" => "Unauthorized: Your access is denied. The password you entered is incorrect or you are trying to use something you are not allowed to.",
 		"403" => "Forbidden: You are not allowed to look at that. Wherever you are, it probably is a file that will just create a lot of errors if used alone. or something you shouldn't use at all.",
 		"404" => "Not Found: We can't find this page. The entry may have changed name, been moved to another category or even removed. If you weren't looking for a card, you are somewhere you should not be.",
 		"408" => "Request Timeout: It seems you have a problem right now. Please come back later.",
@@ -45,7 +43,62 @@ $config['error'] = array(
 		"Unknown error" => "We can't find what error you got or (most likely) there are no error message prepared for this case. Sorry."
 	)
 );
-
+$config['general']['editor-bar'] = array(
+	array(
+		array(
+			"name" => "Titre 1",
+			"format" => "[h1][/h1]",
+			"cursor_move" => "4",
+			"icon" => "format-title1"
+		),
+		array(
+			"name" => "Titre 2",
+			"format" => "[h2][/h2]",
+			"cursor_move" => "4",
+			"icon" => "format-title2"
+		),
+	),
+	array(
+		array(
+			"name" => "Italique",
+			"format" => "[i][/i]",
+			"cursor_move" => "3",
+			"icon" => "format-italic"
+		),
+		array(
+			"name" => "Gras",
+			"format" => "[b][/b]",
+			"cursor_move" => "3",
+			"icon" => "format-bold"
+		),
+		array(
+			"name" => "Barré",
+			"format" => "[s][/s]",
+			"cursor_move" => "3",
+			"icon" => "format-strikethrough"
+		),
+		array(
+			"name" => "Soulignage",
+			"format" => "[u][/u]",
+			"cursor_move" => "3",
+			"icon" => "format-underlined"
+		)
+	),
+	array(
+		array(
+			"name" => "Image",
+			"format" => "![]()",
+			"cursor_move" => "2",
+			"icon" => "special-image"
+		),
+		array(
+			"name" => "Citation",
+			"format" => "[quote][author][/author][/quote]",
+			"cursor_move" => "7",
+			"icon" => "special-quote"
+		)
+	)
+);
 
 
 /*More advanced data if you want to change something*/
@@ -60,6 +113,15 @@ $HTMLdata['code-link'] = <<<CODELINK
 	Source code on GitHub at <a href='https://github.com/Olpouin/gallery' target='_blank' style='color: #0066d3;text-decoration:none;'>github.com/Olpouin/gallery</a>
 </div>
 CODELINK;
+$HTMLdata['editor-form'] = <<<EDITORFORM
+<form action="" method="post" class="cardEditor">
+	[QUOTE_EDITION_BAR]
+	<textarea id="textEdit" required="" name="text">[QUOTE_TEXT]</textarea>
+	<input type="password" required="" name="pass" placeholder="Mot de passe">
+	<input type="submit">
+</form>
+<hr>
+EDITORFORM;
 $HTMLdata['format-info'] = <<<FORMATINFO
 <div class="flexboxData"">
 	<div>
