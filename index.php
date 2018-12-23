@@ -64,6 +64,45 @@ if (!isset($_GET['edit'])) {
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/sidenav.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/card.css" type="text/css" media="screen">
+		<style id="mainColorsCSS">
+			:root {
+				--color_main: #FFFFFF;
+				--color_borders: #DCDCDC;
+				--color_sidenav: #FAFAFA;
+				--color_main-opposite: #000000;
+				--color_secondary: #3295FF;
+				--color_infobox-text_color: #F8F8F8;
+				--color_quote-text_color: #383838;
+				--color_quote-before_color: #7A7A7A;
+				--invert-value: 0%;
+			}
+		</style>
+		<template id="css_nightmode">
+			:root {
+				--color_main: #000000 !important;
+				--color_borders: #323232;
+				--color_sidenav: #060606;
+				--color_main-opposite: #FFFFFF;
+				--color_secondary: #003399;
+				--color_infobox-text_color: #F8F8F8;
+				--color_quote-text_color: #D8D8D8;
+				--color_quote-before_color: #969696;
+				--invert-value: 100%;
+			}
+		</template>
+		<template id="css_daymode">
+			:root {
+				--color_main: #FFFFFF;
+				--color_borders: #DCDCDC;
+				--color_sidenav: #FAFAFA;
+				--color_main-opposite: #000000;
+				--color_secondary: #3295FF;
+				--color_infobox-text_color: #F8F8F8;
+				--color_quote-text_color: #383838;
+				--color_quote-before_color: #7A7A7A;
+				--invert-value: 0%;
+			}
+		</template>
 		<script src="<?=$config['general']['path']?>/content/script.js" type="text/javascript" defer="defer"></script>
 	</head>
 	<body>

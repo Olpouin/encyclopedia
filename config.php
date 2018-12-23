@@ -113,6 +113,11 @@ $HTMLdata['code-link'] = <<<CODELINK
 	Source code on GitHub at <a href='https://github.com/Olpouin/gallery' target='_blank' style='color: #0066d3;text-decoration:none;'>github.com/Olpouin/gallery</a>
 </div>
 CODELINK;
+$HTMLdata['homepage-parameters'] = <<<HOMEPAGEPARAMETERS
+<h2>Préférences</h2>
+<input class="checkbox" id="nightmode" type="checkbox" name="nightmode" value="on"><label for="nightmode" class="toggle">Mode nuit</label><br>
+<button class="input" onclick="changeParameters()">Confirmer les changements</button>
+HOMEPAGEPARAMETERS;
 $HTMLdata['editor-form'] = <<<EDITORFORM
 <form action="" method="post" class="cardEditor">
 	[QUOTE_EDITION_BAR]

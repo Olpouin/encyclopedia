@@ -3,17 +3,6 @@
 	src: url('../content/OpenSans-Regular.ttf');
 }
 
-:root {
-	--color_main: #FFFFFF;
-	--color_borders: #DCDCDC;
-	--color_sidenav: #FAFAFA;
-	--color_main-opposite: #000000;
-	--color_secondary: #3295FF;
-	--color_infobox-text_color: #F8F8F8;
-	--color_quote-text_color: #383838;
-	--color_quote-before_color: #7A7A7A;
-	--invert-value: 0%;
-}
 
 html {
 	font-family: opensans-regular, sans-serif;
@@ -191,17 +180,17 @@ body {
 	color: var(--color_main-opposite)
 	font: fixed;
 }
-.cardEditor > #textEdit, .cardEditor > input {
+.cardEditor > #textEdit, .cardEditor > input, .input {
 	resize: vertical;
 	background-color: var(--color_main);
-	color: var(--color_main-opposite)
+	color: var(--color_main-opposite);
 	border: 2px solid var(--color_borders);
 	transition: border 200ms linear 0s;
 	border-radius: 5px;
 	padding: 10px 15px;
 	max-height: 2000px;
 }
-.cardEditor > #textEdit:focus, .cardEditor > input:focus {
+.cardEditor > #textEdit:focus, .cardEditor > input:focus, .input:focus {
 	border: 2px solid var(--color_secondary);
 	transition: border 200ms linear 0s;
 }

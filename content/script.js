@@ -1,3 +1,23 @@
+/*Parameters*/
+function changeParameters() {
+	if (document.querySelector('#nightmode').checked) {
+		document.cookie = "nightmode=true; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+	} else {
+		document.cookie = "nightmode=false; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+	}
+	checkParameters();
+}
+function checkParameters() {
+	if (document.cookie.split(';').filter((item) => item.includes('nightmode=true')).length) {
+		document.getElementById('mainColorsCSS').innerHTML = document.getElementById('css_nightmode').innerHTML;
+		document.querySelector('#nightmode').checked = true;
+	} else {
+		document.getElementById('mainColorsCSS').innerHTML = document.getElementById('css_daymode').innerHTML;
+	}
+}
+checkParameters();
+/*Others*/
+
 function openNav() {
     document.getElementById("sidenav").classList.add("open");
 }
@@ -24,6 +44,7 @@ function closeImg() {
 
 /*Text edition
 https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea*/
+if (document.getElementById("textEdit")) {
 var txtarea = document.getElementById("textEdit");
 
 var latestCursorPositionStart = 0;
@@ -66,4 +87,5 @@ txtarea.onkeydown = function(e) {
 		this.value = this.value.substring(0,this.selectionStart) + textAdd + this.value.substring(this.selectionEnd);
 		this.selectionEnd = s+selectAdd;
 	}
+}
 }

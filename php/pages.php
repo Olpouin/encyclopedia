@@ -83,11 +83,12 @@ if(isset($_GET['type'])) {
 	$totalDBCounter = $db->query('select count(*) from bestiaire')->fetchColumn();
 	$config['homepage']['box-top_message'] = str_replace('[TOTALPAGES]', $totalDBCounter, $config['homepage']['box-top_message']);
 	$cardContent .= "<div class='previewBoxes'><h2>".$config['homepage']['box-top_message']."</h2>";
-	$boxList = $db->prepare('SELECT * FROM bestiaire ORDER BY rand() LIMIT 8');
+	$boxList = $db->prepare('SELECT * FROM bestiaire ORDER BY rand() LIMIT 4');
 	$boxList->execute();
 	while ($listing = $boxList->fetch()) {
 		$cardContent .= $previewBox($listing);
 	}
+	$cardContent .= $HTMLdata['homepage-parameters'];
 	$cardContent .= $HTMLdata['code-link'];
 	$cardContent .= "</div>";
 }
