@@ -71,6 +71,7 @@ if (!isset($_GET['edit'])) {
 				--color_sidenav: #FAFAFA;
 				--color_main-opposite: #000000;
 				--color_secondary: #3295FF;
+				--color_selected: #003399;
 				--color_infobox-text_color: #F8F8F8;
 				--color_quote-text_color: #383838;
 				--color_quote-before_color: #7A7A7A;
@@ -84,6 +85,7 @@ if (!isset($_GET['edit'])) {
 				--color_sidenav: #060606;
 				--color_main-opposite: #FFFFFF;
 				--color_secondary: #003399;
+				--color_selected: #3295FF;
 				--color_infobox-text_color: #F8F8F8;
 				--color_quote-text_color: #D8D8D8;
 				--color_quote-before_color: #969696;
@@ -97,6 +99,7 @@ if (!isset($_GET['edit'])) {
 				--color_sidenav: #FAFAFA;
 				--color_main-opposite: #000000;
 				--color_secondary: #3295FF;
+				--color_selected: #003399;
 				--color_infobox-text_color: #F8F8F8;
 				--color_quote-text_color: #383838;
 				--color_quote-before_color: #7A7A7A;

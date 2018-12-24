@@ -65,3 +65,7 @@ nav-button {
 	text-align: center
 	cursor: pointer;
 }
+.selectedPage {
+	color: var(--color_selected) !important;
+	text-decoration: underline;
+}

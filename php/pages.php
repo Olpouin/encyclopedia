@@ -4,7 +4,7 @@ if(isset($_GET['type'])) {
 	if(array_key_exists($type, $configTypes)) {
 		if(isset($_GET['name']) AND !empty($_GET['name'])) { /*Shows a card*/
 			if (isset($_GET['edit'])) { /*EDIT PAGE*/
-				$dbSearchName = str_replace('-',' ', $_GET['name']);
+				$dbSearchName = URLConvert($_GET['name'], false);
 				$searchDB = $db->prepare('SELECT * FROM bestiaire WHERE name = ? AND type = ?');
 				$searchDB->execute(array($dbSearchName,$type));
 				$loadedDB = $searchDB->fetch();
@@ -71,7 +71,7 @@ if(isset($_GET['type'])) {
 	$cardContent .= $HTMLdata['homepage-search'];
 	$cardContent .= "<div class='previewBoxes'>";
 	if (isset($_GET['search'])) {
-		$searchDB = $db->prepare('SELECT * FROM bestiaire WHERE name REGEXP ? OR groupe REGEXP ?');
+		$searchDB = $db->prepare('SELECT * FROM bestiaire WHERE (name REGEXP ? OR groupe REGEXP ?) AND hidden = 0');
 		$searchDB->execute(array($_GET['search'],$_GET['search']));
 		while ($listing = $searchDB->fetch()) {
 			$cardContent .= $previewBox($listing);
@@ -80,10 +80,10 @@ if(isset($_GET['type'])) {
 	}
 
 
-	$totalDBCounter = $db->query('select count(*) from bestiaire')->fetchColumn();
+	$totalDBCounter = $db->query('select count(*) from bestiaire where hidden = \'0\'')->fetchColumn();
 	$config['homepage']['box-top_message'] = str_replace('[TOTALPAGES]', $totalDBCounter, $config['homepage']['box-top_message']);
 	$cardContent .= "<div class='previewBoxes'><h2>".$config['homepage']['box-top_message']."</h2>";
-	$boxList = $db->prepare('SELECT * FROM bestiaire ORDER BY rand() LIMIT 4');
+	$boxList = $db->prepare('SELECT * FROM bestiaire WHERE hidden = 0 ORDER BY rand() LIMIT 4');
 	$boxList->execute();
 	while ($listing = $boxList->fetch()) {
 		$cardContent .= $previewBox($listing);

@@ -175,6 +175,7 @@ FORMATINFO;
 
 
 /*Automated things that you should not change*/
+//Database connection
 $dsn = "mysql:host={$config['database']['host']};dbname={$config['database']['name']};charset=utf8";
 try {
 	$db = new PDO($dsn,
@@ -186,7 +187,16 @@ try {
 	die('Error : '.$e->getMessage());
 }
 $configTypes = $config['types'];
-
+//Path detection
 preg_match('/(\/(.*))\//Um', $_SERVER['PHP_SELF'], $detectedPaths);
 $config['general']['path'] = $detectedPaths['1'];
+//Cards listing
+$cardList = $db->prepare('SELECT * FROM bestiaire ORDER BY type,groupe,name');
+$cardList->execute();
+$config['cardsList'] = array();
+while ($data = $cardList->fetch()) {
+	$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['password'] = $data['password'];
+	$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['text'] = $data['text'];
+	$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['hidden'] = $data['hidden'];
+}
 ?>
