@@ -1,4 +1,5 @@
 <?php
+require_once 'lang/fr.php'; //The language file
 /*General configuration.*/
 $config['database'] = array(
 	"host" => "",
@@ -28,31 +29,16 @@ $config['homepage'] = array(
 $config['homepage']['top_description'] = <<<HOMEPAGETOPDESC
 Homepage
 HOMEPAGETOPDESC;
-$config['error'] = array(
-	"menu-close_message" => "Close the error report",
-	"menu-send_message" => "Please send the following to the owner of the website:",
-	"homepage" => "Homepage",
-	"menu-open" => "Report error",
-	"error_messages" => array(
-		"400" => "Bad Request: \"The 400 (Bad Request) status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\" - <a href=\"https://tools.ietf.org/html/rfc7231#section-6.5.1\" target=\"_blank\">ietf.org</a>",
-		"401" => "Unauthorized: Your access is denied. The password you entered is incorrect or you are trying to use something you are not allowed to.",
-		"403" => "Forbidden: You are not allowed to look at that. Wherever you are, it probably is a file that will just create a lot of errors if used alone. or something you shouldn't use at all.",
-		"404" => "Not Found: We can't find this page. The entry may have changed name, been moved to another category or even removed. If you weren't looking for a card, you are somewhere you should not be.",
-		"408" => "Request Timeout: It seems you have a problem right now. Please come back later.",
-		"414" => "URI Too Long: The URL is too long. Don't know what you are trying to do, but it certainly isn't right.",
-		"Unknown error" => "We can't find what error you got or (most likely) there are no error message prepared for this case. Sorry."
-	)
-);
 $config['general']['editor-bar'] = array(
 	array(
 		array(
-			"name" => "Titre 1",
+			"name" => $lang['editor-bar']['title1'],
 			"format" => "[h1][/h1]",
 			"cursor_move" => "4",
 			"icon" => "format-title1"
 		),
 		array(
-			"name" => "Titre 2",
+			"name" => $lang['editor-bar']['title2'],
 			"format" => "[h2][/h2]",
 			"cursor_move" => "4",
 			"icon" => "format-title2"
@@ -60,25 +46,25 @@ $config['general']['editor-bar'] = array(
 	),
 	array(
 		array(
-			"name" => "Italique",
+			"name" => $lang['editor-bar']['italic'],
 			"format" => "[i][/i]",
 			"cursor_move" => "3",
 			"icon" => "format-italic"
 		),
 		array(
-			"name" => "Gras",
+			"name" => $lang['editor-bar']['bold'],
 			"format" => "[b][/b]",
 			"cursor_move" => "3",
 			"icon" => "format-bold"
 		),
 		array(
-			"name" => "Barré",
+			"name" => $lang['editor-bar']['strikethrough'],
 			"format" => "[s][/s]",
 			"cursor_move" => "3",
 			"icon" => "format-strikethrough"
 		),
 		array(
-			"name" => "Soulignage",
+			"name" => $lang['editor-bar']['underlined'],
 			"format" => "[u][/u]",
 			"cursor_move" => "3",
 			"icon" => "format-underlined"
@@ -86,13 +72,13 @@ $config['general']['editor-bar'] = array(
 	),
 	array(
 		array(
-			"name" => "Image",
+			"name" => $lang['editor-bar']['img'],
 			"format" => "![]()",
 			"cursor_move" => "2",
 			"icon" => "special-image"
 		),
 		array(
-			"name" => "Citation",
+			"name" => $lang['editor-bar']['quote'],
 			"format" => "[quote][author][/author][/quote]",
 			"cursor_move" => "7",
 			"icon" => "special-quote"
@@ -104,25 +90,25 @@ $config['general']['editor-bar'] = array(
 /*More advanced data if you want to change something*/
 $HTMLdata['homepage-search'] = <<<HOMEPAGESEARCH
 <form action="" class="cardSearchBox">
-	<input class="cardSearch" type="text" name="search" placeholder="Recherche d'une fiche...">
-	<input class="cardSearch-button" type="submit" value="Chercher">
+	<input class="cardSearch" type="text" name="search" placeholder="{$lang['homepage-search_input']}">
+	<input class="cardSearch-button" type="submit" value="{$lang['homepage-search_button']}">
 </form>
 HOMEPAGESEARCH;
 $HTMLdata['code-link'] = <<<CODELINK
 <div>
-	Source code on GitHub at <a href='https://github.com/Olpouin/gallery' target='_blank' style='color: #0066d3;text-decoration:none;'>github.com/Olpouin/gallery</a>
+	{$lang['homepage-sourcecode']} <a href='https://github.com/Olpouin/gallery' target='_blank' style='color: #0066d3;text-decoration:none;'>github.com/Olpouin/gallery</a>
 </div>
 CODELINK;
 $HTMLdata['homepage-parameters'] = <<<HOMEPAGEPARAMETERS
-<h2>Préférences</h2>
-<input class="checkbox" id="nightmode" type="checkbox" name="nightmode" value="on"><label for="nightmode" class="toggle">Mode nuit</label><br>
-<button class="input" onclick="changeParameters()">Confirmer les changements</button>
+<h2>{$lang['homepage-prefs-title']}</h2>
+<input class="checkbox" id="nightmode" type="checkbox" name="nightmode" value="on"><label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br>
+<button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 HOMEPAGEPARAMETERS;
 $HTMLdata['editor-form'] = <<<EDITORFORM
 <form action="" method="post" class="cardEditor">
 	[QUOTE_EDITION_BAR]
 	<textarea id="textEdit" required="" name="text">[QUOTE_TEXT]</textarea>
-	<input type="password" required="" name="pass" placeholder="Mot de passe">
+	<input type="password" required="" name="pass" placeholder="{$lang['edition-password']}">
 	<input type="submit">
 </form>
 <hr>

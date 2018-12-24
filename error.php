@@ -70,11 +70,11 @@ else $errorMessage = $errorMessages['Unknown error'];
 	</head>
 	<body>
 		<h1><?=htmlentities($error)?></h1>
-		<h2><a href="<?=htmlentities($config['general']['path'])?>/"><?=htmlentities($config['error']['homepage'])?></a> • <a href="#error-code"><?=htmlentities($config['error']['menu-open'])?></a></h2>
+		<h2><a href="<?=htmlentities($config['general']['path'])?>/"><?=htmlentities($lang['error']['homepage'])?></a> • <a href="#error-code"><?=htmlentities($lang['error']['menu-open'])?></a></h2>
 		<div><p><?=htmlentities($errorMessage)?></p></div>
 		<div id="error-code" style="top: 100%;">
-			<a href="#">&times; <?=htmlentities($config['error']['menu-close_message'])?></a><br><br>
-			<?php echo $config['error']['menu-send_message']; ?>
+			<a href="#">&times; <?=htmlentities($lang['error']['menu-close_message'])?></a><br><br>
+			<?php echo $lang['error']['menu-send_message']; ?>
 			<pre><?="====== ERROR CODE REPORT\r\nERROR: ".htmlentities($error)."\r\nDATE : ".date('o-m-d H:i:s P')."\r\nURL  : ".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']."\r\n======"?></pre>
 		</div>
 	</body>
