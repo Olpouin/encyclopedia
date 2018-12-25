@@ -7,7 +7,8 @@ $lang = array(
 	'homepage-prefs-title' => 'Parameters',
 	'homepage-prefs-nightmode' => 'Night mode',
 	'homepage-prefs-confirm_changes' => 'Confirm changes',
-	'edition-password' => 'Password'
+	'edition-password' => 'Password',
+	'edition-info-example_title' => 'Example'
 );
 $lang['editor-bar'] = array(
 	'title1' => 'Title 1',

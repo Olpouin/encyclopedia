@@ -106,7 +106,7 @@ if (!isset($_GET['edit'])) {
 				--invert-value: 0%;
 			}
 		</template>
-		<script src="<?=$config['general']['path']?>/content/script.js" type="text/javascript" defer="defer"></script>
+		<script src="<?=$config['general']['path']?>/content/script.js" type="text/javascript" defer></script>
 	</head>
 	<body>
 		<div id="fullscreen-image" class="fullscreen-image">

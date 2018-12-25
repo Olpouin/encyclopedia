@@ -15,7 +15,7 @@ if(isset($_GET['type'])) {
 							$searchDB = $db->prepare('UPDATE bestiaire SET text = ? WHERE name = ? AND type = ?');
 							$searchDB->execute(array($_POST['text'],$dbSearchName,$type));
 							$cardContent = "Modification réussie.";
-							header('Location: '.$config['general']['path'].'/'.$type.'/'.str_replace(' ','-', $dbSearchName));
+							header('Location: '.$config['general']['path'].'/'.$type.'/'.URLConvert($dbSearchName));
 						} else {
 							$cardContent = "Texte trop long. Retournez en arrière pour récupérer le texte";
 						}

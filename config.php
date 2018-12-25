@@ -133,19 +133,18 @@ $HTMLdata['format-info'] = <<<FORMATINFO
 	<div>
 		<h2>Raccourcis</h2>
 		- Créer une infobox rapidement : SHIFT + 1<br>
-		- Créer une citation rapidement : SHIFT + 2<br>
-		- Créer une [ibd] rapidement : SHIFT + 3<br>
+		- Créer une [ibd] rapidement : SHIFT + 2<br>
 	</div>
 	<div>
-		<h2>Exemple</h2>
+		<h2>{$lang['edition-info-example_title']}</h2>
 		<pre>
 [ib]
-[h1]Titre[/h1]
-![Description de l'image](URL)
-[h1]Informations diverses[/h1]
-[ibd]Âge|24 ans[/ibd]
-[ibd]Lieu de naissance|La lune[/ibd]
-[ibd]Couleur des yeux|Rouge[/ibd]
+[h1]Debitis et qui[/h1]
+![Quisquam quo enim](URL)
+[h1]Nobis ut voluptatem[/h1]
+[ibd]voluptates|24[/ibd]
+[ibd]Cupiditate quas|Rem[/ibd]
+[ibd]Est sit omnis|Occaecati labore soluta nam[/ibd]
 [/ib]
 Reiciendis et cum aut et omnis aliquam odit. Aspernatur nostrum esse consequuntur.
 [h1]Lorem ipsum[/h1]

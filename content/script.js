@@ -10,7 +10,7 @@ function changeParameters() {
 function checkParameters() {
 	if (document.cookie.split(';').filter((item) => item.includes('nightmode=true')).length) {
 		document.getElementById('mainColorsCSS').innerHTML = document.getElementById('css_nightmode').innerHTML;
-		document.querySelector('#nightmode').checked = true;
+		if (document.querySelector('#nightmode')) document.querySelector('#nightmode').checked = true;
 	} else {
 		document.getElementById('mainColorsCSS').innerHTML = document.getElementById('css_daymode').innerHTML;
 	}
@@ -64,17 +64,13 @@ function addTextElement(format,cursorMove) {
 }
 
 txtarea.onkeydown = function(e) {
-	if((e.shiftKey || e.shiftKey) && ((e.keyCode==9 || e.which==9) || (e.keyCode==49 || e.which==49) || (e.keyCode==50 || e.which==50) || (e.keyCode==51 || e.which==51))){
+	if((e.shiftKey || e.shiftKey) && ((e.keyCode==9 || e.which==9) || (e.keyCode==49 || e.which==49) || (e.keyCode==50 || e.which==50))){
 		switch (e.keyCode) {
 			case 49:
 				var textAdd = "[ib]\r\n[h1][/h1]\r\n![]()\r\n[ibd]|[/ibd]\r\n[ibd]|[/ibd]\r\n[ibd]|[/ibd]\r\n[/ib]";
 				var selectAdd = 9;
 				break;
 			case 50:
-				var textAdd = "[quote][author][/author][/quote] ";
-				var selectAdd = 7;
-				break;
-			case 51:
 				var textAdd = "[ibd]|[/ibd]";
 				var selectAdd = 5;
 				break;
