@@ -3,19 +3,34 @@ if(isset($_GET['type'])) {
 	$type = $_GET['type'];
 	if(array_key_exists($type, $configTypes)) {
 		if(isset($_GET['name']) AND !empty($_GET['name'])) { /*Shows a card*/
+			$cardName = URLConvert($_GET['name'], false);
+			$searchInfo = searchCard($cardName, $config['cardsList'][$type]);
+			if (!$searchInfo['isFound']) {
+				http_response_code(404);
+				header('Location: '.$config['general']['path'].'/error.php?e=404');
+				die();
+			}
+			$loadedDB = $searchInfo['card'];
 			if (isset($_GET['edit'])) { /*EDIT PAGE*/
-				$dbSearchName = URLConvert($_GET['name'], false);
-				$searchDB = $db->prepare('SELECT * FROM bestiaire WHERE name = ? AND type = ?');
-				$searchDB->execute(array($dbSearchName,$type));
-				$loadedDB = $searchDB->fetch();
-				$infoContent['g_title'] = "Édition de ".$loadedDB['name'];
+				$infoContent['g_title'] = "Édition de ".$cardName;
 				if(isset($_POST['pass'])) {
 					if ((password_verify($_POST['pass'], $config['general']['globalPassword']) OR password_verify($_POST['pass'], $loadedDB['password'])) AND isset($_POST['text'])) {
 						if (strlen($_POST['text']) < 1000000 OR strlen($_POST['text']) > 10) {
-							$searchDB = $db->prepare('UPDATE bestiaire SET text = ? WHERE name = ? AND type = ?');
-							$searchDB->execute(array($_POST['text'],$dbSearchName,$type));
+							if (isset($_POST['hide-card'])) $hideValue = 1;
+							else $hideValue = 0;
+
+							$searchDB = $db->prepare('UPDATE bestiaire SET text = ?, groupe = ?, hidden = ? WHERE name = ? AND type = ?');
+							$searchDB->execute(
+								array(
+									$_POST['text'],
+									$_POST['group'],
+									$hideValue,
+									$cardName,
+									$type
+									)
+								);
 							$cardContent = "Modification réussie.";
-							header('Location: '.$config['general']['path'].'/'.$type.'/'.URLConvert($dbSearchName));
+							header('Location: '.$hrefGen($type, $cardName));
 						} else {
 							$cardContent = "Texte trop long. Retournez en arrière pour récupérer le texte";
 						}
@@ -36,25 +51,21 @@ if(isset($_GET['type'])) {
 						$editorFunctionBar .= '</div>';
 					}
 					$editorFunctionBar .= '</div>';
+					if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
+					else $hideCheckboxValue = "";
+
 					$cardContent = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $HTMLdata['editor-form']);
 					$cardContent = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $cardContent);
+					$cardContent = str_replace('[QUOTE_EDITION_HIDECHECK]', $hideCheckboxValue, $cardContent);
+					$cardContent = str_replace('[QUOTE_EDITION_GROUPNAME]', $searchInfo['group'], $cardContent);
 					$cardContent .= $HTMLdata['format-info'];
 				}
 			} else { /*DISPLAY PAGE*/
-				$dbSearchName = str_replace('-',' ', $_GET['name']);
-				$searchDB = $db->prepare('SELECT * FROM bestiaire WHERE name = ? AND type = ?');
-				$searchDB->execute(array($dbSearchName,$type));
-				$loadedDB = $searchDB->fetch();
-				if (empty($loadedDB)) {
-					http_response_code(404);
-					header('Location: '.$config['general']['path'].'/error.php?e=404');
-					die();
-				}
-				$infoContent['g_title'] = $loadedDB['name'];
+				$infoContent['g_title'] = $cardName;
 				$loadedDB['text'] = htmlentities($loadedDB['text']);
 				$loadedText = nl2br($loadedDB['text']);
 				$loadedText = preg_replace('/\t/', '&emsp;', $loadedText);
-				$cardContent = "<h1>{$loadedDB['name']}</h1>{$loadedText}";
+				$cardContent = "<h1>{$cardName}</h1>{$loadedText}";
 			}
 		} else { /*Shows a type (Cards large groups)*/
 			$cardContent = "Page en développement. Si vous avez des idées, j'accepte :arnold:";

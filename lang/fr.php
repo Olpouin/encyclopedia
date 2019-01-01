@@ -8,7 +8,9 @@ $lang = array(
 	'homepage-prefs-nightmode' => 'Mode nuit',
 	'homepage-prefs-confirm_changes' => 'Confirmer les changements',
 	'edition-password' => 'Mot de passe',
-	'edition-info-example_title' => 'Exemple'
+	'edition-info-example_title' => 'Exemple',
+	'edition-hide_card' => 'Cacher la fiche (Pas affiché dans la barre de navigation)',
+	'edition-group_placeholder' => 'Groupe de la fiche'
 );
 $lang['editor-bar'] = array(
 	'title1' => 'Titre 1',

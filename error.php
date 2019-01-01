@@ -4,7 +4,7 @@ require_once 'config.php';
 if (isset($_GET['e'])) $error = $_GET['e'];
 else $error = "Unknown error";
 
-$errorMessages = $config['error']['error_messages'];
+$errorMessages = $lang['error']['error_messages'];
 
 if (array_key_exists($error,$errorMessages)) $errorMessage = $errorMessages[$error];
 else $errorMessage = $errorMessages['Unknown error'];

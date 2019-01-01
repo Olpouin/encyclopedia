@@ -8,7 +8,9 @@ $lang = array(
 	'homepage-prefs-nightmode' => 'Night mode',
 	'homepage-prefs-confirm_changes' => 'Confirm changes',
 	'edition-password' => 'Password',
-	'edition-info-example_title' => 'Example'
+	'edition-info-example_title' => 'Example',
+	'edition-hide_card' => 'Hide the card (Not shown in the navigation bar)',
+	'edition-group_placeholder' => 'Card\'s group'
 );
 $lang['editor-bar'] = array(
 	'title1' => 'Title 1',
