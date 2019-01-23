@@ -14,7 +14,7 @@ foreach ($config['cardsList'] as $type => $groups) {
 						$selectedClass = "selectedPage";
 					}
 				}
-				$sidenavContent .= '<li><a class="'.$selectedClass.'" href="'.$hrefGen($type,$card).$editURL.'" title="'.$card.'">'.$card.'</a></li>';
+				$sidenavContent .= '<li><a class="'.$selectedClass.'" href="'.$hrefGen($type,$card).$editURL.'" title="'.htmlentities($card).'">'.htmlentities($card).'</a></li>';
 			}
 		}
 		$sidenavContent .= '</ul>';

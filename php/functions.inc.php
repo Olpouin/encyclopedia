@@ -24,11 +24,11 @@ function searchCard($searchName, $array) {
 $hrefGen = function ($type = null, $name = null) use ($config) {
 	if (isset($type)) {
 		if (isset($name)) {
-			return $config['general']['path'].'/'.$type.'/'.URLConvert($name);
+			return htmlentities($config['general']['path'].'/'.$type.'/'.URLConvert($name));
 		}
-		return $config['general']['path'].'/'.$type.'/';
+		return htmlentities($config['general']['path'].'/'.$type.'/');
 	}
-	return $config['general']['path'];
+	return htmlentities($config['general']['path']);
 };
 
 $previewBox = function ($card) use ($config) {
