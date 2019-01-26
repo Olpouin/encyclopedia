@@ -64,20 +64,7 @@ if (!isset($_GET['edit'])) {
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/sidenav.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/card.css" type="text/css" media="screen">
-		<style id="mainColorsCSS">
-			:root {
-				--color_main: #FFFFFF;
-				--color_borders: #DCDCDC;
-				--color_sidenav: #FAFAFA;
-				--color_main-opposite: #000000;
-				--color_secondary: #3295FF;
-				--color_selected: #003399;
-				--color_infobox-text_color: #F8F8F8;
-				--color_quote-text_color: #383838;
-				--color_quote-before_color: #7A7A7A;
-				--invert-value: 0%;
-			}
-		</style>
+		<style id="mainColorsCSS"></style>
 		<template id="css_nightmode">
 			:root {
 				--color_main: #000000 !important;

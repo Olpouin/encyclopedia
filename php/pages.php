@@ -3,7 +3,7 @@ if(isset($_GET['type'])) {
 	$type = $_GET['type'];
 	if(array_key_exists($type, $configTypes)) {
 		if(isset($_GET['name']) AND !empty($_GET['name'])) { /*Shows a card*/
-			$cardName = URLConvert($_GET['name'], false);
+			$cardName = urldecode($_GET['name']);
 			$searchInfo = searchCard($cardName, $config['cardsList'][$type]);
 			if (!$searchInfo['isFound']) {
 				http_response_code(404);

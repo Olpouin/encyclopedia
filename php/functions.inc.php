@@ -1,13 +1,4 @@
 <?php
-function URLConvert($name, $toURL = true) {
-	if ($toURL) {
-		$result = str_replace(' ','-', $name);
-	} else {
-		$result = str_replace('-',' ', $name);
-	}
-	return $result;
-}
-
 function searchCard($searchName, $array) {
 	foreach ($array as $group => $cardArray) {
 		if (array_key_exists($searchName, $cardArray)) {
@@ -24,7 +15,7 @@ function searchCard($searchName, $array) {
 $hrefGen = function ($type = null, $name = null) use ($config) {
 	if (isset($type)) {
 		if (isset($name)) {
-			return htmlentities($config['general']['path'].'/'.$type.'/'.URLConvert($name));
+			return htmlentities($config['general']['path'].'/'.$type.'/'.urlencode($name));
 		}
 		return htmlentities($config['general']['path'].'/'.$type.'/');
 	}
@@ -36,7 +27,7 @@ $previewBox = function ($card) use ($config) {
 	if (empty($matches)) {
 		$matches['2'] = $config['homepage']['box-default_image'];
 	}
-	$formattedCard = '<a href="'.$config['general']['path'].'/'.$card['type'].'/'.URLConvert($card['name']).'" title="'.$card['name'].'" ><div class="previewBox" style="background-image: url('.$matches['2'].');"><span>'.$card['name'].'</span></div></a>';
+	$formattedCard = '<a href="'.$config['general']['path'].'/'.$card['type'].'/'.urlencode($card['name']).'" title="'.$card['name'].'" ><div class="previewBox" style="background-image: url('.$matches['2'].');"><span>'.$card['name'].'</span></div></a>';
 	return $formattedCard;
 };
 
