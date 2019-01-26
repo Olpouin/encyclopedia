@@ -72,10 +72,7 @@ if (!isset($_GET['edit'])) {
 				--color_sidenav: #060606;
 				--color_main-opposite: #FFFFFF;
 				--color_secondary: #003399;
-				--color_selected: #3295FF;
 				--color_infobox-text_color: #F8F8F8;
-				--color_quote-text_color: #D8D8D8;
-				--color_quote-before_color: #969696;
 				--invert-value: 100%;
 			}
 		</template>
@@ -86,10 +83,7 @@ if (!isset($_GET['edit'])) {
 				--color_sidenav: #FAFAFA;
 				--color_main-opposite: #000000;
 				--color_secondary: #3295FF;
-				--color_selected: #003399;
 				--color_infobox-text_color: #F8F8F8;
-				--color_quote-text_color: #383838;
-				--color_quote-before_color: #7A7A7A;
 				--invert-value: 0%;
 			}
 		</template>
@@ -110,5 +104,13 @@ if (!isset($_GET['edit'])) {
 			<div class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</div>
 			<?=$cardContent?>
 		</section>
+		<div id="notif">
+			<div class="notif-zone">
+				<h1 id="notif-title"></h1>
+				<p id="notif-text"></p>
+				<a class="input" id="notif-load" style="color:inherit;text-decoration:none;padding: 10px 15px" href=""><?=$lang['notif-show']?></a>
+				<button class="input notif-close" onclick="closeNotif()"><?=$lang['notif-close']?></button>
+			</div>
+		</div>
 	</body>
 </html>

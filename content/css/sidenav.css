@@ -66,6 +66,6 @@ nav-button {
 	cursor: pointer;
 }
 .selectedPage {
-	color: var(--color_selected) !important;
+	color: var(--color_secondary) !important;
 	text-decoration: underline;
 }

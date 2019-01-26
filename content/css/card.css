@@ -81,7 +81,6 @@
 	margin: 0.25em 40px;
 	padding: 0.25em 5px;
 	position: relative;
-	color: var(--color_quote-text_color);
 }
 .card blockquote::before {
 	display: block;
@@ -90,7 +89,6 @@
 	position: absolute;
 	left: -40px;
 	top: -20px;
-	color: var(--color_quote-before_color);
 }
 .card blockquote > cite {
 	color: #999999;

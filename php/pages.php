@@ -13,53 +13,27 @@ if(isset($_GET['type'])) {
 			$loadedDB = $searchInfo['card'];
 			if (isset($_GET['edit'])) { /*EDIT PAGE*/
 				$infoContent['g_title'] = "Édition de ".$cardName;
-				if(isset($_POST['pass'])) {
-					if ((password_verify($_POST['pass'], $config['general']['globalPassword']) OR password_verify($_POST['pass'], $loadedDB['password'])) AND isset($_POST['text'])) {
-						if (strlen($_POST['text']) < 1000000 OR strlen($_POST['text']) > 10) {
-							if (isset($_POST['hide-card'])) $hideValue = 1;
-							else $hideValue = 0;
-
-							$searchDB = $db->prepare('UPDATE bestiaire SET text = ?, groupe = ?, hidden = ? WHERE name = ? AND type = ?');
-							$searchDB->execute(
-								array(
-									$_POST['text'],
-									$_POST['group'],
-									$hideValue,
-									$cardName,
-									$type
-									)
-								);
-							$cardContent = "Modification réussie.";
-							header('Location: '.$hrefGen($type, $cardName));
-						} else {
-							$cardContent = "Texte trop long. Retournez en arrière pour récupérer le texte";
-						}
-					} else {
-						http_response_code(401);
-						header('Location: '.$config['general']['path'].'/error.php?e=401');
-						die();
-					}
-				} else {
-					$infoContent['g_title'] = "Édition de fiche";
-					$editorFunctionBar = '<div class="editor-bar">';
-					foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
-						$editorFunctionBar .= '<div class="editor-bar_group">';
-						foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
-							$editorFunction = $config['general']['editor-bar'][$groupNumber][$formatNumber];
-							$editorFunctionBar .= '<img class="edit-object" src="'.$config['general']['path'].'/content/icons/'.$editorFunction['icon'].'.svg" title="'.$editorFunction['name'].'" alt="'.$editorFunction['name'].'" onclick="addTextElement(\''.$editorFunction['format'].'\', '.$editorFunction['cursor_move'].')">';
-						}
-						$editorFunctionBar .= '</div>';
+				$editorFunctionBar = '<div class="editor-bar">';
+				foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
+					$editorFunctionBar .= '<div class="editor-bar_group">';
+					foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
+						$editorFunction = $config['general']['editor-bar'][$groupNumber][$formatNumber];
+						$editorFunctionBar .= '<img class="edit-object" src="'.$config['general']['path'].'/content/icons/'.$editorFunction['icon'].'.svg" title="'.$editorFunction['name'].'" alt="'.$editorFunction['name'].'" onclick="addTextElement(\''.$editorFunction['format'].'\', '.$editorFunction['cursor_move'].')">';
 					}
 					$editorFunctionBar .= '</div>';
-					if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
-					else $hideCheckboxValue = "";
-
-					$cardContent = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $HTMLdata['editor-form']);
-					$cardContent = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $cardContent);
-					$cardContent = str_replace('[QUOTE_EDITION_HIDECHECK]', $hideCheckboxValue, $cardContent);
-					$cardContent = str_replace('[QUOTE_EDITION_GROUPNAME]', $searchInfo['group'], $cardContent);
-					$cardContent .= $HTMLdata['format-info'];
 				}
+				$editorFunctionBar .= '</div>';
+				if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
+				else $hideCheckboxValue = "";
+
+				$cardContent = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $HTMLdata['editor-form']);
+				$cardContent = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $cardContent);
+				$cardContent = str_replace('[QUOTE_EDITION_HIDECHECK]', $hideCheckboxValue, $cardContent);
+				$cardContent = str_replace('[QUOTE_EDITION_GROUPNAME]', $searchInfo['group'], $cardContent);
+				$cardContent = str_replace('[API_URL]', $config['general']['path']."/api/add.php", $cardContent);
+				$cardContent = str_replace('[CARD_TYPE]', $type, $cardContent);
+				$cardContent = str_replace('[CARD_NAME]', $cardName, $cardContent);
+				$cardContent .= $HTMLdata['format-info'];
 			} else { /*DISPLAY PAGE*/
 				$infoContent['g_title'] = $cardName;
 				$loadedDB['text'] = htmlentities($loadedDB['text']);

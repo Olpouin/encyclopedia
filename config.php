@@ -105,17 +105,17 @@ $HTMLdata['homepage-parameters'] = <<<HOMEPAGEPARAMETERS
 <button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 HOMEPAGEPARAMETERS;
 $HTMLdata['editor-form'] = <<<EDITORFORM
-<form action="" method="post" class="cardEditor">
+<div class="cardEditor">
 	[QUOTE_EDITION_BAR]
-	<textarea id="textEdit" required="" name="text">[QUOTE_TEXT]</textarea>
+	<textarea id="textEdit" required="" maxlength="1000000" name="text">[QUOTE_TEXT]</textarea>
 	<label for="hide-card">{$lang['edition-hide_card']}</label>
 	<input id="hide-card" type="checkbox" name="hide-card" [QUOTE_EDITION_HIDECHECK]><br><br>
 	<label for="group">{$lang['edition-group_placeholder']}</label>
 	<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="[QUOTE_EDITION_GROUPNAME]"><br><br>
 	<label for="pass">{$lang['edition-password']}</label>
 	<input id="pass" type="password" name="pass" required="" placeholder="{$lang['edition-password']}">
-	<input type="submit">
-</form>
+	<button style="cursor:pointer" class="submit" onclick="changeCard('[API_URL]','[CARD_TYPE]','[CARD_NAME]')">Envoyer</button>
+</div>
 <hr>
 EDITORFORM;
 $HTMLdata['format-info'] = <<<FORMATINFO
@@ -189,4 +189,6 @@ while ($data = $cardList->fetch()) {
 	$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['text'] = $data['text'];
 	$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['hidden'] = $data['hidden'];
 }
+
+require_once 'php/functions.inc.php';
 ?>

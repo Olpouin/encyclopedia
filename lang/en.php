@@ -10,7 +10,9 @@ $lang = array(
 	'edition-password' => 'Password',
 	'edition-info-example_title' => 'Example',
 	'edition-hide_card' => 'Hide the card (Not shown in the navigation bar)',
-	'edition-group_placeholder' => 'Card\'s group'
+	'edition-group_placeholder' => 'Card\'s group',
+	'notif-show' => 'Show card',
+	'notif-close' => 'Close'
 );
 $lang['editor-bar'] = array(
 	'title1' => 'Title 1',
@@ -37,4 +39,19 @@ $lang['error'] = array(
 		"Unknown error" => "We can't find what error you got or (most likely) there are no error message prepared for this case. Sorry."
 	)
 );
+
+$lang['api'] = array(
+	"error" => "Error",
+	"error-type" => "Can't find a card : Parameter 'type' missing.",
+	"error-type-wrong" => "Can't find a card : Parameter 'type' sent doesn't exist.",
+	"error-name" => "Can't find a card : Parameter 'name' missing.",
+	"error-name-wrong" => "Can't find a card : Parameter 'name' sent doesn't exist.",
+	"error-pass" => "Can't edit card : Password missing.",
+	"error-pass-wrong" => "Can't edit card : Wrong password.",
+	"error-group" => "Can't edit card : Parameter 'groupe' missing.",
+	"error-group-wrong" => "Can't edit card : Group's name is too long. Reminder : The limit is 25 characters.",
+	"error-text-wrong" => "Can't edit card : Text too long or too short. Reminder : The upper limit is 1 000 000 characters.",
+	"success" => "Card edited",
+	"success-message" => "The card was successfully edited."
+)
 ?>

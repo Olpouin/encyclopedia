@@ -3,7 +3,9 @@
 	src: url('../content/OpenSans-Regular.ttf');
 }
 
-
+html.wait, html.wait * {
+	cursor: wait !important;
+}
 html {
 	font-family: opensans-regular, sans-serif;
 	background-color: var(--color_main);
@@ -16,6 +18,46 @@ body {
 	border: 1px solid red;
 	background-color: rgba(0, 0, 0, 0.2);
 	padding: 5px;
+}
+/*Notif*/
+#notif {
+	position: absolute;
+	display: none;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.notif-zone {
+	display: block;
+	position: absolute;
+	top: 15%;
+	left: 25%;
+	right: 25%;
+	bottom: 15%;
+	background-color: var(--color_main);
+	border: 1px solid var(--color_borders);
+	z-index: 3;
+	padding: 1% 5%;
+}
+#notif-title {
+	margin: 0;
+	font-size: 4em;
+}
+#notif-text  {
+	margin: 0;
+	font-size: 2em;
+	text-indent: 30px;
+}
+#notif button, #notif a {
+	font-size: 1.5em;
+	position: absolute;
+	bottom: calc(1% + 15px);
+	cursor: pointer;
+}
+#notif .notif-close {
+	right: calc(5% + 15px);
 }
 /*Diverse*/
 .cardSearchBox {
@@ -180,7 +222,7 @@ body {
 	color: var(--color_main-opposite)
 	font: fixed;
 }
-.cardEditor > #textEdit, .cardEditor > input, .input {
+.cardEditor > #textEdit, .cardEditor > input, .input, .submit {
 	resize: vertical;
 	background-color: var(--color_main);
 	color: var(--color_main-opposite);
@@ -190,7 +232,7 @@ body {
 	padding: 10px 15px;
 	max-height: 2000px;
 }
-.cardEditor > #textEdit:focus, .cardEditor > input:focus, .input:focus {
+.cardEditor > #textEdit:focus, .cardEditor > input:focus, .input:focus, .submit:focus {
 	border: 2px solid var(--color_secondary);
 	transition: border 200ms linear 0s;
 }
@@ -217,9 +259,16 @@ body {
 	.card blockquote {
 		width: auto !important;
 		margin-right: 0 !important;
+		clear: right;
 	}
 	.card > p {
 		max-width: none !important;
+	}
+	#notif {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 }
 @media only screen and (max-width: 1250px) and (min-width: 751px) {
@@ -232,6 +281,9 @@ body {
 	.sidenav-button {
 		display: none !important;
 	}
+	#textEdit {
+		width: calc(100% - 35px) !important;
+	}
 }
 @media only screen and (min-width: 1251px) {
 	.sidenav-button {
@@ -240,5 +292,5 @@ body {
 }
 
 .open {
-	display: initial;
+	display: initial !important;
 }

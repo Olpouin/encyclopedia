@@ -42,6 +42,16 @@ function closeImg() {
 	document.getElementById("fullscreen-image").classList.remove("open");
 }
 
+function openNotif(title,text,type,name) {
+	document.getElementById("notif").classList.add("open");
+	document.getElementById("notif-title").innerHTML = title;
+	document.getElementById("notif-text").innerHTML = text;
+	document.getElementById("notif-load").href = window.location.pathname.slice(0,-5);
+}
+function closeNotif() {
+	document.getElementById("notif").classList.remove("open");
+}
+
 /*Text edition
 https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea*/
 if (document.getElementById("textEdit")) {
@@ -83,5 +93,29 @@ txtarea.onkeydown = function(e) {
 		this.value = this.value.substring(0,this.selectionStart) + textAdd + this.value.substring(this.selectionEnd);
 		this.selectionEnd = s+selectAdd;
 	}
+}
+
+
+
+function changeCard(url,type,name) {
+	document.documentElement.classList.add("wait");
+	var xhr = new XMLHttpRequest();
+	xhr.responseType = "json";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			openNotif(xhr.response.title,xhr.response.message,type,name);
+			document.documentElement.classList.remove("wait");;
+		}
+	}
+
+	var text = document.getElementById("textEdit").value;
+	var group = document.getElementById("group").value;
+	var pass = document.getElementById("pass").value;
+	if (document.getElementById("hide-card").checked) var hide = "on";
+	else var hide = "no"
+
+	xhr.send("type="+type+"&name="+name+"&text="+text+"&hide-card="+hide+"&group="+group+"&pass="+pass);
 }
 }

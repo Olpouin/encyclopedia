@@ -10,7 +10,9 @@ $lang = array(
 	'edition-password' => 'Mot de passe',
 	'edition-info-example_title' => 'Exemple',
 	'edition-hide_card' => 'Cacher la fiche (Pas affiché dans la barre de navigation)',
-	'edition-group_placeholder' => 'Groupe de la fiche'
+	'edition-group_placeholder' => 'Groupe de la fiche',
+	'notif-show' => 'Afficher la page',
+	'notif-close' => 'Fermer la notification'
 );
 $lang['editor-bar'] = array(
 	'title1' => 'Titre 1',
@@ -37,4 +39,19 @@ $lang['error'] = array(
 		"Unknown error" => "Nous ne pouvons pas trouver l'erreur ou aucun message d'erreur n'a été préparé pour ce cas."
 	)
 );
+
+$lang['api'] = array(
+	"error" => "Erreur",
+	"error-type" => "Nous n'arrivons pas à trouver la fiche : Paramètre 'type' manquant.",
+	"error-type-wrong" => "Nous n'arrivons pas à trouver la fiche : Le paramètre 'type' envoyé n'existe pas.",
+	"error-name" => "Nous n'arrivons pas à trouver la fiche : Paramètre 'nom' manquant.",
+	"error-name-wrong" => "Nous n'arrivons pas à trouver la fiche : Le paramètre 'name' envoyé n'existe pas.",
+	"error-pass" => "Nous ne pouvons pas modifier la fiche : Mot de passe manquant.",
+	"error-pass-wrong" => "Nous ne pouvons pas modifier la fiche : Mot de passe incorrect.",
+	"error-group" => "Nous ne pouvons pas modifier la fiche : Paramètre 'groupe' manquant.",
+	"error-group-wrong" => "Nous ne pouvons pas modifier la fiche : Le nom du groupe est trop court ou trop long. Rappel : La limite maximale est de 25 de caractères et minimale de 1 caractère.",
+	"error-text-wrong" => "Nous ne pouvons pas modifier la fiche : Le texte est trop court ou trop long. Rappel : La limite maximale est de 1 000 000 de caractères et minimale de 10 caractères.",
+	"success" => "Fiche modifiée",
+	"success-message" => "La fiche a bien été modifiée."
+)
 ?>
