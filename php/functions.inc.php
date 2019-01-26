@@ -15,11 +15,11 @@ function searchCard($searchName, $array) {
 $hrefGen = function ($type = null, $name = null) use ($config) {
 	if (isset($type)) {
 		if (isset($name)) {
-			return htmlentities($config['general']['path'].'/'.$type.'/'.urlencode($name));
+			return $config['general']['path'].'/'.urlencode($type).'/'.urlencode($name);
 		}
-		return htmlentities($config['general']['path'].'/'.$type.'/');
+		return $config['general']['path'].'/'.urlencode($type).'/';
 	}
-	return htmlentities($config['general']['path']);
+	return $config['general']['path'];
 };
 
 $previewBox = function ($card) use ($config) {
