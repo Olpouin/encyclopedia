@@ -26,14 +26,15 @@ if(isset($_GET['type'])) {
 				if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
 				else $hideCheckboxValue = "";
 
-				$cardContent = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $HTMLdata['editor-form']);
-				$cardContent = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $cardContent);
+				$cardContent = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $HTMLdata['editor-form']);
 				$cardContent = str_replace('[QUOTE_EDITION_HIDECHECK]', $hideCheckboxValue, $cardContent);
 				$cardContent = str_replace('[QUOTE_EDITION_GROUPNAME]', $searchInfo['group'], $cardContent);
 				$cardContent = str_replace('[API_URL]', $config['general']['path']."/api/add.php", $cardContent);
 				$cardContent = str_replace('[CARD_TYPE]', $type, $cardContent);
 				$cardContent = str_replace('[CARD_NAME]', $cardName, $cardContent);
+				$cardContent = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $cardContent);
 				$cardContent .= $HTMLdata['format-info'];
+
 			} else { /*DISPLAY PAGE*/
 				$infoContent['g_title'] = $cardName;
 				$loadedDB['text'] = htmlentities($loadedDB['text']);

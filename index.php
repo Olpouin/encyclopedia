@@ -34,7 +34,8 @@ foreach ($headerContentDetectionArray as $key => $value) {
 $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].'">';
 /*=== VARIABLES ===*/
 $markdownArray = array(
-	'/\[h1\](.*)\[\/h1\]/Ums' => '<h1>$1</h1>',
+	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => '<h$1>$2</h1>',
+	'/\[hr\]/Ums' => '<hr>',
 	'/\[h2\](.*)\[\/h2\]/Ums' => '<h2>$1</h2>',
 	'/\[i\](.*)\[\/i\]/Ums' => '<i>$1</i>',
 	'/\[b\](.*)\[\/b\]/Ums' => '<b>$1</b>',

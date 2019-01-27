@@ -115,8 +115,7 @@ $HTMLdata['editor-form'] = <<<EDITORFORM
 	<label for="pass">{$lang['edition-password']}</label>
 	<input id="pass" type="password" name="pass" required="" placeholder="{$lang['edition-password']}">
 	<button style="cursor:pointer" class="submit" onclick="changeCard('[API_URL]','[CARD_TYPE]','[CARD_NAME]')">Envoyer</button>
-</div>
-<hr>
+</div><br>
 EDITORFORM;
 $HTMLdata['format-info'] = <<<FORMATINFO
 <div class="flexboxData"">
