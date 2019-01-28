@@ -1,5 +1,14 @@
 <?php
-require_once 'lang/fr.php'; //The language file
+if ($_COOKIE['lang']) {
+	if (file_exists(htmlentities('lang/'.$_COOKIE['lang'].'.php'))) {
+		$langFile = "lang/".$_COOKIE['lang'].".php";
+	} else {
+		$langFile = "lang/fr.php";
+	}
+} else {
+	$langFile = "lang/fr.php";
+}
+require_once $langFile; //The language file
 /*General configuration.*/
 $config['database'] = array(
 	"host" => "",
@@ -100,7 +109,14 @@ $HTMLdata['footer'] = <<<FOOTER
 FOOTER;
 $HTMLdata['homepage-parameters'] = <<<HOMEPAGEPARAMETERS
 <h2 id="pref">{$lang['homepage-prefs-title']}</h2>
-<input class="checkbox" id="nightmode" type="checkbox" name="nightmode" value="on"><label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br>
+<input class="checkbox" id="nightmode" type="checkbox" name="nightmode" value="on"><label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br><br>
+<label for="pref-chooseLang">{$lang['language']} *</label>
+<select id="pref-chooseLang">
+	<option value="fr">Français</option>
+	<option value="en">English</option>
+</select><br><br>
+*{$lang['homepage-prefs-needsReload']}<br>
+{$lang['cookie-warning']}<br><br>
 <button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 HOMEPAGEPARAMETERS;
 $HTMLdata['editor-form'] = <<<EDITORFORM
