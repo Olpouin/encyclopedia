@@ -33,7 +33,10 @@ function checkParameters() {
 	} else {
 		document.getElementById('mainColorsCSS').innerHTML = document.getElementById('css_daymode').innerHTML;
 	}
-	if (document.getElementById('pref-chooseLang')) document.getElementById('pref-chooseLang').value = getCookie('lang');
+	if (document.getElementById('pref-chooseLang')) {
+		if (getCookie('lang').length != 0) document.getElementById('pref-chooseLang').value = getCookie('lang');
+		else document.getElementById('pref-chooseLang').value = "fr";
+	}
 }
 checkParameters();
 /*Others*/
