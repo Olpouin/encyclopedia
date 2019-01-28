@@ -52,6 +52,30 @@ $config['general']['editor-bar'] = array(
 			"cursor_move" => "4",
 			"icon" => "format-title2"
 		),
+		array(
+			"name" => $lang['editor-bar']['title3'],
+			"format" => "[h3][/h3]",
+			"cursor_move" => "4",
+			"icon" => "format-title3"
+		),
+		array(
+			"name" => $lang['editor-bar']['title4'],
+			"format" => "[h4][/h4]",
+			"cursor_move" => "4",
+			"icon" => "format-title4"
+		),
+		array(
+			"name" => $lang['editor-bar']['title5'],
+			"format" => "[h5][/h5]",
+			"cursor_move" => "4",
+			"icon" => "format-title5"
+		),
+		array(
+			"name" => $lang['editor-bar']['title6'],
+			"format" => "[h6][/h6]",
+			"cursor_move" => "4",
+			"icon" => "format-title6"
+		)
 	),
 	array(
 		array(
@@ -91,6 +115,12 @@ $config['general']['editor-bar'] = array(
 			"format" => "[quote][author][/author][/quote]",
 			"cursor_move" => "7",
 			"icon" => "special-quote"
+		),
+		array(
+			'name' => $lang['editor-bar']['hr'],
+			"format" => "[hr]",
+			"cursor_move" => "4",
+			"icon" => "special-hr"
 		)
 	)
 );
@@ -98,7 +128,6 @@ $config['general']['editor-bar'] = array(
 $markdownArray = array(
 	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => '<h$1 id="$2">$2</h1>',
 	'/\[hr\]/Ums' => '<hr>',
-	'/\[h2\](.*)\[\/h2\]/Ums' => '<h2>$1</h2>',
 	'/\[i\](.*)\[\/i\]/Ums' => '<i>$1</i>',
 	'/\[b\](.*)\[\/b\]/Ums' => '<b>$1</b>',
 	'/\[s\](.*)\[\/s\]/Ums' => '<s>$1</s>',
