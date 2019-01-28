@@ -12,6 +12,13 @@ function searchCard($searchName, $array) {
 	return array('isFound'=>false);
 }
 
+$format = function($text) use($markdownArray) {
+	foreach ($markdownArray as $key => $value) {
+		$text = preg_replace($key, $value, $text);
+	}
+	return $text;
+};
+
 $hrefGen = function ($type = null, $name = null) use ($config) {
 	if (isset($type)) {
 		if (isset($name)) {

@@ -258,9 +258,17 @@ footer a {
 	border: 2px solid #003399;
 	transition: border 200ms linear 0s;
 }
+@media only screen and (max-width: 550px) {
+	.infobox {
+		clear: both !important;
+	}
+}
 @media only screen and (max-width: 750px) {
 	.page-content {
 		left: 0;
+	}
+	.toc {
+		width: calc(100% - 30px) !important;
 	}
 	nav {
 		display: none;
@@ -274,7 +282,7 @@ footer a {
 	.infobox {
 		width: auto !important;
 		max-width: 300px;
-		margin: 0 !important;
+		margin: 2px !important;
 	}
 	.card {
 		position: relative;

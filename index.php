@@ -32,25 +32,6 @@ foreach ($headerContentDetectionArray as $key => $value) {
 	}
 }
 $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].'">';
-/*=== VARIABLES ===*/
-$markdownArray = array(
-	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => '<h$1>$2</h1>',
-	'/\[hr\]/Ums' => '<hr>',
-	'/\[h2\](.*)\[\/h2\]/Ums' => '<h2>$1</h2>',
-	'/\[i\](.*)\[\/i\]/Ums' => '<i>$1</i>',
-	'/\[b\](.*)\[\/b\]/Ums' => '<b>$1</b>',
-	'/\[s\](.*)\[\/s\]/Ums' => '<s>$1</s>',
-	'/\[u\](.*)\[\/u\]/Ums' => '<u>$1</u>',
-	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
-	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
-	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
-	'/[\!\?]\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
-);
-if (!isset($_GET['edit'])) {
-	foreach ($markdownArray as $key => $value) {
-		$cardContent = preg_replace($key, $value, $cardContent);
-	}
-}
 ?>
 <!DOCTYPE html>
 <html lang="<?=$config['general']['language']?>">

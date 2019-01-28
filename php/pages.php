@@ -41,7 +41,16 @@ if(isset($_GET['type'])) {
 				$loadedDB['text'] = htmlentities($loadedDB['text']);
 				$loadedText = nl2br($loadedDB['text']);
 				$loadedText = preg_replace('/\t/', '&emsp;', $loadedText);
-				$cardContent = "<h1>{$cardName}</h1>{$loadedText}";
+				$loadedText = $format($loadedText);
+				//Thanks to http://www.10stripe.com/articles/automatically-generate-table-of-contents-php.php !
+				preg_match_all("/<h[1-6].*>(.*)<\/h[1-6]>/Ums", preg_replace('/<aside.*<\/aside>/Ums', '', $loadedText), $tocTitles);
+				if (!empty(implode("",$tocTitles[0]))) {
+					$toc = "<details open='' class='toc'><summary>Sommaire</summary>".implode("\n", $tocTitles[0]);
+					$toc = preg_replace('/<h([1-6]) id="(.*)">(.*)<\/h[1-6]\>/Um', '<a class="toc-title-$1" href="#$2">$3</a>', $toc);
+					$toc .= "</details>";
+				} else $toc = "";
+
+				$cardContent = "<h1>{$cardName}</h1>{$toc}{$loadedText}";
 			}
 		} else { /*Shows a type (Cards large groups)*/
 			$cardContent = "Page en développement. Si vous avez des idées, j'accepte :arnold:";
@@ -54,7 +63,7 @@ if(isset($_GET['type'])) {
 	}
 } else { /*Shows the homepage*/
 	$infoContent['g_title'] = "Galerie de Windersteel";
-	$cardContent = $config['homepage']['top_description'];
+	$cardContent = $format($config['homepage']['top_description']);
 	$cardContent .= $HTMLdata['homepage-search'];
 	$cardContent .= "<div class='previewBoxes'>";
 	if (isset($_GET['search'])) {

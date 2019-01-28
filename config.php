@@ -95,7 +95,19 @@ $config['general']['editor-bar'] = array(
 	)
 );
 
-
+$markdownArray = array(
+	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => '<h$1 id="$2">$2</h1>',
+	'/\[hr\]/Ums' => '<hr>',
+	'/\[h2\](.*)\[\/h2\]/Ums' => '<h2>$1</h2>',
+	'/\[i\](.*)\[\/i\]/Ums' => '<i>$1</i>',
+	'/\[b\](.*)\[\/b\]/Ums' => '<b>$1</b>',
+	'/\[s\](.*)\[\/s\]/Ums' => '<s>$1</s>',
+	'/\[u\](.*)\[\/u\]/Ums' => '<u>$1</u>',
+	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
+	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
+	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
+	'/[\!\?]\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
+);
 /*More advanced data if you want to change something*/
 $HTMLdata['homepage-search'] = <<<HOMEPAGESEARCH
 <label for="card-search-homepage">{$lang['homepage-search_input']}</label>

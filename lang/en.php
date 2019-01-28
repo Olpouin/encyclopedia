@@ -19,7 +19,8 @@ $lang = array(
 	'notif-show' => 'Show card',
 	'notif-close' => 'Close',
 	'footer-edit_page' => 'Edit card',
-	'footer-top' => 'Go to top'
+	'footer-top' => 'Go to top',
+	'toc' => 'Table of content'
 );
 $lang['editor-bar'] = array(
 	'title1' => 'Title 1',

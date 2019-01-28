@@ -19,7 +19,8 @@ $lang = array(
 	'notif-show' => 'Afficher la page',
 	'notif-close' => 'Fermer la notification',
 	'footer-edit_page' => 'Modifier la page',
-	'footer-top' => 'Aller en haut'
+	'footer-top' => 'Aller en haut',
+	'toc' => 'Table des matières'
 );
 $lang['editor-bar'] = array(
 	'title1' => 'Titre 1',
