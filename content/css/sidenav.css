@@ -1,5 +1,5 @@
 nav {
-	position: absolute;
+	position: fixed !important;
 	left: 0;
 	top: 0;
 	bottom: 0;
@@ -7,7 +7,6 @@ nav {
 	background-color: var(--color_sidenav);
 	overflow: hidden;
 	border-right: 1px solid var(--color_borders);
-	z-index: 1;
 	font-size: 14px;
 	letter-spacing: 0.5px;
 }

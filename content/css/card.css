@@ -1,15 +1,11 @@
 .card {
-	position: absolute;
 	text-align: justify;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 251px;
-	overflow-y: auto;
-	z-index: 0;
-	padding: 20px;
-	padding-left: 10%;
-	padding-right: 10%;
+	padding: 20px 10%;
+	overflow: auto;
+}
+nav:hover ~ .card {
+	background-color: red !important;
+	overflow: hidden !important;
 }
 /*INFOBOX*/
 .infobox {

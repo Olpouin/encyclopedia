@@ -91,20 +91,23 @@ if (!isset($_GET['edit'])) {
 		<script src="<?=$config['general']['path']?>/content/script.js" type="text/javascript" defer></script>
 	</head>
 	<body>
-		<div id="fullscreen-image" class="fullscreen-image">
-			<div>
-				<img id="fs-img_img" src="">
-			</div>
-			<h1 id="fs-img_title">Image title</h1>
-			<span class="button-x" onclick="closeImg();">&times;</span>
-		</div>
 		<nav id="sidenav">
 			<?=$sidenavContent?>
 		</nav>
-		<section class="card" id="card">
-			<div class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</div>
-			<?=$cardContent?>
-		</section>
+		<div class="page-content">
+			<main class="card" id="card">
+				<div class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</div>
+				<?=$cardContent?>
+			</main>
+			<footer>
+				<?php
+				$clean_url = explode('&', $_SERVER['REQUEST_URI'], 2);
+				$footer = str_replace('[EDITION_URL]', $clean_url[0]."&edit", $HTMLdata['footer']);
+				$footer = str_replace('[PATH]', $config['general']['path'], $footer);
+				echo $footer;
+				?>
+			</footer>
+		</div>
 		<div id="notif">
 			<div class="notif-zone">
 				<h1 id="notif-title"></h1>
@@ -112,6 +115,13 @@ if (!isset($_GET['edit'])) {
 				<a class="input" id="notif-load" style="color:inherit;text-decoration:none;padding: 10px 15px" href=""><?=$lang['notif-show']?></a>
 				<button class="input notif-close" onclick="closeNotif()"><?=$lang['notif-close']?></button>
 			</div>
+		</div>
+		<div id="fullscreen-image" class="fullscreen-image">
+			<div>
+				<img id="fs-img_img" src="">
+			</div>
+			<h1 id="fs-img_title">Image title</h1>
+			<span class="button-x" onclick="closeImg();">&times;</span>
 		</div>
 	</body>
 </html>

@@ -75,7 +75,6 @@ if(isset($_GET['type'])) {
 		$cardContent .= $previewBox($listing);
 	}
 	$cardContent .= $HTMLdata['homepage-parameters'];
-	$cardContent .= $HTMLdata['code-link'];
 	$cardContent .= "</div>";
 }
 

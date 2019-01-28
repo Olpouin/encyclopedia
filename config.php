@@ -94,13 +94,11 @@ $HTMLdata['homepage-search'] = <<<HOMEPAGESEARCH
 	<input class="cardSearch-button" type="submit" value="{$lang['homepage-search_button']}">
 </form>
 HOMEPAGESEARCH;
-$HTMLdata['code-link'] = <<<CODELINK
-<div>
-	{$lang['homepage-sourcecode']} <a href='https://github.com/Olpouin/gallery' target='_blank' style='color: #0066d3;text-decoration:none;'>github.com/Olpouin/gallery</a>
-</div>
-CODELINK;
+$HTMLdata['footer'] = <<<FOOTER
+<a href='https://github.com/Olpouin/gallery' target='_blank'>{$lang['homepage-sourcecode']}</a> | <a href="[EDITION_URL]">{$lang['footer-edit_page']}</a> | <a href="[PATH]/#pref">{$lang['homepage-prefs-title']}</a> | <a href="#card">{$lang['footer-top']}</a>
+FOOTER;
 $HTMLdata['homepage-parameters'] = <<<HOMEPAGEPARAMETERS
-<h2>{$lang['homepage-prefs-title']}</h2>
+<h2 id="pref">{$lang['homepage-prefs-title']}</h2>
 <input class="checkbox" id="nightmode" type="checkbox" name="nightmode" value="on"><label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br>
 <button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 HOMEPAGEPARAMETERS;
