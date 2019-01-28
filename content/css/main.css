@@ -30,10 +30,12 @@ body {
 footer {
 	padding: 15px 5%;
 	border-top: 1px solid var(--color_borders);
+	font-size: 20px;
+	font-weight: bold;
 	text-align: center;
 }
 footer a {
-	color: #0066d3;
+	color: #003399;
 	text-decoration: none;
 }
 /*Notif*/
@@ -168,7 +170,10 @@ footer a {
 .fullscreen-image img {
 	width: 100%;
 }
-.fullscreen-image span {
+.fullscreen-image button {
+	color: white;
+	background-color: unset;
+	border: none;
 	position: absolute;
 	top: 10px;
 	right: 10px;
@@ -250,10 +255,13 @@ footer a {
 	max-height: 2000px;
 }
 .cardEditor > #textEdit:focus, .cardEditor > input:focus, .input:focus, .submit:focus {
-	border: 2px solid var(--color_secondary);
+	border: 2px solid #003399;
 	transition: border 200ms linear 0s;
 }
 @media only screen and (max-width: 750px) {
+	.page-content {
+		left: 0;
+	}
 	nav {
 		display: none;
 		position: fixed;

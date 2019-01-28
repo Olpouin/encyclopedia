@@ -29,6 +29,7 @@ function closeNav() {
 function openImg(e) {
 	document.getElementById("fs-img_title").innerHTML = e.target.getAttribute('alt');
 	document.getElementById("fs-img_img").setAttribute("src", e.target.getAttribute('src'));
+	document.getElementById("fs-img_img").setAttribute("alt", e.target.getAttribute('alt'));
 
 	document.getElementById("sidenav").style.filter = "blur(3px)";
 	document.getElementById("card").style.filter = "blur(3px)";

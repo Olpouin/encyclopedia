@@ -20,7 +20,7 @@ nav:hover ~ .card {
 }
 .infobox h1 {
 	display: inline-block;
-	background-color: var(--color_secondary);
+	background-color: #003399;
 	width: 100%;
 	height: auto;
 	text-align: center;

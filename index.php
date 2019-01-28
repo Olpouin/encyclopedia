@@ -59,7 +59,6 @@ if (!isset($_GET['edit'])) {
 		<?=$headerContent?>
 		<meta property="og:type" content="article">
 		<meta property="og:site_name" content="<?=$config['head-content']['site_name']?>">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="utf-8">
 		<link rel="icon" href="<?=$config['general']['path']?>/content/favicon.ico">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">
@@ -72,7 +71,6 @@ if (!isset($_GET['edit'])) {
 				--color_borders: #323232;
 				--color_sidenav: #060606;
 				--color_main-opposite: #FFFFFF;
-				--color_secondary: #003399;
 				--color_infobox-text_color: #F8F8F8;
 				--invert-value: 100%;
 			}
@@ -83,12 +81,11 @@ if (!isset($_GET['edit'])) {
 				--color_borders: #DCDCDC;
 				--color_sidenav: #FAFAFA;
 				--color_main-opposite: #000000;
-				--color_secondary: #3295FF;
 				--color_infobox-text_color: #F8F8F8;
 				--invert-value: 0%;
 			}
 		</template>
-		<script src="<?=$config['general']['path']?>/content/script.js" type="text/javascript" defer></script>
+		<script src="<?=$config['general']['path']?>/content/script.js" defer></script>
 	</head>
 	<body>
 		<nav id="sidenav">
@@ -96,7 +93,7 @@ if (!isset($_GET['edit'])) {
 		</nav>
 		<div class="page-content">
 			<main class="card" id="card">
-				<div class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</div>
+				<button tabindex="-1" class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</button>
 				<?=$cardContent?>
 			</main>
 			<footer>
@@ -108,20 +105,20 @@ if (!isset($_GET['edit'])) {
 				?>
 			</footer>
 		</div>
-		<div id="notif">
+		<div id="notif" role="alert">
 			<div class="notif-zone">
 				<h1 id="notif-title"></h1>
 				<p id="notif-text"></p>
 				<a class="input" id="notif-load" style="color:inherit;text-decoration:none;padding: 10px 15px" href=""><?=$lang['notif-show']?></a>
-				<button class="input notif-close" onclick="closeNotif()"><?=$lang['notif-close']?></button>
+				<button class="input notif-close" id="notif-close" onclick="closeNotif()"><?=$lang['notif-close']?></button>
 			</div>
 		</div>
-		<div id="fullscreen-image" class="fullscreen-image">
+		<div id="fullscreen-image" class="fullscreen-image" role="alert">
 			<div>
-				<img id="fs-img_img" src="">
+				<img id="fs-img_img" alt="" src="">
 			</div>
 			<h1 id="fs-img_title">Image title</h1>
-			<span class="button-x" onclick="closeImg();">&times;</span>
+			<button class="button-x" onclick="closeImg();">&times; Fermer</button>
 		</div>
 	</body>
 </html>

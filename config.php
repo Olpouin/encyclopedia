@@ -89,8 +89,9 @@ $config['general']['editor-bar'] = array(
 
 /*More advanced data if you want to change something*/
 $HTMLdata['homepage-search'] = <<<HOMEPAGESEARCH
+<label for="card-search-homepage">{$lang['homepage-search_input']}</label>
 <form action="" class="cardSearchBox">
-	<input class="cardSearch" type="text" name="search" placeholder="{$lang['homepage-search_input']}">
+	<input id="card-search-homepage" class="cardSearch" type="text" name="search" placeholder="{$lang['homepage-search_input']}">
 	<input class="cardSearch-button" type="submit" value="{$lang['homepage-search_button']}">
 </form>
 HOMEPAGESEARCH;
@@ -103,6 +104,7 @@ $HTMLdata['homepage-parameters'] = <<<HOMEPAGEPARAMETERS
 <button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 HOMEPAGEPARAMETERS;
 $HTMLdata['editor-form'] = <<<EDITORFORM
+<h1>{$lang['footer-edit_page']} "[CARD_NAME]"</h1>
 <div class="cardEditor">
 	[QUOTE_EDITION_BAR]
 	<textarea id="textEdit" required="" maxlength="1000000" name="text">[QUOTE_TEXT]</textarea>
@@ -116,6 +118,7 @@ $HTMLdata['editor-form'] = <<<EDITORFORM
 </div><br>
 EDITORFORM;
 $HTMLdata['format-info'] = <<<FORMATINFO
+<h1 style="text-align:center;display:block;">{$lang['help']}</h1>
 <div class="flexboxData"">
 	<div>
 		<h2>Formatage normal</h2>

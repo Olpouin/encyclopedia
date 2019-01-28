@@ -28,6 +28,7 @@ if(isset($_GET['type'])) {
 
 				$cardContent = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $HTMLdata['editor-form']);
 				$cardContent = str_replace('[QUOTE_EDITION_HIDECHECK]', $hideCheckboxValue, $cardContent);
+				$cardContent = str_replace('[CARD_NAME]', $cardName, $cardContent);
 				$cardContent = str_replace('[QUOTE_EDITION_GROUPNAME]', $searchInfo['group'], $cardContent);
 				$cardContent = str_replace('[API_URL]', $config['general']['path']."/api/add.php", $cardContent);
 				$cardContent = str_replace('[CARD_TYPE]', $type, $cardContent);

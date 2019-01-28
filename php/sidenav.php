@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['edit'])) {$editURL = "&edit";}
 else {$editURL = "";}
-$sidenavContent = '<span class="title"><a href="'.$config['general']['path'].'/">'.$config['general']['sidenav_title'].'</a> <a href="#" class="sidenav-button" onclick="closeNav();">&times; Fermer le menu</a></span>';
+$sidenavContent = '<span class="title"><a href="'.$config['general']['path'].'/">'.$config['general']['sidenav_title'].'</a> <button class="sidenav-button" onclick="closeNav();">&times; Fermer le menu</button></span>';
 foreach ($config['cardsList'] as $type => $groups) {
 	$selectedClass = "";
 	if (isset($_GET['type']) && isset($_GET['name'])) {
@@ -22,7 +22,7 @@ foreach ($config['cardsList'] as $type => $groups) {
 						$selectedClass = "selectedPage";
 					}
 				}
-				$sidenavContent .= '<li><a class="'.$selectedClass.'" href="'.$hrefGen($type,$card).$editURL.'" title="'.htmlentities($card).'">'.htmlentities($card).'</a></li>';
+				$sidenavContent .= '<li><a class="'.$selectedClass.'" href="'.$hrefGen($type,$card).$editURL.'">'.htmlentities($card).'</a></li>';
 			}
 		}
 		$sidenavContent .= '</ul>';

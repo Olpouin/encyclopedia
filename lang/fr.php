@@ -1,5 +1,7 @@
 <?php
 $lang = array(
+	'help' => 'Aide',
+	'close' => 'Fermer',
 	'homepage-top_message' => 'La galerie a un total de [TOTALPAGES] pages.',
 	'homepage-search_input' => 'Recherche d\'une fiche...',
 	'homepage-search_button' => 'Chercher',
