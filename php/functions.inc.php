@@ -30,7 +30,7 @@ $hrefGen = function ($type = null, $name = null) use ($config) {
 };
 
 $previewBox = function ($card) use ($config) {
-	preg_match('/\?\[(.*)\]\((.*)\)/m', $card['text'], $matches);
+	preg_match('/\!\[(.*)\]\((.*)\)/m', $card['text'], $matches);
 	if (empty($matches)) {
 		$matches['2'] = $config['homepage']['box-default_image'];
 	}
