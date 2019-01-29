@@ -1,7 +1,11 @@
 <?php
-if ($_COOKIE['lang']) {
-	if (file_exists(htmlentities('lang/'.$_COOKIE['lang'].'.php'))) {
-		$langFile = "lang/".$_COOKIE['lang'].".php";
+if (isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang']) {
+		if (file_exists(htmlentities('lang/'.$_COOKIE['lang'].'.php'))) {
+			$langFile = "lang/".$_COOKIE['lang'].".php";
+		} else {
+			$langFile = "lang/fr.php";
+		}
 	} else {
 		$langFile = "lang/fr.php";
 	}
@@ -135,7 +139,7 @@ $markdownArray = array(
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
-	'/[\!\?]\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
+	'/\!\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
 );
 /*More advanced data if you want to change something*/
 $HTMLdata['homepage-search'] = <<<HOMEPAGESEARCH

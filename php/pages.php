@@ -32,7 +32,7 @@ if(isset($_GET['type'])) {
 				$cardContent = str_replace('[QUOTE_EDITION_GROUPNAME]', $searchInfo['group'], $cardContent);
 				$cardContent = str_replace('[API_URL]', $config['general']['path']."/api/add.php", $cardContent);
 				$cardContent = str_replace('[CARD_TYPE]', $type, $cardContent);
-				$cardContent = str_replace('[CARD_NAME]', $cardName, $cardContent);
+				$cardContent = str_replace('[CARD_NAME]', preg_replace('/\'/Um','\\\'',$cardName), $cardContent);
 				$cardContent = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $cardContent);
 				$cardContent .= $HTMLdata['format-info'];
 
@@ -41,16 +41,16 @@ if(isset($_GET['type'])) {
 				$loadedDB['text'] = htmlentities($loadedDB['text']);
 				$loadedText = nl2br($loadedDB['text']);
 				$loadedText = preg_replace('/\t/', '&emsp;', $loadedText);
-				$loadedText = $format($loadedText);
+				$formatText = $format($loadedText);
 				//Thanks to http://www.10stripe.com/articles/automatically-generate-table-of-contents-php.php !
-				preg_match_all("/<h[1-6].*>(.*)<\/h[1-6]>/Ums", preg_replace('/<aside.*<\/aside>/Ums', '', $loadedText), $tocTitles);
+				preg_match_all("/<h[1-6].*>(.*)<\/h[1-6]>/Ums", preg_replace('/<aside.*<\/aside>/Ums', '', $formatText), $tocTitles);
 				if (!empty(implode("",$tocTitles[0]))) {
 					$toc = "<details open='' class='toc'><summary>Sommaire</summary>".implode("\n", $tocTitles[0]);
 					$toc = preg_replace('/<h([1-6]) id="(.*)">(.*)<\/h[1-6]\>/Um', '<a class="toc-title-$1" href="#$2">$3</a>', $toc);
 					$toc .= "</details>";
 				} else $toc = "";
 
-				$cardContent = "<h1>{$cardName}</h1>{$toc}{$loadedText}";
+				$cardContent = "<h1>{$cardName}</h1>{$toc}{$formatText}";
 			}
 		} else { /*Shows a type (Cards large groups)*/
 			$cardContent = "Page en développement. Si vous avez des idées, j'accepte :arnold:";

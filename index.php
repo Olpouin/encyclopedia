@@ -4,32 +4,15 @@ require_once 'config.php'; /*Various functions*/
 require_once 'php/functions.inc.php'; /*Various functions*/
 require_once 'php/pages.php'; /*Everything in the pages*/
 require_once 'php/sidenav.php'; /*Well... The sidenav.*/
-/*=== HEADER ===*/
-$headerContentDetectionArray = array(
-	'img' => '/\?\[(.*)\]\((.*)\)/m',
-	'desc' => '/\[p\](.*)\[\/p\]/Ums'
-);
+/*=== HEADER ===
+'desc' => '/\[p\](.*)\[\/p\]/Ums'*/
 $headerContent = "";
-foreach ($headerContentDetectionArray as $key => $value) {
-	preg_match($value, $cardContent, $matches);
-	if (!empty($matches)) {
-		switch ($key) {
-			case 'img':
-				$headerContent .= '<meta property="og:image:url" content="'.$matches['2'].'">';
-				$headerContent .= '<meta name="twitter:image" content="'.$matches['2'].'">';
-				$headerContent .= '<meta name="twitter:card" content="summary_large_image">';
-				$headerContent .= '<meta property="og:image:alt" content="Artwork : '.$matches['1'].'">';
-				break;
-			case 'desc':
-				if (strlen($matches['1']) > 290) {
-					$matches['1'] = substr($matches['1'], 0, 290)."...";
-				}
-				$description = $matches['1'];
-				$headerContent .= '<meta property="og:description" content="'.htmlentities($description).'">';
-				$headerContent .= '<meta name="description" content="'.htmlentities($description).'">';
-				break;
-		}
-	}
+if (isset($loadedText)) {
+	preg_match_all('/\!\[(.*)\]\((.*)\)/Ums', $loadedText, $matches);
+	$headerContent .= '<meta property="og:image:url" content="'.$matches['2']['0'].'">';
+	$headerContent .= '<meta name="twitter:image" content="'.$matches['2']['0'].'">';
+	$headerContent .= '<meta name="twitter:card" content="summary_large_image">';
+	$headerContent .= '<meta property="og:image:alt" content="Artwork : '.$matches['1']['0'].'">';
 }
 $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].'">';
 ?>
