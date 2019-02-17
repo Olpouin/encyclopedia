@@ -115,6 +115,12 @@ $config['general']['editor-bar'] = array(
 			"icon" => "special-image"
 		),
 		array(
+			"name" => $lang['editor-bar']['url'],
+			"format" => "[]()",
+			"cursor_move" => "1",
+			"icon" => "special-url"
+		),
+		array(
 			"name" => $lang['editor-bar']['quote'],
 			"format" => "[quote][author][/author][/quote]",
 			"cursor_move" => "7",
@@ -139,7 +145,8 @@ $markdownArray = array(
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
-	'/\!\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">'
+	'/\!\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">',
+	'/\[(.*)\]\(https?\:\/\/(.*)\)/Ums' => '<a href="$2" target="_blank">$1</a>'
 );
 /*More advanced data if you want to change something*/
 $HTMLdata['homepage-search'] = <<<HOMEPAGESEARCH
@@ -187,7 +194,7 @@ $HTMLdata['format-info'] = <<<FORMATINFO
 		- Titres : [h1]Titre[/h1] (Niveaux inferieurs : h2 à la place de h1)<br>
 		- Italique : [i]Texte en italique[/i]<br>
 		- Image : ![Description of the image](URL)<br>
-		--- Remplacez le ! par un ? pour que l'image soit considérée comme la plus importante<br>
+		- Lien : [Description](URL)<br>
 		- Citations : [quote]Texte de la citation[author]Auteur[/author][/quote]
 	</div>
 	<div>

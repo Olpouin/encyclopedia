@@ -34,6 +34,7 @@ $lang['editor-bar'] = array(
 	'strikethrough' => 'Strikethrough',
 	'underlined' => 'Underlined',
 	'img' => 'Picture',
+	'url' => 'Link',
 	'quote' => 'Quote',
 	'hr' => 'Horizontal bar'
 );
