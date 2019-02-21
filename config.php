@@ -121,6 +121,20 @@ $config['general']['editor-bar'] = array(
 			"icon" => "special-url"
 		),
 		array(
+			"name" => $lang['editor-bar']['sound'],
+			"format" => "!()",
+			"cursor_move" => "2",
+			"icon" => "special-sound"
+		),
+		array(
+			"name" => $lang['editor-bar']['video'],
+			"format" => "!()",
+			"cursor_move" => "2",
+			"icon" => "special-video"
+		),
+	),
+	array(
+		array(
 			"name" => $lang['editor-bar']['quote'],
 			"format" => "[quote][author][/author][/quote]",
 			"cursor_move" => "7",
@@ -146,6 +160,9 @@ $markdownArray = array(
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
 	'/\!\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">',
+	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Ums' => '<iframe width="560" height="315" frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>',
+	'/\!\((https?\:\/\/.*\.(mp3|wav|wave))\)/Ums' => '<audio controls><source src="$1" type="audio/$2"></audio>',
+	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Ums' => '<video controls><source src="$1" type="video/$2"></video>',
 	'/\[(.*)\]\(https?\:\/\/(.*)\)/Ums' => '<a href="$2" target="_blank">$1</a>'
 );
 /*More advanced data if you want to change something*/
@@ -195,6 +212,9 @@ $HTMLdata['format-info'] = <<<FORMATINFO
 		- Italique : [i]Texte en italique[/i]<br>
 		- Image : ![Description of the image](URL)<br>
 		- Lien : [Description](URL)<br>
+		- Son (mp3|wav|wave) : !(URL)<br>
+		- Vidéo (mp4|webm|ogg|avi|mov) : !(URL)<br>
+		  - Marche aussi avec les liens YouTube<br>
 		- Citations : [quote]Texte de la citation[author]Auteur[/author][/quote]
 	</div>
 	<div>

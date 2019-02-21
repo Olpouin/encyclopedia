@@ -124,6 +124,14 @@ hr + br {
 	width: 35px;
 	display: inline-block;
 }
+.card video, .card iframe {
+	max-width: 560px;
+	max-height: 315px;
+}
+.card > a {
+	text-decoration: none;
+	color: #003399;
+}
 .card blockquote {
 	font-family: Georgia, serif;
 	min-height: 50px;

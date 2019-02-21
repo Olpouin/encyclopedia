@@ -35,6 +35,8 @@ $lang['editor-bar'] = array(
 	'underlined' => 'Soulignage',
 	'img' => 'Image',
 	'url' => 'Lien',
+	'sound' => 'Son',
+	'video' => 'Vidéo',
 	'quote' => 'Citation',
 	'hr' => 'Barre horizontale'
 );
