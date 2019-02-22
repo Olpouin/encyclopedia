@@ -14,6 +14,24 @@ function getCookie(cname) {
 	}
 	return "";
 }
+
+function newElement(type,param) {
+	var elem = document.createElement(type);
+	if ('txt' in param) elem.appendChild(document.createTextNode(param.txt));
+	if ('url' in param) elem.setAttribute('href', param.url);
+	if ('onclick' in param) elem.setAttribute('onclick', param.onclick);
+	if ('class' in param) elem.classList.add(param.class);
+	if ('id' in param) elem.setAttribute('id', param.id);
+	return elem;
+}
+
+/*Generate UUID*/
+function UUID() {
+	var S4 = function() {
+		return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+	};
+	return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
 /*Parameters*/
 function changeParameters() {
 	if (document.querySelector('#nightmode').checked) {
@@ -66,14 +84,21 @@ function closeImg() {
 	document.getElementById("fullscreen-image").classList.remove("open");
 }
 
-function openNotif(title,text,type,name) {
-	document.getElementById("notif").classList.add("open");
-	document.getElementById("notif-title").innerHTML = title;
-	document.getElementById("notif-text").innerHTML = text;
-	document.getElementById("notif-load").href = window.location.pathname.slice(0,-5);
-}
-function closeNotif() {
-	document.getElementById("notif").classList.remove("open");
+function notify(title,text,URL) {
+	let notifID = "notif-"+UUID();
+	console.log("Generating notification with ID "+notifID)
+
+	document.body.appendChild(newElement("div",{'id':notifID,'class':'notif'}));//Main div
+	notif = document.getElementById(notifID);
+	notif.appendChild(newElement("div",{'class':'notif-zone'}));//Notif div
+	notifZone = notif.firstChild;
+	notifZone.appendChild(newElement("div",{'class':'button-area'}));
+	notifButtons = notifZone.firstChild;
+
+	notifZone.insertBefore(newElement("h1",{'txt':title}), notifButtons);
+	notifZone.insertBefore(newElement("p",{'txt':text}), notifButtons);
+	notifButtons.appendChild(newElement("a",{'txt':langNotifShow,'url':URL,'class':'input'}));
+	notifButtons.appendChild(newElement("a",{'txt':langNotifClose,'onclick':'document.getElementById(\''+notifID+'\').parentNode.removeChild(document.getElementById(\''+notifID+'\'))','class':'input'}))
 }
 
 /*Text edition
@@ -129,7 +154,7 @@ function changeCard(url,type,name) {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
-			openNotif(xhr.response.title,xhr.response.message,type,name);
+			notify(xhr.response.title,xhr.response.message,window.location.pathname.slice(0,-5));
 			document.documentElement.classList.remove("wait");;
 		}
 	}

@@ -7,7 +7,7 @@ template { /*For IE users*/
 	display: none;
 }
 
-.page-content {
+.card-content {
 	position: absolute;
 	left: 251px;
 	right: 0;
@@ -39,9 +39,9 @@ footer a {
 	text-decoration: none;
 }
 /*Notif*/
-#notif {
+.notif {
 	position: absolute;
-	display: none;
+	/*display: none;*/
 	z-index: 2;
 	top: 0;
 	left: 0;
@@ -60,23 +60,29 @@ footer a {
 	z-index: 3;
 	padding: 1% 5%;
 }
-#notif-title {
+.notif .button-area {
+	text-align: center;
+	padding-top: 15px;
+}
+.notif h1 {
 	margin: 0;
 	font-size: 4em;
+	height: 20%;
 }
-#notif-text  {
+.notif p {
 	margin: 0;
 	font-size: 2em;
 	text-indent: 30px;
+	height: 60%;
+	overflow-y: auto;
 }
-#notif button, #notif a {
+.notif a {
 	font-size: 1.5em;
-	position: absolute;
-	bottom: calc(1% + 15px);
 	cursor: pointer;
-}
-#notif .notif-close {
-	right: calc(5% + 15px);
+	color: inherit;
+	text-decoration: none;
+	padding: 10px 15px;
+	margin: 0 5px;
 }
 /*Diverse*/
 .cardSearchBox {
@@ -179,6 +185,7 @@ footer a {
 	right: 10px;
 	font-size: 50px;
 	line-height: 10px;
+	height: 50px;
 	cursor: pointer;
 }
 .sidenav-button {
@@ -254,9 +261,12 @@ footer a {
 	padding: 10px 15px;
 	max-height: 2000px;
 }
-.cardEditor > #textEdit:focus, .cardEditor > input:focus, .input:focus, .submit:focus {
+.cardEditor > #textEdit:hover, .cardEditor > input:hover, .input:hover, .submit:hover {
 	border: 2px solid #003399;
-	transition: border 200ms linear 0s;
+	transition: border 400ms linear 0s;
+}
+.cardEditor > #textEdit:focus, .cardEditor > input:focus, .input:focus, .submit:focus {
+	border: 2px ridge #003399;
 }
 @media only screen and (max-width: 550px) {
 	.infobox {
@@ -264,7 +274,7 @@ footer a {
 	}
 }
 @media only screen and (max-width: 750px) {
-	.page-content {
+	.card-content {
 		left: 0;
 	}
 	.toc {

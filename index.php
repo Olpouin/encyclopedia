@@ -65,32 +65,30 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 				--invert-value: 0%;
 			}
 		</template>
+		<script>
+			const langNotifShow = "<?=$lang['notif-show']?>";
+			const langNotifClose = "<?=$lang['notif-close']?>";
+		</script>
 		<script src="<?=$config['general']['path']?>/content/script.js" defer></script>
 	</head>
 	<body>
-		<nav id="sidenav">
-			<?=$content['sidenav']?>
-		</nav>
-		<div class="page-content">
-			<main class="card" id="card">
-				<button tabindex="-1" class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</button>
-				<?=$content['card']?>
-			</main>
-			<footer>
-				<?php
-				$clean_url = explode('&', $_SERVER['REQUEST_URI'], 2);
-				$footer = str_replace('[EDITION_URL]', $clean_url[0]."&edit", $HTMLdata['footer']);
-				$footer = str_replace('[PATH]', $config['general']['path'], $footer);
-				echo $footer;
-				?>
-			</footer>
-		</div>
-		<div id="notif" role="alert">
-			<div class="notif-zone">
-				<h1 id="notif-title"></h1>
-				<p id="notif-text"></p>
-				<a class="input" id="notif-load" style="color:inherit;text-decoration:none;padding: 10px 15px" href=""><?=$lang['notif-show']?></a>
-				<button class="input notif-close" id="notif-close" onclick="closeNotif()"><?=$lang['notif-close']?></button>
+		<div id="page-content">
+			<nav id="sidenav">
+				<?=$content['sidenav']?>
+			</nav>
+			<div class="card-content">
+				<main class="card" id="card">
+					<button tabindex="-1" class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</button>
+					<?=$content['card']?>
+				</main>
+				<footer>
+					<?php
+					$clean_url = explode('&', $_SERVER['REQUEST_URI'], 2);
+					$footer = str_replace('[EDITION_URL]', $clean_url[0]."&edit", $HTMLdata['footer']);
+					$footer = str_replace('[PATH]', $config['general']['path'], $footer);
+					echo $footer;
+					?>
+				</footer>
 			</div>
 		</div>
 		<div id="fullscreen-image" class="fullscreen-image" role="alert">
