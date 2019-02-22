@@ -13,7 +13,7 @@ else $errorMessage = $errorMessages['Unknown error'];
 	<head>
 		<title><?="Erreur".$config['head-content']['title']?></title>
 		<meta property="og:type" content="article">
-		<meta property="og:site_name" content="<?=$config['head-content']['site_name']?>">
+		<meta property="og:site_name" content="<?=$config['general']['site_name']?>">
 		<meta property="og:description" content="<?=htmlentities($error)." : ".htmlentities($errorMessage)?>">
 		<meta name="description" content="<?=htmlentities($error)." : ".htmlentities($errorMessage)?>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">

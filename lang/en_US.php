@@ -17,7 +17,6 @@ $lang = array(
 	'edition-hide_card' => 'Hide the card (Not shown in the navigation bar)',
 	'edition-group_placeholder' => 'Card\'s group',
 	'notif-show' => 'Show card',
-	'notif-close' => 'Close',
 	'footer-edit_page' => 'Edit card',
 	'footer-top' => 'Go to top',
 	'toc' => 'Table of content'

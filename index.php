@@ -33,7 +33,7 @@ if (isset($loadedText)) {
 $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].'">';
 ?>
 <!DOCTYPE html>
-<html lang="<?=$config['general']['language']?>">
+<html lang="<?=$langSelected?>">
 	<head>
 		<title><?=$infoContent['g_title']." • ".$config['general']['site_name']?></title>
 		<?=$headerContent?>
@@ -67,9 +67,9 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 		</template>
 		<script>
 			const langNotifShow = "<?=$lang['notif-show']?>";
-			const langNotifClose = "<?=$lang['notif-close']?>";
+			const langNotifClose = "<?=$lang['close']?>";
 		</script>
-		<script src="<?=$config['general']['path']?>/content/script.js" defer></script>
+		<script src="<?=$config['general']['path']?>/content/js/script.js" defer></script>
 	</head>
 	<body>
 		<div id="page-content">
@@ -90,13 +90,6 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 					?>
 				</footer>
 			</div>
-		</div>
-		<div id="fullscreen-image" class="fullscreen-image" role="alert">
-			<div>
-				<img id="fs-img_img" alt="" src="">
-			</div>
-			<h1 id="fs-img_title">Image title</h1>
-			<button class="button-x" onclick="closeImg();">&times; Fermer</button>
 		</div>
 	</body>
 </html>

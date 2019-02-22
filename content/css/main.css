@@ -154,7 +154,6 @@ footer a {
 }
 /*Image popup*/
 .fullscreen-image {
-	display: none;
 	position: fixed;
 	overflow-y: auto;
 	top: 0;
@@ -188,6 +187,8 @@ footer a {
 	height: 50px;
 	cursor: pointer;
 }
+
+
 .sidenav-button {
 	cursor: pointer;
 }

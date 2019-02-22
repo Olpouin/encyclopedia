@@ -1,18 +1,4 @@
 <?php
-if (isset($_COOKIE['lang'])) {
-	if ($_COOKIE['lang']) {
-		if (file_exists(htmlentities('lang/'.$_COOKIE['lang'].'.php'))) {
-			$langFile = "lang/".$_COOKIE['lang'].".php";
-		} else {
-			$langFile = "lang/fr.php";
-		}
-	} else {
-		$langFile = "lang/fr.php";
-	}
-} else {
-	$langFile = "lang/fr.php";
-}
-require_once $langFile; //The language file
 /*General configuration.*/
 $config['database'] = array(
 	"host" => "",
@@ -128,6 +114,27 @@ $config['general']['editor-bar'] = array(
 	)
 );
 
+if (preg_match("/(add\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
+	$langDir = "../lang/";
+} else {
+	$langDir = "lang/";
+}
+$languages = array_diff(scandir($langDir), array('..', '.'));
+if (isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang']) {
+		if (in_array(htmlentities($_COOKIE['lang'].'.php'), $languages)) {
+			$langSelected = $_COOKIE['lang'];
+		} else {
+			$langSelected = $config['general']['default_language'];
+		}
+	} else {
+		$langSelected = $config['general']['default_language'];
+	}
+} else {
+	$langSelected = $config['general']['default_language'];
+}
+require_once "lang/".$langSelected.".php"; //The language Selected
+
 $markdownArray = array(
 	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => '<h$1 id="$2">$2</h1>',
 	'/\[hr\]/Ums' => '<hr>',
@@ -138,7 +145,7 @@ $markdownArray = array(
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
-	'/\!\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="openImg(event)" alt="$1">',
+	'/\!\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="fullscreen(event)" alt="$1">',
 	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Ums' => '<iframe width="560" height="315" frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>',
 	'/\!\((https?\:\/\/.*\.(mp3|wav|wave))\)/Ums' => '<audio controls><source src="$1" type="audio/$2"></audio>',
 	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Ums' => '<video controls><source src="$1" type="video/$2"></video>',

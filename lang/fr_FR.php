@@ -17,7 +17,6 @@ $lang = array(
 	'edition-hide_card' => 'Cacher la fiche (Pas affiché dans la barre de navigation)',
 	'edition-group_placeholder' => 'Groupe de la fiche',
 	'notif-show' => 'Afficher la page',
-	'notif-close' => 'Fermer la notification',
 	'footer-edit_page' => 'Modifier la page',
 	'footer-top' => 'Aller en haut',
 	'toc' => 'Table des matières'

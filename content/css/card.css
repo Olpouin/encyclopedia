@@ -76,7 +76,6 @@ nav:hover ~ .card {
 	color: var(--color_infobox-text_color);
 }
 .infobox img {
-	border-radius: 0;
 	width: 100%;
 	height: 100%;
 	vertical-align: middle;
@@ -160,15 +159,14 @@ hr + br {
 .card p::before {
 	content: "\00a0\00a0\00a0\00a0";
 }
-.card > img, .card p > img {
+.card > img {
 	cursor: pointer;
 	max-width: 50%;
 	max-height: 50%;
-	border-radius: 5px;
-	margin: 5px 0 5px 15px;
-	float: right;
+	margin: 5px 0;
 	position: relative;
-	clear: right;
+	clear: none;
+	display: inline-block;
 }
 .card span {
 	max-height: 100%;

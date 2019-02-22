@@ -37,8 +37,8 @@ $content['card'] .= <<<HOMEPAGEPARAMETERS
 <input class="checkbox" id="nightmode" type="checkbox" name="nightmode" value="on"><label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br><br>
 <label for="pref-chooseLang">{$lang['language']} *</label>
 <select id="pref-chooseLang">
-	<option value="fr">Français</option>
-	<option value="en">English</option>
+	<option value="en_US">English, US</option>
+	<option value="fr_FR">Français, France</option>
 </select><br><br>
 *{$lang['homepage-prefs-needsReload']}<br>
 {$lang['cookie-warning']}<br><br>
