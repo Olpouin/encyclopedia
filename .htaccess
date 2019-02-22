@@ -1,9 +1,5 @@
 RewriteEngine On
 RewriteRule ^(.)/(.*)/? index.php?type=$1&name=$2
-<Files "config.json">
-Order Allow,Deny
-Deny from all
-</Files>
 ErrorDocument 403 /gallery/error.php?e=403
 ErrorDocument 404 /gallery/error.php?e=404
 ErrorDocument 408 /gallery/error.php?e=408

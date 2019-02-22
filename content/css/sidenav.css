@@ -68,3 +68,6 @@ nav-button {
 	color: #003399 !important;
 	text-decoration: underline;
 }
+.hiddenPage::before {
+	content: "👻 ";
+}

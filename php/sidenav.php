@@ -19,8 +19,11 @@ foreach ($config['cardsList'] as $type => $groups) {
 				$selectedClass = "";
 				if (isset($_GET['name'])) {
 					if (urldecode($_GET['name']) == $card) {
-						$selectedClass = "selectedPage";
+						$selectedClass .= "selectedPage";
 					}
+				}
+				if ($data['hidden'] == 1) {
+					$selectedClass .= " hiddenPage";
 				}
 				$content['sidenav'] .= '<li><a class="'.$selectedClass.'" href="'.$hrefGen($type,$card).$editURL.'">'.htmlentities($card).'</a></li>';
 			}
