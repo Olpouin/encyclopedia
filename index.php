@@ -35,10 +35,10 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 <!DOCTYPE html>
 <html lang="<?=$config['general']['language']?>">
 	<head>
-		<title><?=$infoContent['g_title'].$config['head-content']['title']?></title>
+		<title><?=$infoContent['g_title']." • ".$config['general']['site_name']?></title>
 		<?=$headerContent?>
 		<meta property="og:type" content="article">
-		<meta property="og:site_name" content="<?=$config['head-content']['site_name']?>">
+		<meta property="og:site_name" content="<?=$config['general']['site_name']?>">
 		<meta charset="utf-8">
 		<link rel="icon" href="<?=$config['general']['path']?>/content/favicon.ico">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">

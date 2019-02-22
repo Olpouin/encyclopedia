@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['edit'])) {$editURL = "&edit";}
 else {$editURL = "";}
-$content['sidenav'] = '<span class="title"><a href="'.$config['general']['path'].'/">'.$config['general']['sidenav_title'].'</a> <button class="sidenav-button" onclick="closeNav();">&times; Fermer le menu</button></span>';
+$content['sidenav'] = '<span class="title"><a href="'.$config['general']['path'].'/">'.$config['general']['site_name'].'</a> <button class="sidenav-button" onclick="closeNav();">&times; Fermer le menu</button></span>';
 foreach ($config['cardsList'] as $type => $groups) {
 	$selectedClass = "";
 	if (isset($_GET['type']) && isset($_GET['name'])) {

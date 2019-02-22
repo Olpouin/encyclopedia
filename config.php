@@ -26,18 +26,11 @@ $config['types'] = array(
 	"l" => "lieux",
 	"e" => "entités"
 );
-$config['head-content'] = array(
-	"title" => " • Galerie",
-	"site_name" => "Gallery"
-);
 $config['general'] = array(
 	"globalPassword" => '', //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);"
 	"language" => "fr",
-	"sidenav_title" => "Galerie"
-);
-$config['homepage'] = array(
-	"box-default_image" => "https://img.jpg",
-	"box-top_message" => "La galerie a un total de [TOTALPAGES] pages."
+	"site_name" => "Gallery",
+	"box-default_image" => "https://img.com/img.jpg"
 );
 $config['general']['editor-bar'] = array(
 	array(

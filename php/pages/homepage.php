@@ -26,8 +26,7 @@ $content['card'] .= "</div>";
 
 
 $totalDBCounter = $db->query('select count(*) from bestiaire where hidden = \'0\'')->fetchColumn();
-$config['homepage']['box-top_message'] = str_replace('[TOTALPAGES]', $totalDBCounter, $lang['homepage-top_message']);
-$content['card'] .= "<div class='previewBoxes'><h2>".$config['homepage']['box-top_message']."</h2>";
+$content['card'] .= "<div class='previewBoxes'><h2>".str_replace('[TOTALPAGES]', $totalDBCounter, $lang['homepage-top_message'])."</h2>";
 $boxList = $db->prepare('SELECT * FROM bestiaire WHERE hidden = 0 ORDER BY rand() LIMIT 4');
 $boxList->execute();
 while ($listing = $boxList->fetch()) {
