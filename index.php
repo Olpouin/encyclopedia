@@ -83,8 +83,17 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 				</main>
 				<footer>
 					<?php
-					$clean_url = explode('&', $_SERVER['REQUEST_URI'], 2);
-					$footer = str_replace('[EDITION_URL]', $clean_url[0]."&edit", $HTMLdata['footer']);
+					$footer = $HTMLdata['footer'];
+					if (!isset($_GET['edit'])) {
+						if (isset($_GET['type'])) {
+							$footer = str_replace('[EDITION_URL]', $_SERVER['REQUEST_URI']."&edit", $footer);
+						}
+						else {
+							$footer = str_replace('[EDITION_URL]', $_SERVER['REQUEST_URI']."?edit", $footer);
+						}
+					} else {
+						$footer = str_replace('[EDITION_URL]', "#", $footer);
+					}
 					$footer = str_replace('[PATH]', $config['general']['path'], $footer);
 					echo $footer;
 					?>

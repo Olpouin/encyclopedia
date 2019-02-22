@@ -22,8 +22,8 @@ $editForm = <<<EDITORFORM
 	<input id="hide-card" type="checkbox" name="hide-card" [QUOTE_EDITION_HIDECHECK]><br><br>
 	<label for="group">{$lang['edition-group_placeholder']}</label>
 	<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="[QUOTE_EDITION_GROUPNAME]"><br><br>
-	<label for="pass">{$lang['edition-password']}</label>
-	<input id="pass" type="password" name="pass" required="" placeholder="{$lang['edition-password']}">
+	<label for="pass">{$lang['password']}</label>
+	<input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
 	<button style="cursor:pointer" class="submit" onclick="changeCard('[API_URL]','[CARD_TYPE]','[CARD_NAME]')">Envoyer</button>
 </div><br>
 EDITORFORM;

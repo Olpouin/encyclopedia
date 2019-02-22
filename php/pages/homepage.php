@@ -1,4 +1,7 @@
 <?php
+if (isset($_GET['edit'])) {
+	require_once('homepage-edit.php');
+} else {
 $infoContent['g_title'] = "Accueil";
 $homepageReq = $db->prepare('SELECT * FROM bestiaire WHERE type = "$SERV" AND name = "homepage"');
 $homepageReq->execute();
@@ -45,4 +48,5 @@ $content['card'] .= <<<HOMEPAGEPARAMETERS
 <button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 HOMEPAGEPARAMETERS;
 $content['card'] .= "</div>";
+}
 ?>

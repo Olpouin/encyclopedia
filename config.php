@@ -17,6 +17,7 @@ $config['general'] = array(
 	"language" => "fr",
 	"site_name" => "Gallery",
 	"box-default_image" => "https://img.com/img.jpg"
+	"default_language" => "fr_FR",
 );
 $config['general']['editor-bar'] = array(
 	array(
