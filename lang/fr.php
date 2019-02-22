@@ -38,7 +38,8 @@ $lang['editor-bar'] = array(
 	'sound' => 'Son',
 	'video' => 'Vidéo',
 	'quote' => 'Citation',
-	'hr' => 'Barre horizontale'
+	'hr' => 'Barre horizontale',
+	'tab' => 'Tabulation'
 );
 $lang['error'] = array(
 	"menu-close_message" => "Fermer le rapport d'erreur",

@@ -42,106 +42,95 @@ $config['homepage'] = array(
 $config['general']['editor-bar'] = array(
 	array(
 		array(
-			"name" => $lang['editor-bar']['title1'],
 			"format" => "[h1][/h1]",
 			"cursor_move" => "4",
-			"icon" => "format-title1"
+			"name" => "title1"
 		),
 		array(
-			"name" => $lang['editor-bar']['title2'],
 			"format" => "[h2][/h2]",
 			"cursor_move" => "4",
-			"icon" => "format-title2"
+			"name" => "title2"
 		),
 		array(
-			"name" => $lang['editor-bar']['title3'],
 			"format" => "[h3][/h3]",
 			"cursor_move" => "4",
-			"icon" => "format-title3"
+			"name" => "title3"
 		),
 		array(
-			"name" => $lang['editor-bar']['title4'],
 			"format" => "[h4][/h4]",
 			"cursor_move" => "4",
-			"icon" => "format-title4"
+			"name" => "title4"
 		),
 		array(
-			"name" => $lang['editor-bar']['title5'],
 			"format" => "[h5][/h5]",
 			"cursor_move" => "4",
-			"icon" => "format-title5"
+			"name" => "title5"
 		),
 		array(
-			"name" => $lang['editor-bar']['title6'],
 			"format" => "[h6][/h6]",
 			"cursor_move" => "4",
-			"icon" => "format-title6"
+			"name" => "title6"
 		)
 	),
 	array(
 		array(
-			"name" => $lang['editor-bar']['italic'],
 			"format" => "[i][/i]",
 			"cursor_move" => "3",
-			"icon" => "format-italic"
+			"name" => "italic"
 		),
 		array(
-			"name" => $lang['editor-bar']['bold'],
 			"format" => "[b][/b]",
 			"cursor_move" => "3",
-			"icon" => "format-bold"
+			"name" => "bold"
 		),
 		array(
-			"name" => $lang['editor-bar']['strikethrough'],
 			"format" => "[s][/s]",
 			"cursor_move" => "3",
-			"icon" => "format-strikethrough"
+			"name" => "strikethrough"
 		),
 		array(
-			"name" => $lang['editor-bar']['underlined'],
 			"format" => "[u][/u]",
 			"cursor_move" => "3",
-			"icon" => "format-underlined"
+			"name" => "underlined"
 		)
 	),
 	array(
 		array(
-			"name" => $lang['editor-bar']['img'],
 			"format" => "![]()",
 			"cursor_move" => "2",
-			"icon" => "special-image"
+			"name" => "img"
 		),
 		array(
-			"name" => $lang['editor-bar']['url'],
 			"format" => "[]()",
 			"cursor_move" => "1",
-			"icon" => "special-url"
+			"name" => "url"
 		),
 		array(
-			"name" => $lang['editor-bar']['sound'],
 			"format" => "!()",
 			"cursor_move" => "2",
-			"icon" => "special-sound"
+			"name" => "sound"
 		),
 		array(
-			"name" => $lang['editor-bar']['video'],
 			"format" => "!()",
 			"cursor_move" => "2",
-			"icon" => "special-video"
+			"name" => "video"
 		),
 	),
 	array(
 		array(
-			"name" => $lang['editor-bar']['quote'],
 			"format" => "[quote][author][/author][/quote]",
 			"cursor_move" => "7",
-			"icon" => "special-quote"
+			"name" => "quote"
 		),
 		array(
-			'name' => $lang['editor-bar']['hr'],
 			"format" => "[hr]",
 			"cursor_move" => "4",
-			"icon" => "special-hr"
+			"name" => "hr"
+		),
+		array(
+			"format" => "\t",
+			"cursor_move" => "1",
+			"name" => "tab"
 		)
 	)
 );
