@@ -13,9 +13,12 @@ function searchCard($searchName, $array) {
 }
 
 $format = function($text) use($markdownArray) {
+	$text = htmlentities($text);
 	foreach ($markdownArray as $key => $value) {
 		$text = preg_replace($key, $value, $text);
 	}
+	$text = nl2br($text);
+	$text = preg_replace('/\t/', '&emsp;', $text);
 	return $text;
 };
 

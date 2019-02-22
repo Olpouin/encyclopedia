@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'opensans-regular';
-	src: url('../content/OpenSans-Regular.ttf');
+	src: url('../OpenSans-Regular.ttf');
 }
 
 template { /*For IE users*/

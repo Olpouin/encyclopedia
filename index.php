@@ -1,11 +1,27 @@
 <?php
+header('Cache-Control: public, max-age=3600');
 /*==== BASIC FILES ====*/
 require_once 'config.php'; /*Various functions*/
 require_once 'php/functions.inc.php'; /*Various functions*/
-require_once 'php/pages.php'; /*Everything in the pages*/
 require_once 'php/sidenav.php'; /*Well... The sidenav.*/
-/*=== HEADER ===
-'desc' => '/\[p\](.*)\[\/p\]/Ums'*/
+/*Looking the right page to choose*/
+if(isset($_GET['type'])) {
+	$type = $_GET['type'];
+	if(array_key_exists($type, $configTypes)) {
+		if(isset($_GET['name']) AND !empty($_GET['name'])) { /*Shows a card*/
+			require_once("php/pages/card.php");
+		} else { /*Shows a type (Cards large groups)*/
+			require_once("php/pages/type.php");
+		}
+	} else {
+		http_response_code(404);
+		header('Location: '.$config['general']['path'].'/error.php?e=404');
+		die();
+	}
+} else { /*Shows the homepage*/
+	require_once("php/pages/homepage.php");
+}
+/*=== HEADER ===*/
 $headerContent = "";
 if (isset($loadedText)) {
 	preg_match_all('/\!\[(.*)\]\((.*)\)/Ums', $loadedText, $matches);
@@ -19,7 +35,7 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 <!DOCTYPE html>
 <html lang="<?=$config['general']['language']?>">
 	<head>
-		<title>Pages<?=$config['head-content']['title']?></title>
+		<title><?=$infoContent['g_title'].$config['head-content']['title']?></title>
 		<?=$headerContent?>
 		<meta property="og:type" content="article">
 		<meta property="og:site_name" content="<?=$config['head-content']['site_name']?>">
@@ -53,12 +69,12 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 	</head>
 	<body>
 		<nav id="sidenav">
-			<?=$sidenavContent?>
+			<?=$content['sidenav']?>
 		</nav>
 		<div class="page-content">
 			<main class="card" id="card">
 				<button tabindex="-1" class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</button>
-				<?=$cardContent?>
+				<?=$content['card']?>
 			</main>
 			<footer>
 				<?php
