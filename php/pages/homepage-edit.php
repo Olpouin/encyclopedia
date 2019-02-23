@@ -27,7 +27,7 @@ if (isset($_POST['pass'])) {
 		<label for="type">{$lang['edition-type_placeholder']}</label><br><br>
 		<input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
 		<label for="pass">{$lang['password']}</label><br><br>
-		<button class="submit" onclick="API('add',{'type':document.getElementById('type').value,'name':document.getElementById('name').value,'group':document.getElementById('group').value}, path+'/'+document.getElementById('type').value+'/'+document.getElementById('name').value)">{$lang['send']}</button>
+		<button class="submit" onclick="API('add',{'type':document.getElementById('type').value,'name':document.getElementById('name').value,'group':document.getElementById('group').value,'pass':document.getElementById('pass').value}, path+'/'+document.getElementById('type').value+'/'+document.getElementById('name').value)">{$lang['send']}</button>
 	</div>
 	<div>
 		<h2>Gérer les types</h2>
