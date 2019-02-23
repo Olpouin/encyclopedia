@@ -25,6 +25,9 @@ nav ul.type > span {
 nav ul.type {
 	padding-left: 8px;
 }
+nav ul.type:last-of-type {
+	padding-bottom: 25px;
+}
 nav ul {
 	margin: 0;
 }

@@ -37,6 +37,8 @@ $content['card'] .= <<<FORMATINFO
 		- Vous pouvez ajouter une tabulation avec SHIFT + TAB.<br>
 		- Titres : [h1]Titre[/h1] (Niveaux inferieurs : h2 à la place de h1)<br>
 		- Italique : [i]Texte en italique[/i]<br>
+		- Couleur : [c]Texte[/c]<br>
+		- Couleur custom : [c#HEXA00]Texte[/c]<br>
 		- Image : ![Description of the image](URL)<br>
 		- Lien : [Description](URL)<br>
 		- Son (mp3|wav|wave) : !(URL)<br>

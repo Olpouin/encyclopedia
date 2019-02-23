@@ -10,7 +10,7 @@ if (isset($_POST['pass'])) {
 	if (password_verify($_POST['pass'],$config['general']['globalPassword'])) {
 		$typesForm = '';
 		foreach ($config['types'] as $key => $value) {
-			$typesForm .= '<option value="'.$key.'">'.$value.'</option>';
+			$typesForm .= '<option value="'.$key.'">'.ucfirst($value).'</option>';
 		}
 		$content['card'] = <<<HOMEPAGEEDITMAIN
 <h1>{$lang['admin-title']}</h1><br>
