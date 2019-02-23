@@ -19,6 +19,10 @@ if (isset($data['type'])) {
 										$data['group'],
 									)
 								);
+								$json = array(
+									'title' => $lang['api']['success'],
+									'message' => $lang['api']['success-add']
+								);
 							} else {
 								$json = array(
 									'title' => $lang['api']['error'],
