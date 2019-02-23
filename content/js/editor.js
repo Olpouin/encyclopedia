@@ -40,28 +40,4 @@ txtarea.onkeydown = function(e) {
 		this.selectionEnd = s+selectAdd;
 	}
 }
-
-
-
-function changeCard(url,type,name) {
-	document.documentElement.classList.add("wait");
-	var xhr = new XMLHttpRequest();
-	xhr.responseType = "json";
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4) {
-			notify(xhr.response.title,xhr.response.message,{'url':window.location.pathname.slice(0,-5)});
-			document.documentElement.classList.remove("wait");;
-		}
-	}
-
-	var text = document.getElementById("textEdit").value;
-	var group = document.getElementById("group").value;
-	var pass = document.getElementById("pass").value;
-	if (document.getElementById("hide-card").checked) var hide = "on";
-	else var hide = "no"
-
-	xhr.send("type="+type+"&name="+name+"&text="+text+"&hide-card="+hide+"&group="+group+"&pass="+pass);
-}
 }

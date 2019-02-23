@@ -243,6 +243,7 @@ footer a {
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
+/*FORMS DESIGN*/
 .cardEditor > #textEdit {
 	white-space: pre-wrap;
 	width: 100%;
@@ -252,7 +253,10 @@ footer a {
 	color: var(--color_main-opposite)
 	font: fixed;
 }
-.cardEditor > #textEdit, .cardEditor > input, .input, .submit {
+.submit {
+	cursor: pointer;
+}
+.cardEditor > #textEdit, input[type=text], input[type=password], .input, .submit, select {
 	resize: vertical;
 	background-color: var(--color_main);
 	color: var(--color_main-opposite);
@@ -262,11 +266,11 @@ footer a {
 	padding: 10px 15px;
 	max-height: 2000px;
 }
-.cardEditor > #textEdit:hover, .cardEditor > input:hover, .input:hover, .submit:hover {
+.cardEditor > #textEdit:hover, input[type=text]:hover, input[type=password]:hover, .input:hover, .submit:hover, select:hover {
 	border: 2px solid #003399;
 	transition: border 400ms linear 0s;
 }
-.cardEditor > #textEdit:focus, .cardEditor > input:focus, .input:focus, .submit:focus {
+.cardEditor > #textEdit:focus, input[type=text]:focus, input[type=password]:focus, .input:focus, .submit:focus, select:focus {
 	border: 2px ridge #003399;
 }
 @media only screen and (max-width: 550px) {

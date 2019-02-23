@@ -14,31 +14,24 @@ if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
 else $hideCheckboxValue = "";
 
 $editForm = <<<EDITORFORM
-<h1>{$lang['footer-edit_page']} "[CARD_NAME]"</h1>
+<h1>{$lang['footer-edit_page']} "{$cardName}"</h1>
 <div class="cardEditor">
-	[QUOTE_EDITION_BAR]
+	{$editorFunctionBar}
 	<textarea id="textEdit" required="" maxlength="1000000" name="text">[QUOTE_TEXT]</textarea>
 	<label for="hide-card">{$lang['edition-hide_card']}</label>
-	<input id="hide-card" type="checkbox" name="hide-card" [QUOTE_EDITION_HIDECHECK]><br><br>
+	<input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 	<label for="group">{$lang['edition-group_placeholder']}</label>
-	<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="[QUOTE_EDITION_GROUPNAME]"><br><br>
+	<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$searchInfo['group']}"><br><br>
 	<label for="pass">{$lang['password']}</label>
 	<input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
-	<button style="cursor:pointer" class="submit" onclick="changeCard('[API_URL]','[CARD_TYPE]','[CARD_NAME]')">Envoyer</button>
+	<button class="submit" onclick="API('edit',{'type':'{$type}','name':'[CARD_NAME]','text':document.getElementById('textEdit').value,'group':document.getElementById('group').value,'pass':document.getElementById('pass').value,'hide':document.getElementById('hide-card').checked},window.location.pathname.slice(0,-5))">{$lang['send']}</button>
 </div><br>
 EDITORFORM;
-
-$content['card'] = str_replace('[QUOTE_EDITION_BAR]', $editorFunctionBar, $editForm);
-$content['card'] = str_replace('[QUOTE_EDITION_HIDECHECK]', $hideCheckboxValue, $content['card']);
-$content['card'] = str_replace('[CARD_NAME]', $cardName, $content['card']);
-$content['card'] = str_replace('[QUOTE_EDITION_GROUPNAME]', $searchInfo['group'], $content['card']);
-$content['card'] = str_replace('[API_URL]', $config['general']['path']."/api/add.php", $content['card']);
-$content['card'] = str_replace('[CARD_TYPE]', $type, $content['card']);
-$content['card'] = str_replace('[CARD_NAME]', preg_replace('/\'/Um','\\\'',$cardName), $content['card']);
+$content['card'] = str_replace('[CARD_NAME]', preg_replace('/\'/Um','\\\'',$cardName), $editForm);
 $content['card'] = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $content['card']);
 $content['card'] .= <<<FORMATINFO
 <h1 style="text-align:center;display:block;">{$lang['help']}</h1>
-<div class="flexboxData"">
+<div class="flexboxData">
 	<div>
 		<h2>Formatage normal</h2>
 		- Vous pouvez ajouter une tabulation avec SHIFT + TAB.<br>

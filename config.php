@@ -115,7 +115,7 @@ $config['general']['editor-bar'] = array(
 	)
 );
 
-if (preg_match("/(add\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
+if (preg_match("/((edit|add)\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
 	$langDir = "../lang/";
 } else {
 	$langDir = "lang/";

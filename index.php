@@ -68,8 +68,10 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 		<script>
 			const langNotifShow = "<?=$lang['notif-show']?>";
 			const langNotifClose = "<?=$lang['close']?>";
+			var path = "<?=$config['general']['path']?>";
 		</script>
 		<script src="<?=$config['general']['path']?>/content/js/script.js" defer></script>
+		<script src="<?=$config['general']['path']?>/content/js/editor.js" defer></script>
 	</head>
 	<body>
 		<div id="page-content">

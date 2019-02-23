@@ -1,4 +1,3 @@
-/*Cookies functions*/
 function getCookie(cname) {
 	var name = cname + "=";
 	var decodedCookie = decodeURIComponent(document.cookie);
@@ -17,7 +16,6 @@ function getCookie(cname) {
 
 function newElement(type,param) {
 	var elem = document.createElement(type);
-	//param = ( typeof param != 'undefined' && param instanceof Array ) ? param : [] //https://stackoverflow.com/questions/1961528/how-to-check-if-an-array-exist-if-not-create-it-in-javascript
 	if ('txt' in param) elem.appendChild(document.createTextNode(param.txt));
 	if ('url' in param) elem.setAttribute('href', param.url);
 	if ('onclick' in param) elem.setAttribute('onclick', param.onclick);
@@ -30,14 +28,14 @@ function newElement(type,param) {
 function deleteElement(id) {
 	document.getElementById(id).parentNode.removeChild(document.getElementById(id));
 }
-/*Generate UUID*/
+
 function UUID() {
 	var S4 = function() {
 		return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 	};
 	return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 }
-/*Parameters*/
+
 function changeParameters() {
 	if (document.querySelector('#nightmode').checked) {
 		document.cookie = "nightmode=true; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
@@ -62,12 +60,34 @@ function checkParameters() {
 	}
 }
 checkParameters();
-/*Others*/
+
+function API(APIname,data,redirect) {
+	document.documentElement.classList.add("wait");
+	let url = path+"/api/"+APIname+".php";
+	let xhr = new XMLHttpRequest();
+	xhr.responseType = "json";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.response === null) {;
+				var title = "Erreur serveur";
+				var message = "Nous n'avons pas pu obtenir de réponse du serveur.";
+			} else {
+				var title = xhr.response.title;
+				var message = xhr.response.message;
+			}
+			notify(title,message,{'url':redirect});
+			document.documentElement.classList.remove("wait");
+		}
+	}
+
+	xhr.send(JSON.stringify(data));
+}
 
 function openNav() {
     document.getElementById("sidenav").classList.add("open");
 }
-
 function closeNav() {
     document.getElementById("sidenav").classList.remove("open");
 }
@@ -84,7 +104,6 @@ function fullscreen(e) {
 	fullscr.appendChild(newElement("h1",{'txt':e.target.getAttribute('alt')}));
 	fullscr.appendChild(newElement("button",{'class':'button-x','onclick':'deleteElement(\''+fullscrID+'\')','txt':'× '+langNotifClose}));
 }
-
 function notify(title,text,param) {
 	let notifID = "notif-"+UUID();
 	console.log("Generating notification with ID "+notifID);
