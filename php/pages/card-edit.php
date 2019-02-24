@@ -5,7 +5,12 @@ foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
 	$editorFunctionBar .= '<div class="editor-bar_group">';
 	foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
 		$editorFunction = $config['general']['editor-bar'][$groupNumber][$formatNumber];
-		$editorFunctionBar .= '<img class="edit-object" src="'.$config['general']['path'].'/content/icons/editor/'.$editorFunction['name'].'.svg" title="'.$lang['editor-bar'][$editorFunction['name']].'" alt="'.$lang['editor-bar'][$editorFunction['name']].'" onclick="addTextElement(\''.$editorFunction['format'].'\', '.$editorFunction['cursor_move'].')">';
+		$edFormat = $editorFunction['format'];
+		$edName = $editorFunction['name'];
+		if (!isset($editorFunction['e'])) $editorFunction['e'] = "";
+		$editorFunctionBar .= '<div tt-hlp="'.$editorFunction['e'].'" tt-cmd="'.$edFormat.'" tt-name="'.$lang['editor-bar'][$edName].'" class="edit-object" onclick="addTextElement(\''.$edFormat.'\', '.$editorFunction['cursor_move'].')">
+			<img src="'.$config['general']['path'].'/content/icons/editor/'.$edName.'.svg" alt="'.$lang['editor-bar'][$edName].'">
+			</div>';
 	}
 	$editorFunctionBar .= '</div>';
 }
@@ -34,16 +39,8 @@ $content['card'] .= <<<FORMATINFO
 <div class="flexboxData">
 	<div>
 		<h2>Formatage normal</h2>
-		- Vous pouvez ajouter une tabulation avec SHIFT + TAB.<br>
-		- Titres : [h1]Titre[/h1] (Niveaux inferieurs : h2 à la place de h1)<br>
-		- Italique : [i]Texte en italique[/i]<br>
 		- Couleur : [c]Texte[/c]<br>
 		- Couleur custom : [c#HEXA00]Texte[/c]<br>
-		- Image : ![Description of the image](URL)<br>
-		- Lien : [Description](URL)<br>
-		- Son (mp3|wav|wave) : !(URL)<br>
-		- Vidéo (mp4|webm|ogg|avi|mov) : !(URL)<br>
-		  - Marche aussi avec les liens YouTube<br>
 		- Citations : [quote]Texte de la citation[author]Auteur[/author][/quote]
 	</div>
 	<div>

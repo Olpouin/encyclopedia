@@ -20,6 +20,8 @@ function addTextElement(format,cursorMove) {
 }
 
 txtarea.onkeydown = function(e) {
+	latestCursorPositionStart = this.selectionStart;
+	latestCursorPositionEnd = this.selectionEnd;
 	if((e.shiftKey || e.shiftKey) && ((e.keyCode==9 || e.which==9) || (e.keyCode==49 || e.which==49) || (e.keyCode==50 || e.which==50))){
 		switch (e.keyCode) {
 			case 49:
@@ -35,9 +37,36 @@ txtarea.onkeydown = function(e) {
 				var selectAdd = 1;
 		}
 		e.preventDefault();
-		var s = this.selectionStart;
-		this.value = this.value.substring(0,this.selectionStart) + textAdd + this.value.substring(this.selectionEnd);
-		this.selectionEnd = s+selectAdd;
+		addTextElement(textAdd, selectAdd);
+	}
+	if ((e.keyCode == 17 || e.which == 17) || e.ctrlKey) {
+		var selectAdd = 3;
+		switch (e.keyCode) {
+			case 73:
+				var textAdd = "[i][/i]";
+				e.preventDefault();
+				break;
+			case 66:
+				var textAdd = "[b][/b]";
+				e.preventDefault();
+				break;
+			case 83:
+				var textAdd = "[s][/s]";
+				e.preventDefault();
+				break;
+			case 85:
+				var textAdd = "[u][/u]";
+				e.preventDefault();
+				break;
+			case 79:
+				var textAdd = "[c][/c]";
+				e.preventDefault();
+				break;
+			default:
+				var textAdd = "";
+				var selectAdd = 0;
+		}
+		addTextElement(textAdd, selectAdd);
 	}
 }
 }

@@ -45,7 +45,8 @@ $lang['editor-bar'] = array(
 	'video' => 'Video',
 	'quote' => 'Quote',
 	'hr' => 'Horizontal bar',
-	'tab' => 'Tab'
+	'tab' => 'Tab',
+	'help-dsc' => 'Description'
 );
 $lang['error'] = array(
 	"menu-close_message" => "Close the error report",

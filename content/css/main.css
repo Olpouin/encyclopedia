@@ -89,29 +89,29 @@ footer a {
 	margin: 10px 0;
 	display: flex;
 	width: 100%;
-	border: 2px solid var(--color_borders);
 	border-radius: 5px;
 	transition: border 200ms linear 0s;
+	position: relative;
 }
 .cardSearchBox > input {
 	border: none;
 	padding: 10px 15px;
 	background-color: var(----color_main);
 	color: var(--color_main-opposite);
+	border-left: 2px solid var(--color_borders);
 }
 .cardSearch {
 	flex: 6;
 	width: 90%;
 	transition: border 200ms linear 0s;
 }
-.cardSearchBox ~ .cardSearch:focus, .cardSearch:focus .cardSearch-button {
-	border: 2px solid var(----color_borders);
-	transition: border 200ms linear 0s;
-}
 .cardSearch-button {
 	flex: 1;
 	background-color: var(--color_borders);
 	cursor: pointer;
+	position: absolute;
+	top: 2px;
+	right: 0;
 }
 /*Homepage boxes*/
 .previewBoxes {
@@ -225,23 +225,49 @@ footer a {
 }
 .edit-object {
 	cursor: pointer;
-	border: 2px solid #DCDCDC;
+	border: 2px solid var(--color_borders);
 	border-right: 0;
 	padding: 5px;
+	width: 25px;
+	height: 25px;
+	display: inline-block;
 	fill: red;
+	position: relative;
+}
+.edit-object img {
+	height: 100%;
 	filter: invert(var(--invert-value));
+	width: 100%;
 }
 .edit-object:hover {
-	background-color: #DCDCDC;
+	background-color: var(--color_borders);
 }
 .edit-object:first-of-type {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 }
 .edit-object:last-of-type {
-	border-right: 2px solid #DCDCDC;
+	border-right: 2px solid var(--color_borders);
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+}
+.edit-object:hover::after {
+	background-color: var(--color_main);
+	border: 2px solid var(--color_borders);
+	top: 40px;
+	left: -100px;
+	color: var(--color_main-opposite);
+	content: attr(tt-name)"\A"attr(tt-cmd)"\A"attr(tt-hlp);
+	white-space: pre;
+	padding: 5px 15px;
+	position: absolute;
+	z-index: 98;
+	width: 200px;
+	text-align: center;
+	word-break: break-all;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 /*FORMS DESIGN*/
 .cardEditor > #textEdit {
