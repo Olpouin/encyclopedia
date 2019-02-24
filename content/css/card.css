@@ -128,7 +128,7 @@ hr + br {
 	max-height: 315px;
 }
 .card > a {
-	text-decoration: none;
+	text-decoration: underline;
 	color: #003399;
 }
 .card blockquote {

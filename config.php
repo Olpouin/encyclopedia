@@ -19,6 +19,27 @@ $config['general'] = array(
 	"box-default_image" => "https://img.com/img.jpg"
 	"default_language" => "fr_FR",
 );
+
+if (preg_match("/((edit|add)\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
+	$langDir = "../lang/";
+} else {
+	$langDir = "lang/";
+}
+$languages = array_diff(scandir($langDir), array('..', '.'));
+if (isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang']) {
+		if (in_array(htmlentities($_COOKIE['lang'].'.php'), $languages)) {
+			$langSelected = $_COOKIE['lang'];
+		} else {
+			$langSelected = $config['general']['default_language'];
+		}
+	} else {
+		$langSelected = $config['general']['default_language'];
+	}
+} else {
+	$langSelected = $config['general']['default_language'];
+}
+require_once "lang/".$langSelected.".php"; //The language Selected
 $config['general']['editor-bar'] = array(
 	array(
 		array(
@@ -56,49 +77,63 @@ $config['general']['editor-bar'] = array(
 		array(
 			"format" => "[i][/i]",
 			"cursor_move" => "3",
-			"name" => "italic"
+			"name" => "italic",
+			'e' => 'CTRL + I'
 		),
 		array(
 			"format" => "[b][/b]",
 			"cursor_move" => "3",
-			"name" => "bold"
+			"name" => "bold",
+			'e' => 'CTRL + B'
 		),
 		array(
 			"format" => "[s][/s]",
 			"cursor_move" => "3",
-			"name" => "strikethrough"
+			"name" => "strikethrough",
+			'e' => 'CTRL + S'
 		),
 		array(
 			"format" => "[u][/u]",
 			"cursor_move" => "3",
-			"name" => "underlined"
+			"name" => "underlined",
+			'e' => 'CTRL + U'
+		),
+		array(
+			"format" => "[c][/c]",
+			"cursor_move" => "3",
+			"name" => "color",
+			"e" => "CTRL + O"
 		)
 	),
 	array(
 		array(
 			"format" => "![]()",
 			"cursor_move" => "2",
-			"name" => "img"
+			"name" => "img",
+			"e" => "![{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"
 		),
 		array(
 			"format" => "[]()",
 			"cursor_move" => "1",
-			"name" => "url"
+			"name" => "url",
+			"e" => "[{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"
 		),
 		array(
 			"format" => "!()",
 			"cursor_move" => "2",
-			"name" => "sound"
+			"name" => "sound",
+			"e" => "!({$lang['editor-bar']['url']})"
 		),
 		array(
 			"format" => "!()",
 			"cursor_move" => "2",
-			"name" => "video"
+			"name" => "video",
+			"e" => "!({$lang['editor-bar']['url']})"
 		),
 	),
 	array(
 		array(
-			"format" => "[quote][author][/author][/quote]",
+			"format" => "[quote][au][/au][/quote]",
 			"cursor_move" => "7",
 			"name" => "quote"
 		),
@@ -110,31 +145,11 @@ $config['general']['editor-bar'] = array(
 		array(
 			"format" => "\t",
 			"cursor_move" => "1",
-			"name" => "tab"
+			"name" => "tab",
+			'e' => 'SHIFT + TAB'
 		)
 	)
 );
-
-if (preg_match("/((edit|add)\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
-	$langDir = "../lang/";
-} else {
-	$langDir = "lang/";
-}
-$languages = array_diff(scandir($langDir), array('..', '.'));
-if (isset($_COOKIE['lang'])) {
-	if ($_COOKIE['lang']) {
-		if (in_array(htmlentities($_COOKIE['lang'].'.php'), $languages)) {
-			$langSelected = $_COOKIE['lang'];
-		} else {
-			$langSelected = $config['general']['default_language'];
-		}
-	} else {
-		$langSelected = $config['general']['default_language'];
-	}
-} else {
-	$langSelected = $config['general']['default_language'];
-}
-require_once "lang/".$langSelected.".php"; //The language Selected
 
 $markdownArray = array(
 	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => '<h$1 id="$2">$2</h1>',
@@ -143,6 +158,8 @@ $markdownArray = array(
 	'/\[b\](.*)\[\/b\]/Ums' => '<b>$1</b>',
 	'/\[s\](.*)\[\/s\]/Ums' => '<s>$1</s>',
 	'/\[u\](.*)\[\/u\]/Ums' => '<u>$1</u>',
+	'/\[c\](.*)\[\/c\]/Ums' => '<span style="color: #003399;">$1</span>',
+	'/\[c#([a-fA-F0-9]{6})\](.*)\[\/c\]/Ums' => '<span style="color: #$1;">$2</span>',
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
@@ -150,7 +167,7 @@ $markdownArray = array(
 	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Ums' => '<iframe width="560" height="315" frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>',
 	'/\!\((https?\:\/\/.*\.(mp3|wav|wave))\)/Ums' => '<audio controls><source src="$1" type="audio/$2"></audio>',
 	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Ums' => '<video controls><source src="$1" type="video/$2"></video>',
-	'/\[(.*)\]\(https?\:\/\/(.*)\)/Ums' => '<a href="$2" target="_blank">$1</a>'
+	'/\[(.*)\]\((https?\:\/\/.*)\)/Ums' => '<a href="$2" target="_blank">$1</a>'
 );
 /*More advanced data if you want to change something*/
 $HTMLdata['footer'] = <<<FOOTER
