@@ -20,11 +20,11 @@ nav:hover ~ .card {
 }
 .toc a {
 	display: block;
-	text-decoration: none;
+	text-decoration: none !important;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	text-indent: 5px;
-	color: var(--color_main-opposite);
+	color: var(--color_main-opposite) !important;
 }
 .toc a:hover {
 	text-decoration: underline;

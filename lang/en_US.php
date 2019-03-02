@@ -22,6 +22,7 @@ $lang = array(
 	'edition-type_placeholder' => 'Card\'s type',
 	'notif-show' => 'Show card',
 	'footer-edit_page' => 'Edit card',
+	'footer-show_page' => 'Return to the card',
 	'footer-top' => 'Go to top',
 	'toc' => 'Table of content',
 	'admin-title' => 'Administration interface',

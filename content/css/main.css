@@ -35,6 +35,13 @@ footer a {
 	color: #003399;
 	text-decoration: none;
 }
+footer a::after {
+	content: " | ";
+	color: var(--color_main-opposite);
+}
+footer a:last-of-type::after {
+	content: "";
+}
 /*Notif*/
 .notif {
 	position: absolute;
@@ -271,6 +278,7 @@ footer a {
 	background-color: var(--color_main);
 	color: var(--color_main-opposite)
 	font: fixed;
+	overflow: auto;
 }
 .submit {
 	cursor: pointer;

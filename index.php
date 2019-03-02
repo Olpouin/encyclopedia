@@ -93,20 +93,23 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 				</main>
 				<footer>
 					<?php
-					$footer = $HTMLdata['footer'];
 					if (!isset($_GET['edit'])) {
+						$footerEditTXT = $lang['footer-edit_page'];
 						if (isset($_GET['type'])) {
-							$footer = str_replace('[EDITION_URL]', $_SERVER['REQUEST_URI']."&edit", $footer);
+							$footerEditURL = $_SERVER['REQUEST_URI']."&edit";
 						}
 						else {
-							$footer = str_replace('[EDITION_URL]', $_SERVER['REQUEST_URI']."?edit", $footer);
+							$footerEditURL = $_SERVER['REQUEST_URI']."?edit";
 						}
 					} else {
-						$footer = str_replace('[EDITION_URL]', "#", $footer);
+						$footerEditURL = substr($_SERVER['REQUEST_URI'], 0, -5);
+						$footerEditTXT = $lang['footer-show_page'];
 					}
-					$footer = str_replace('[PATH]', $config['general']['path'], $footer);
-					echo $footer;
 					?>
+					<a href='https://github.com/Olpouin/gallery' target='_blank'><?=$lang['homepage-sourcecode']?></a>
+					<a href="<?=$footerEditURL?>"><?=$footerEditTXT?></a>
+					<a href="<?=$config['general']['path']?>[PATH]/#pref"><?=$lang['homepage-prefs-title']?></a>
+					<a href="#card"><?=$lang['footer-top']?></a>
 				</footer>
 			</div>
 		</div>

@@ -22,6 +22,7 @@ $lang = array(
 	'edition-type_placeholder' => 'Type de la fiche',
 	'notif-show' => 'Afficher la page',
 	'footer-edit_page' => 'Modifier la page',
+	'footer-show_page' => 'Retourner à la fiche',
 	'footer-top' => 'Aller en haut',
 	'toc' => 'Table des matières',
 	'admin-title' => 'Interface d\'administration',

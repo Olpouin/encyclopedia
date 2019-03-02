@@ -82,16 +82,12 @@ $markdownArray = array(
 	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
-	'/\!\[(.*)\]\((.*)\)/Ums' => '<img src="$2" onclick="fullscreen(event)" alt="$1">',
-	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Ums' => '<iframe width="560" height="315" frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>',
-	'/\!\((https?\:\/\/.*\.(mp3|wav|wave))\)/Ums' => '<audio controls><source src="$1" type="audio/$2"></audio>',
-	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Ums' => '<video controls><source src="$1" type="video/$2"></video>',
-	'/\[(.*)\]\((https?\:\/\/.*)\)/Ums' => '<a href="$2" target="_blank">$1</a>'
+	'/\!\[(.*)\]\((.*)\)/Um' => '<img src="$2" onclick="fullscreen(event)" alt="$1">',
+	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Um' => '<iframe width="560" height="315" frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>',
+	'/\!\((https?\:\/\/.*\.(mp3|wav|wave))\)/Um' => '<audio controls><source src="$1" type="audio/$2"></audio>',
+	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Um' => '<video controls><source src="$1" type="video/$2"></video>',
+	'/\[(.*)\]\((https?\:\/\/.*)\)/Um' => '<a href="$2" target="_blank">$1</a>'
 );
-/*More advanced data if you want to change something*/
-$HTMLdata['footer'] = <<<FOOTER
-<a href='https://github.com/Olpouin/gallery' target='_blank'>{$lang['homepage-sourcecode']}</a> | <a href="[EDITION_URL]">{$lang['footer-edit_page']}</a> | <a href="[PATH]/#pref">{$lang['homepage-prefs-title']}</a> | <a href="#card">{$lang['footer-top']}</a>
-FOOTER;
 /*Automated things that you should not change*/
 //Database connection
 $dsn = "mysql:host={$config['database']['host']};dbname={$config['database']['name']};charset=utf8";

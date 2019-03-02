@@ -11,7 +11,7 @@ foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
 		$edFormat = $editor['format'];
 		$edName = $editor['name'];
 		if (!isset($editor['e'])) $editor['e'] = "";
-		$editorBar .= '<div tt-hlp="'.$editor['e'].'" tt-cmd="'.$edFormat.'" tt-name="'.$fARR[$edName].'" onclick="addText(\''.$edFormat.'\', '.$editor['cursor_move'].')">
+		$editorBar .= '<div tt-hlp="'.$editor['e'].'" tt-cmd="'.$edFormat.'" tt-name="'.$fARR[$edName].'" onclick="addText(\''.$edFormat.'\', '.$editor['cursor'].')">
 			<img src="'.$fURL.$edName.'.svg" alt="'.$fARR[$edName].'">
 		</div>';
 	}
@@ -28,7 +28,7 @@ $cardNameReplaced = preg_replace('/\'/Um','\\\'',$cardName);
 $content['card'] = <<<CARDEDIT
 <h1>{$lang['footer-edit_page']} "{$cardName}"</h1>
 {$editorBar}
-<textarea id="textEdit" required="" maxlength="1000000" name="text">{$loadedDB['text']}</textarea>
+<div id="textEdit" required="" maxlength="1000000" name="text">{$loadedDB['text']}</div>
 <label for="hide-card">{$lang['edition-hide_card']}</label>
 <input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 <label for="group">{$lang['edition-group_placeholder']}</label>
