@@ -11,7 +11,7 @@ txtarea.onblur = function(e) {
 	latestCursorPositionEnd = this.selectionEnd;
 }
 
-function addTextElement(format,cursorMove) {
+function addText(format,cursorMove) {
 	var selectedText = txtarea.value.substring(latestCursorPositionStart, latestCursorPositionEnd);
 	txtarea.value = txtarea.value.substring(0, latestCursorPositionStart) + format.substring(0, cursorMove) + selectedText + format.substring(cursorMove) + txtarea.value.substring(latestCursorPositionEnd);
 	txtarea.select();

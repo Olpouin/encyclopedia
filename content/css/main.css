@@ -211,12 +211,12 @@ footer a {
 .editor-bar {
 	margin: 5px 0;
 }
-.cardEditor .editor-bar_group {
+.editor-bar_group {
 	margin-right: 10px;
 	display: inline-block;
 	padding: 3px 5px;
 }
-.edit-object {
+.editor-bar_group > div {
 	cursor: pointer;
 	border: 2px solid var(--color_borders);
 	border-right: 0;
@@ -227,24 +227,24 @@ footer a {
 	fill: red;
 	position: relative;
 }
-.edit-object img {
+.editor-bar_group > div img {
 	height: 100%;
 	filter: invert(var(--invert-value));
 	width: 100%;
 }
-.edit-object:hover {
+.editor-bar_group > div:hover {
 	background-color: var(--color_borders);
 }
-.edit-object:first-of-type {
+.editor-bar_group > div:first-of-type {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 }
-.edit-object:last-of-type {
+.editor-bar_group > div:last-of-type {
 	border-right: 2px solid var(--color_borders);
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-.edit-object:hover::after {
+.editor-bar_group > div:hover::after {
 	background-color: var(--color_main);
 	border: 2px solid var(--color_borders);
 	top: 40px;
@@ -263,7 +263,7 @@ footer a {
 	hyphens: auto;
 }
 /*FORMS DESIGN*/
-.cardEditor > #textEdit {
+#textEdit {
 	white-space: pre-wrap;
 	width: 100%;
 	height: 500px;
@@ -275,7 +275,7 @@ footer a {
 .submit {
 	cursor: pointer;
 }
-.cardEditor > #textEdit, input[type=text], input[type=password], .input, .submit, select {
+#textEdit, input[type=text], input[type=password], .input, .submit, select {
 	resize: vertical;
 	background-color: var(--color_main);
 	color: var(--color_main-opposite);
@@ -285,11 +285,11 @@ footer a {
 	padding: 10px 15px;
 	max-height: 2000px;
 }
-.cardEditor > #textEdit:hover, input[type=text]:hover, input[type=password]:hover, .input:hover, .submit:hover, select:hover {
+#textEdit:hover, input[type=text]:hover, input[type=password]:hover, .input:hover, .submit:hover, select:hover {
 	border: 2px solid #003399;
 	transition: border 400ms linear 0s;
 }
-.cardEditor > #textEdit:focus, input[type=text]:focus, input[type=password]:focus, .input:focus, .submit:focus, select:focus {
+#textEdit:focus, input[type=text]:focus, input[type=password]:focus, .input:focus, .submit:focus, select:focus {
 	border: 2px ridge #003399;
 }
 @media only screen and (max-width: 550px) {

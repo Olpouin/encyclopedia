@@ -1,40 +1,42 @@
 <?php
 $infoContent['g_title'] = "Édition : ".$cardName;
-$editorFunctionBar = '<div class="editor-bar">';
+
+$fURL = $config['general']['path']."/content/icons/editor/";
+$fARR = $lang['editor-bar'];
+$editorBar = '<div class="editor-bar">';
 foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
-	$editorFunctionBar .= '<div class="editor-bar_group">';
+	$editorBar .= '<div class="editor-bar_group">';
 	foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
-		$editorFunction = $config['general']['editor-bar'][$groupNumber][$formatNumber];
-		$edFormat = $editorFunction['format'];
-		$edName = $editorFunction['name'];
-		if (!isset($editorFunction['e'])) $editorFunction['e'] = "";
-		$editorFunctionBar .= '<div tt-hlp="'.$editorFunction['e'].'" tt-cmd="'.$edFormat.'" tt-name="'.$lang['editor-bar'][$edName].'" class="edit-object" onclick="addTextElement(\''.$edFormat.'\', '.$editorFunction['cursor_move'].')">
-			<img src="'.$config['general']['path'].'/content/icons/editor/'.$edName.'.svg" alt="'.$lang['editor-bar'][$edName].'">
-			</div>';
+		$editor = $config['general']['editor-bar'][$groupNumber][$formatNumber];
+		$edFormat = $editor['format'];
+		$edName = $editor['name'];
+		if (!isset($editor['e'])) $editor['e'] = "";
+		$editorBar .= '<div tt-hlp="'.$editor['e'].'" tt-cmd="'.$edFormat.'" tt-name="'.$fARR[$edName].'" onclick="addText(\''.$edFormat.'\', '.$editor['cursor_move'].')">
+			<img src="'.$fURL.$edName.'.svg" alt="'.$fARR[$edName].'">
+		</div>';
 	}
-	$editorFunctionBar .= '</div>';
+	$editorBar .= '</div>';
 }
-$editorFunctionBar .= '</div>';
+$editorBar .= '</div>';
+
 if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
 else $hideCheckboxValue = "";
 
-$editForm = <<<EDITORFORM
+$cardNameReplaced = preg_replace('/\'/Um','\\\'',$cardName);
+
+
+$content['card'] = <<<CARDEDIT
 <h1>{$lang['footer-edit_page']} "{$cardName}"</h1>
-<div class="cardEditor">
-	{$editorFunctionBar}
-	<textarea id="textEdit" required="" maxlength="1000000" name="text">[QUOTE_TEXT]</textarea>
-	<label for="hide-card">{$lang['edition-hide_card']}</label>
-	<input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
-	<label for="group">{$lang['edition-group_placeholder']}</label>
-	<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$searchInfo['group']}"><br><br>
-	<label for="pass">{$lang['password']}</label>
-	<input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
-	<button class="submit" onclick="API('edit',{'type':'{$type}','name':'[CARD_NAME]','text':document.getElementById('textEdit').value,'group':document.getElementById('group').value,'pass':document.getElementById('pass').value,'hide':document.getElementById('hide-card').checked},window.location.pathname.slice(0,-5))">{$lang['send']}</button>
-</div><br>
-EDITORFORM;
-$content['card'] = str_replace('[CARD_NAME]', preg_replace('/\'/Um','\\\'',$cardName), $editForm);
-$content['card'] = str_replace('[QUOTE_TEXT]', $loadedDB['text'], $content['card']);
-$content['card'] .= <<<FORMATINFO
+{$editorBar}
+<textarea id="textEdit" required="" maxlength="1000000" name="text">{$loadedDB['text']}</textarea>
+<label for="hide-card">{$lang['edition-hide_card']}</label>
+<input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
+<label for="group">{$lang['edition-group_placeholder']}</label>
+<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$searchInfo['group']}"><br><br>
+<label for="pass">{$lang['password']}</label>
+<input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
+<button class="submit" onclick="API('edit',{'type':'{$type}','name':'{$cardNameReplaced}','text':document.getElementById('textEdit').value,'group':document.getElementById('group').value,'pass':document.getElementById('pass').value,'hide':document.getElementById('hide-card').checked},window.location.pathname.slice(0,-5))">{$lang['send']}</button>
+<br>
 <h1 style="text-align:center;display:block;">{$lang['help']}</h1>
 <div class="flexboxData">
 	<div>
@@ -75,5 +77,5 @@ Ut occaecati magni quis.
 		</pre>
 	</div>
 </div>
-FORMATINFO;
+CARDEDIT;
 ?>
