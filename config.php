@@ -40,116 +40,35 @@ if (isset($_COOKIE['lang'])) {
 	$langSelected = $config['general']['default_language'];
 }
 require_once "lang/".$langSelected.".php"; //The language Selected
-$config['general']['editor-bar'] = array(
-	array(
-		array(
-			"format" => "[h1][/h1]",
-			"cursor_move" => "4",
-			"name" => "title1"
-		),
-		array(
-			"format" => "[h2][/h2]",
-			"cursor_move" => "4",
-			"name" => "title2"
-		),
-		array(
-			"format" => "[h3][/h3]",
-			"cursor_move" => "4",
-			"name" => "title3"
-		),
-		array(
-			"format" => "[h4][/h4]",
-			"cursor_move" => "4",
-			"name" => "title4"
-		),
-		array(
-			"format" => "[h5][/h5]",
-			"cursor_move" => "4",
-			"name" => "title5"
-		),
-		array(
-			"format" => "[h6][/h6]",
-			"cursor_move" => "4",
-			"name" => "title6"
-		)
-	),
-	array(
-		array(
-			"format" => "[i][/i]",
-			"cursor_move" => "3",
-			"name" => "italic",
-			'e' => 'CTRL + I'
-		),
-		array(
-			"format" => "[b][/b]",
-			"cursor_move" => "3",
-			"name" => "bold",
-			'e' => 'CTRL + B'
-		),
-		array(
-			"format" => "[s][/s]",
-			"cursor_move" => "3",
-			"name" => "strikethrough",
-			'e' => 'CTRL + S'
-		),
-		array(
-			"format" => "[u][/u]",
-			"cursor_move" => "3",
-			"name" => "underlined",
-			'e' => 'CTRL + U'
-		),
-		array(
-			"format" => "[c][/c]",
-			"cursor_move" => "3",
-			"name" => "color",
-			"e" => "CTRL + O"
-		)
-	),
-	array(
-		array(
-			"format" => "![]()",
-			"cursor_move" => "2",
-			"name" => "img",
-			"e" => "![{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"
-		),
-		array(
-			"format" => "[]()",
-			"cursor_move" => "1",
-			"name" => "url",
-			"e" => "[{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"
-		),
-		array(
-			"format" => "!()",
-			"cursor_move" => "2",
-			"name" => "sound",
-			"e" => "!({$lang['editor-bar']['url']})"
-		),
-		array(
-			"format" => "!()",
-			"cursor_move" => "2",
-			"name" => "video",
-			"e" => "!({$lang['editor-bar']['url']})"
-		),
-	),
-	array(
-		array(
-			"format" => "[quote][au][/au][/quote]",
-			"cursor_move" => "7",
-			"name" => "quote"
-		),
-		array(
-			"format" => "[hr]",
-			"cursor_move" => "4",
-			"name" => "hr"
-		),
-		array(
-			"format" => "\t",
-			"cursor_move" => "1",
-			"name" => "tab",
-			'e' => 'SHIFT + TAB'
-		)
-	)
-);
+
+$config['general']['editor-bar'] = [
+	[
+		['format' => '[h1][/h1]', 'cursor' => '4', 'name' => 'title1'],
+		['format' => '[h2][/h2]', 'cursor' => '4', 'name' => 'title2'],
+		['format' => '[h3][/h3]', 'cursor' => '4', 'name' => 'title3'],
+		['format' => '[h4][/h4]', 'cursor' => '4', 'name' => 'title4'],
+		['format' => '[h5][/h5]', 'cursor' => '4', 'name' => 'title5'],
+		['format' => '[h6][/h6]', 'cursor' => '4', 'name' => 'title6']
+	],
+	[
+		['format' => '[i][/i]', 'cursor' => '3', 'name' => 'italic', 'e' => 'CTRL + I'],
+		['format' => '[b][/b]', 'cursor' => '3', 'name' => 'bold', 'e' => 'CTRL + B'],
+		['format' => '[s][/s]', 'cursor' => '3', 'name' => 'strikethrough', 'e' => 'CTRL + S'],
+		['format' => '[u][/u]', 'cursor' => '3', 'name' => 'underlined', 'e' => 'CTRL + U'],
+		['format' => '[c][/c]', 'cursor' => '3', 'name' => 'color', 'e' => 'CTRL + O'],
+	],
+	[
+		['format' => '![]()', 'cursor' => '2', 'name' => 'img', 'e' => "![{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
+		['format' => '[]()', 'cursor' => '1', 'name' => 'url', 'e' => "[{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
+		['format' => '!()', 'cursor' => '2', 'name' => 'sound', 'e' => "!({$lang['editor-bar']['url']})"],
+		['format' => '!()', 'cursor' => '2', 'name' => 'video', 'e' => "!({$lang['editor-bar']['url']})"]
+	],
+	[
+		['format' => '[quote][au][/au][/quote]', 'cursor' => '7', 'name' => 'quote'],
+		['format' => '[hr]', 'cursor' => '4', 'name' => 'hr'],
+		['format' => '\t', 'cursor' => '1', 'name' => 'tab', 'e' => 'SHIFT + TAB']
+	]
+];
 
 $markdownArray = array(
 	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => '<h$1 id="$2">$2</h1>',
