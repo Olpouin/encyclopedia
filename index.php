@@ -1,5 +1,4 @@
 <?php
-header('Cache-Control: public, max-age=3600');
 /*==== BASIC FILES ====*/
 require_once 'config.php'; /*Various functions*/
 require_once 'php/functions.inc.php'; /*Various functions*/
@@ -52,27 +51,14 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/sidenav.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/card.css" type="text/css" media="screen">
-		<style id="mainColorsCSS"></style>
-		<template id="css_nightmode">
-			:root {
-				--color_main: #000000 !important;
-				--color_borders: #323232;
-				--color_sidenav: #060606;
-				--color_main-opposite: #FFFFFF;
-				--color_infobox-text_color: #F8F8F8;
-				--invert-value: 100%;
-			}
-		</template>
-		<template id="css_daymode">
-			:root {
-				--color_main: #FFFFFF;
-				--color_borders: #DCDCDC;
-				--color_sidenav: #FAFAFA;
-				--color_main-opposite: #000000;
-				--color_infobox-text_color: #F8F8F8;
-				--invert-value: 0%;
-			}
-		</template>
+		<style>
+		<?php
+			if (isset($_COOKIE['mode'])) {
+				if ($_COOKIE['mode'] == 'night') {echo $content['css']['nightmode'];}
+				else echo $content['css']['daymode'];
+			} else echo $content['css']['daymode'];
+		?>
+		</style>
 		<script>
 			const langNotifShow = "<?=$lang['notif-show']?>";
 			const langNotifClose = "<?=$lang['close']?>";

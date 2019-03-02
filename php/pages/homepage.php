@@ -45,9 +45,8 @@ $content['card'] = <<<HOMEPAGE
 		<option value="en_US">English, US</option>
 		<option value="fr_FR">Français, France</option>
 	</select>
-	<label for="pref-chooseLang">{$lang['language']} *</label><br><br>
-	*{$lang['homepage-prefs-needsReload']}<br>
-	{$lang['cookie-warning']}<br><br>
+	<label for="pref-chooseLang">{$lang['language']}</label><br><br>
+	{$lang['cookie-warning']}<br>
 	<button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 </form>
 HOMEPAGE;

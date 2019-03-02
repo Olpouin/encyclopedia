@@ -13,7 +13,6 @@ $lang = array(
 	'cookie-warning' => 'En modifiant les paramètres par défaut, vous acceptez l\'utilisation de cookies.',
 	'homepage-prefs-title' => 'Préférences',
 	'homepage-prefs-nightmode' => 'Mode nuit',
-	'homepage-prefs-needsReload' => 'Vous deverez recharger la page pour changer cette préférence.',
 	'homepage-prefs-confirm_changes' => 'Confirmer les changements',
 	'edition-info-example_title' => 'Exemple',
 	'edition-hide_card' => 'Cacher la fiche (Pas affiché dans la barre de navigation)',

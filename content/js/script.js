@@ -38,21 +38,18 @@ function UUID() {
 
 function changeParameters() {
 	if (document.querySelector('#nightmode').checked) {
-		document.cookie = "nightmode=true; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+		document.cookie = "mode=night; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
 	} else {
-		document.cookie = "nightmode=false; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+		document.cookie = "mode=day; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
 	}
 
 	document.cookie = "lang="+document.getElementById('pref-chooseLang').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
 
-	checkParameters();
+	location.reload();
 }
 function checkParameters() {
-	if (document.cookie.split(';').filter((item) => item.includes('nightmode=true')).length) {
-		document.getElementById('mainColorsCSS').innerHTML = document.getElementById('css_nightmode').innerHTML;
-		if (document.querySelector('#nightmode')) document.querySelector('#nightmode').checked = true;
-	} else {
-		document.getElementById('mainColorsCSS').innerHTML = document.getElementById('css_daymode').innerHTML;
+	if (getCookie('mode').length != 0) {
+		if (document.querySelector('#nightmode') && getCookie('mode') == "night") document.querySelector('#nightmode').checked = true;
 	}
 	if (document.getElementById('pref-chooseLang')) {
 		if (getCookie('lang').length != 0) document.getElementById('pref-chooseLang').value = getCookie('lang');
