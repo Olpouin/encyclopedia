@@ -8,12 +8,8 @@ template { /*For IE users*/
 }
 
 .card-content {
-	position: absolute;
-	left: 251px;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	overflow: auto;
+	margin-left: 251px;
+	width: calc(100% - 251px);
 }
 
 html.wait, html.wait * {
@@ -29,6 +25,7 @@ body {
 }
 footer {
 	padding: 15px 5%;
+	padding-left: 266px;
 	border-top: 1px solid var(--color_borders);
 	font-size: 20px;
 	font-weight: bold;
@@ -114,10 +111,6 @@ footer a {
 	right: 0;
 }
 /*Homepage boxes*/
-.previewBoxes {
-	text-align: center;
-	width: 100%;
-}
 .previewBox {
 	display: inline-block;
 	background-size: cover;
@@ -306,7 +299,11 @@ footer a {
 }
 @media only screen and (max-width: 750px) {
 	.card-content {
-		left: 0;
+		margin-left: 0;
+		width: 100%;
+	}
+	footer {
+		padding-left: 15px;
 	}
 	.toc {
 		width: calc(100% - 30px) !important;
@@ -314,6 +311,7 @@ footer a {
 	nav {
 		display: none;
 		position: fixed;
+		z-index: 5;
 		overflow: auto !important;
 		top: 0;
 		left: 0 !important;
@@ -367,4 +365,7 @@ footer a {
 
 .open {
 	display: initial !important;
+}
+.center {
+	text-align: center;
 }

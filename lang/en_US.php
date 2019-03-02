@@ -49,15 +49,14 @@ $lang['editor-bar'] = array(
 	'help-dsc' => 'Description'
 );
 $lang['error'] = array(
-	"menu-close_message" => "Close the error report",
-	"menu-send_message" => "Please send the following to the owner of the website:",
-	"homepage" => "Homepage",
-	"menu-open" => "Report error",
+	"menu-send_message" => "Error message:",
 	"error_messages" => array(
 		"400" => "Bad Request: \"The 400 (Bad Request) status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\" - <a href=\"https://tools.ietf.org/html/rfc7231#section-6.5.1\" target=\"_blank\">ietf.org</a>",
 		"401" => "Unauthorized: Your access is denied. The password you entered is incorrect or you are trying to use something you are not allowed to.",
 		"403" => "Forbidden: You are not allowed to look at that. Wherever you are, it probably is a file that will just create a lot of errors if used alone. or something you shouldn't use at all.",
 		"404" => "Not Found: We can't find this page. The entry may have changed name, been moved to another category or even removed. If you weren't looking for a card, you are somewhere you should not be.",
+		'404-1' => 'The type you are searching for does not exist.',
+		'404-2' => 'The card you are searching for does not exist.',
 		"408" => "Request Timeout: It seems you have a problem right now. Please come back later.",
 		"414" => "URI Too Long: The URL is too long. Don't know what you are trying to do, but it certainly isn't right.",
 		"Unknown error" => "We can't find what error you got or (most likely) there are no error message prepared for this case. Sorry."

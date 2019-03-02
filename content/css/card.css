@@ -127,7 +127,7 @@ hr + br {
 	max-width: 560px;
 	max-height: 315px;
 }
-.card > a {
+.card a {
 	text-decoration: underline;
 	color: #003399;
 }

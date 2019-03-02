@@ -14,12 +14,20 @@ if(isset($_GET['type'])) {
 			require_once("php/pages/type.php");
 		}
 	} else {
-		http_response_code(404);
-		header('Location: '.$config['general']['path'].'/error.php?e=404');
-		die();
+		$err = "404-1";
+		require_once("php/pages/error.php");
 	}
 } else { /*Shows the homepage*/
-	require_once("php/pages/homepage.php");
+	if (isset($_GET['error'])) {
+		$err = $_GET['error'];
+		require_once("php/pages/error.php");
+	} else {
+		if (isset($_GET['edit'])) {
+			require_once('homepage-edit.php');
+		} else {
+			require_once("php/pages/homepage.php");
+		}
+	}
 }
 /*=== HEADER ===*/
 $headerContent = "";
