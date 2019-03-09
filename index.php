@@ -22,7 +22,7 @@ if(isset($_GET['type'])) {
 		require_once("php/pages/error.php");
 	} else {
 		if (isset($_GET['edit'])) {
-			require_once('homepage-edit.php');
+			require_once('php/pages/homepage-edit.php');
 		} else {
 			require_once("php/pages/homepage.php");
 		}
@@ -47,6 +47,9 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 		<meta property="og:type" content="article">
 		<meta property="og:site_name" content="<?=$config['general']['site_name']?>">
 		<meta charset="utf-8">
+		<script src="<?=$config['general']['path']?>/content/js/script.js" defer></script>
+		<script src="<?=$config['general']['path']?>/content/js/editor.js" defer></script>
+		<script src="<?=$config['general']['path']?>/content/js/onclick.js"></script>
 		<link rel="icon" href="<?=$config['general']['path']?>/content/favicon.ico">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/sidenav.css" type="text/css" media="screen">
@@ -64,8 +67,6 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 			const langNotifClose = "<?=$lang['close']?>";
 			var path = "<?=$config['general']['path']?>";
 		</script>
-		<script src="<?=$config['general']['path']?>/content/js/script.js" defer></script>
-		<script src="<?=$config['general']['path']?>/content/js/editor.js" defer></script>
 	</head>
 	<body>
 		<div id="page-content">

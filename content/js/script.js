@@ -1,3 +1,4 @@
+//Get Cookies's data
 function getCookie(cname) {
 	var name = cname + "=";
 	var decodedCookie = decodeURIComponent(document.cookie);
@@ -13,7 +14,14 @@ function getCookie(cname) {
 	}
 	return "";
 }
-
+//generate special ID
+function UUID() {
+	var S4 = function() {
+		return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+	};
+	return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
+//Page elements creations/removing
 function newElement(type,param) {
 	var elem = document.createElement(type);
 	if ('txt' in param) elem.appendChild(document.createTextNode(param.txt));
@@ -28,14 +36,12 @@ function newElement(type,param) {
 function deleteElement(id) {
 	document.getElementById(id).parentNode.removeChild(document.getElementById(id));
 }
-
-function UUID() {
-	var S4 = function() {
-		return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-	};
-	return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+//smalls functions to make code shorter
+function value(ID) {
+	return document.getElementById(ID).value;
 }
-
+////Parameters
+//Change
 function changeParameters() {
 	if (document.querySelector('#nightmode').checked) {
 		document.cookie = "mode=night; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
@@ -47,6 +53,7 @@ function changeParameters() {
 
 	location.reload();
 }
+//Check
 function checkParameters() {
 	if (getCookie('mode').length != 0) {
 		if (document.querySelector('#nightmode') && getCookie('mode') == "night") document.querySelector('#nightmode').checked = true;
@@ -56,8 +63,8 @@ function checkParameters() {
 		else document.getElementById('pref-chooseLang').value = "fr";
 	}
 }
-checkParameters();
-
+checkParameters(); //when page loaded, chack all parameters
+//http requests function
 function API(APIname,data,redirect) {
 	document.documentElement.classList.add("wait");
 	let url = path+"/api/"+APIname+".php";
@@ -81,13 +88,14 @@ function API(APIname,data,redirect) {
 
 	xhr.send(JSON.stringify(data));
 }
-
+//Navigation bar for mobile users
 function openNav() {
     document.getElementById("sidenav").classList.add("open");
 }
 function closeNav() {
     document.getElementById("sidenav").classList.remove("open");
 }
+//Larger size pictures
 function fullscreen(e) {
 	let fullscrID = "fullscreen-"+UUID();
 	console.log("Generating fullscreen with ID "+fullscrID);
@@ -101,6 +109,7 @@ function fullscreen(e) {
 	fullscr.appendChild(newElement("h1",{'txt':e.target.getAttribute('alt')}));
 	fullscr.appendChild(newElement("button",{'class':'button-x','onclick':'deleteElement(\''+fullscrID+'\')','txt':'× '+langNotifClose}));
 }
+//notification system
 function notify(title,text,param) {
 	let notifID = "notif-"+UUID();
 	console.log("Generating notification with ID "+notifID);

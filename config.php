@@ -79,7 +79,7 @@ $markdownArray = array(
 	'/\[u\](.*)\[\/u\]/Ums' => '<u>$1</u>',
 	'/\[c\](.*)\[\/c\]/Ums' => '<span style="color: #003399;">$1</span>',
 	'/\[c#([a-fA-F0-9]{6})\](.*)\[\/c\]/Ums' => '<span style="color: #$1;">$2</span>',
-	'/\[quote\](.*)\[author\](.*)\[\/author\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
+	'/\[quote\](.*)\[au\](.*)\[\/au\]\[\/quote\]/Ums' => '<blockquote><span>$1</span><cite>— $2</cite></blockquote>',
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
 	'/\!\[(.*)\]\((.*)\)/Um' => '<img src="$2" onclick="fullscreen(event)" alt="$1">',
@@ -88,6 +88,25 @@ $markdownArray = array(
 	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Um' => '<video controls><source src="$1" type="video/$2"></video>',
 	'/\[(.*)\]\((https?\:\/\/.*)\)/Um' => '<a href="$2" target="_blank">$1</a>'
 );
+
+$content['css']['nightmode'] = "
+:root {
+	--color_main: #000000;
+	--color_borders: #323232;
+	--color_sidenav: #060606;
+	--color_main-opposite: #FFFFFF;
+	--color_infobox-text_color: #F8F8F8;
+	--invert-value: 100%;
+}";
+$content['css']['daymode'] = "
+:root {
+	--color_main: #FFFFFF;
+	--color_borders: #DCDCDC;
+	--color_sidenav: #FAFAFA;
+	--color_main-opposite: #000000;
+	--color_infobox-text_color: #F8F8F8;
+	--invert-value: 0%;
+}";
 /*Automated things that you should not change*/
 //Database connection
 $dsn = "mysql:host={$config['database']['host']};dbname={$config['database']['name']};charset=utf8";

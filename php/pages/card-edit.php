@@ -28,7 +28,7 @@ $cardNameReplaced = preg_replace('/\'/Um','\\\'',$cardName);
 $content['card'] = <<<CARDEDIT
 <h1>{$lang['footer-edit_page']} "{$cardName}"</h1>
 {$editorBar}
-<div id="textEdit" required="" maxlength="1000000" name="text">{$loadedDB['text']}</div>
+<div id="textEdit" contenteditable="true" required="" maxlength="1000000" name="text">{$loadedDB['text']}</div>
 <label for="hide-card">{$lang['edition-hide_card']}</label>
 <input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 <label for="group">{$lang['edition-group_placeholder']}</label>
