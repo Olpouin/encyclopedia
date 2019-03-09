@@ -14,20 +14,21 @@ if (isset($_POST['pass'])) {
 		}
 		$content['card'] = <<<HOMEPAGEEDITMAIN
 <h1>{$lang['admin-title']}</h1><br>
+<input id="pass" value="{$_POST['pass']}" type="hidden">
 <div class="flexboxData">
 	<div>
 		<h2>{$lang['admin-createcard']}</h2><br>
-		<input id="name" type="text" name="group" required="" placeholder="{$lang['edition-name_placeholder']}">
-		<label for="name">{$lang['edition-name_placeholder']}</label><br><br>
-		<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}">
-		<label for="group">{$lang['edition-group_placeholder']}</label><br><br>
-		<select id="type">
+		<input id="add-name" type="text" required="" placeholder="{$lang['edition-name_placeholder']}">
+		<label for="add-name">{$lang['edition-name_placeholder']}</label><br><br>
+		<input id="add-group" type="text" required="" placeholder="{$lang['edition-group_placeholder']}">
+		<label for="add-group">{$lang['edition-group_placeholder']}</label><br><br>
+		<select id="add-type" required="">
 			{$typesForm}
 		</select>
-		<label for="type">{$lang['edition-type_placeholder']}</label><br><br>
-		<input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
-		<label for="pass">{$lang['password']}</label><br><br>
-		<button class="submit" onclick="API('add',{'type':document.getElementById('type').value,'name':document.getElementById('name').value,'group':document.getElementById('group').value,'pass':document.getElementById('pass').value}, path+'/'+document.getElementById('type').value+'/'+document.getElementById('name').value)">{$lang['send']}</button>
+		<label for="add-type">{$lang['edition-type_placeholder']}</label><br><br>
+		<input id="add-pass" type="password" required="" placeholder="{$lang['password']}">
+		<label for="add-pass">{$lang['password']} ({$lang['optional']})</label><br><br>
+		<button class="submit" onclick="addCardOC()">{$lang['send']}</button>
 	</div>
 	<div>
 		<h2>Gérer les types</h2>

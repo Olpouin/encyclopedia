@@ -2,21 +2,31 @@
 https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea*/
 if (document.getElementById("textEdit")) {
 var txtarea = document.getElementById("textEdit");
+/*range = document.createRange();
+range.setStart(txtarea, 0);
+range.setEnd(txtarea, 0);*/
 
 var latestCursorPositionStart = 0;
 var latestCursorPositionEnd = 0;
 
 txtarea.onblur = function(e) {
-	latestCursorPositionStart = this.selectionStart;
-	latestCursorPositionEnd = this.selectionEnd;
+	let select = window.getSelection();
+	latestCursorPositionStart = select.anchorOffset;
+	latestCursorPositionEnd = select.focusOffset;
 }
 
 function addText(format,cursorMove) {
-	var selectedText = txtarea.value.substring(latestCursorPositionStart, latestCursorPositionEnd);
-	txtarea.value = txtarea.value.substring(0, latestCursorPositionStart) + format.substring(0, cursorMove) + selectedText + format.substring(cursorMove) + txtarea.value.substring(latestCursorPositionEnd);
-	txtarea.select();
-	txtarea.selectionStart = latestCursorPositionStart + cursorMove;
-	txtarea.selectionEnd = txtarea.selectionStart + selectedText.length;
+	var selectedText = txtarea.innerHTML.substring(latestCursorPositionStart, latestCursorPositionEnd);
+	txtarea.innerHTML = txtarea.innerHTML.substring(0, latestCursorPositionStart) + format.substring(0, cursorMove) + selectedText + format.substring(cursorMove) + txtarea.innerHTML.substring(latestCursorPositionEnd);
+
+	let range = document.createRange();
+	range.setStart(txtarea.childNodes[0], latestCursorPositionStart + cursorMove);
+	range.setEnd(txtarea.childNodes[0], latestCursorPositionStart + cursorMove + selectedText.length);
+
+	txtarea.focus();
+	let select = window.getSelection();
+	select.removeAllRanges();
+	select.addRange(range);
 }
 
 txtarea.onkeydown = function(e) {
@@ -37,7 +47,7 @@ txtarea.onkeydown = function(e) {
 				var selectAdd = 1;
 		}
 		e.preventDefault();
-		addTextElement(textAdd, selectAdd);
+		addText(textAdd, selectAdd);
 	}
 	if ((e.keyCode == 17 || e.which == 17) || e.ctrlKey) {
 		var selectAdd = 3;
@@ -66,7 +76,7 @@ txtarea.onkeydown = function(e) {
 				var textAdd = "";
 				var selectAdd = 0;
 		}
-		addTextElement(textAdd, selectAdd);
+		addText(textAdd, selectAdd);
 	}
 }
 }

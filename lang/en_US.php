@@ -6,6 +6,7 @@ $lang = array(
 	'password' => 'Password',
 	'wrong' => 'Wrong',
 	'send' => 'Send',
+	'optional' => 'Optional',
 	'homepage-top_message' => 'The gallery has a total of [TOTALPAGES] pages.',
 	'homepage-search_input' => 'Search a card...',
 	'homepage-search_button' => 'Search',

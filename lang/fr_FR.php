@@ -6,6 +6,7 @@ $lang = array(
 	'password' => 'Mot de passe',
 	'wrong' => 'Incorrect',
 	'send' => 'Envoyer',
+	'optional' => 'Facultatif',
 	'homepage-top_message' => 'La galerie a un total de [TOTALPAGES] pages.',
 	'homepage-search_input' => 'Recherche d\'une fiche...',
 	'homepage-search_button' => 'Chercher',
