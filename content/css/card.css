@@ -7,6 +7,92 @@ nav:hover ~ .card {
 	background-color: red !important;
 	overflow: hidden !important;
 }
+/**/
+.card h1:first-of-type {
+	text-align: center;
+	display: inline-block !important;
+	clear: both;
+	height: 40px;
+	width: 100%;
+	margin-top: 0;
+	border-bottom: none;
+}
+.card hr {
+	margin: 0;
+	border: none;
+	border-top: solid 1px var(--color_main-opposite);
+}
+hr + br {
+	display: none;
+}
+.card > h1 {
+	font-size: 35px !important;
+}
+.card > h2 {
+	font-size: 30px !important;
+}
+.card > h1,.card > h2,.card > h3,.card > h4,.card > h5,.card > h6 {
+	margin: 0;
+	display: inline-block;
+	font-size: 25px;
+}
+
+.large-space {
+	width: 35px;
+	display: inline-block;
+}
+.card video, .card iframe {
+	max-width: 100%;
+	max-height: 315px;
+}
+.card iframe {
+	width: 560px;
+	height: 315px;
+}
+.card a {
+	text-decoration: underline;
+	color: #003399;
+}
+.card blockquote {
+	font-family: Georgia, serif;
+	min-height: 50px;
+	font-size: 18px;
+	font-style: italic;
+	width: 500px;
+	margin: 0.25em 40px;
+	padding: 0.25em 5px;
+	position: relative;
+	clear: left;
+}
+.card blockquote::before {
+	display: block;
+	content: "\201C";
+	font-size: 80px;
+	position: absolute;
+	left: -40px;
+	top: -20px;
+}
+.card blockquote > cite {
+	color: #999999;
+	font-size: 14px;
+	display: block;
+	margin-top: 5px;
+}
+.card p::before {
+	content: "\00a0\00a0\00a0\00a0";
+}
+.card img {
+	cursor: pointer;
+	max-width: 100%;
+	max-height: 400px;
+	margin: 5px 0;
+	position: relative;
+	clear: none;
+	display: inline-block;
+}
+.card span {
+	max-height: 100%;
+}
 /*INFOBOX*/
 .infobox {
 	width: 300px;
@@ -46,87 +132,12 @@ nav:hover ~ .card {
 	min-width: 90px;
 	font-weight: bold;
 }
-/**/
-.card h1:first-of-type {
-	text-align: center;
-	display: block !important;
-	height: 40px;
-	margin-top: 0;
-	border-bottom: none;
+.infobox video, .infobox iframe {
+	width: 100%;
+	max-width: none;
+	max-height: none;
+	height: 200px;
 }
-.card hr {
-	margin: 0;
-	border: none;
-	border-top: solid 1px var(--color_main-opposite);
-}
-hr + br {
-	display: none;
-}
-.card > h1 {
-	font-size: 35px !important;
-}
-.card > h2 {
-	font-size: 30px !important;
-}
-.card > h1,.card > h2,.card > h3,.card > h4,.card > h5,.card > h6 {
-	margin: 0;
-	display: inline-block;
-	font-size: 25px;
-}
-
-.large-space {
-	width: 35px;
-	display: inline-block;
-}
-.card video, .card iframe {
-	max-width: 560px;
-	max-height: 315px;
-}
-.card a {
-	text-decoration: underline;
-	color: #003399;
-}
-.card blockquote {
-	font-family: Georgia, serif;
-	min-height: 50px;
-	font-size: 18px;
-	font-style: italic;
-	width: 500px;
-	margin: 0.25em 40px;
-	padding: 0.25em 5px;
-	position: relative;
-	clear: left;
-}
-.card blockquote::before {
-	display: block;
-	content: "\201C";
-	font-size: 80px;
-	position: absolute;
-	left: -40px;
-	top: -20px;
-}
-.card blockquote > cite {
-	color: #999999;
-	font-size: 14px;
-	display: block;
-	margin-top: 5px;
-}
-.card p::before {
-	content: "\00a0\00a0\00a0\00a0";
-}
-.card img {
-	cursor: pointer;
-	max-width: 50%;
-	max-height: 50%;
-	margin: 5px 0;
-	position: relative;
-	clear: none;
-	display: inline-block;
-}
-.card span {
-	max-height: 100%;
-}
-
 /*TOC*/
 .toc {
 	border: solid 1px var(--color_borders);

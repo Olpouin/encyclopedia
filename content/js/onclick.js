@@ -11,3 +11,18 @@ function addCardOC() {
 		path+'/'+value('add-type')+'/'+value('add-name')
 	);
 }
+
+function editCardOC() {
+	API(
+		'edit',
+		{
+			'type': value('cardsType'),
+			'name': value('cardsName'),
+			'text': document.getElementById('textEdit').innerHTML,
+			'group': value('group'),
+			'pass': value('pass'),
+			'hide': document.getElementById('hide-card').checked
+		},
+		window.location.pathname.slice(0,-5)
+	);
+}
