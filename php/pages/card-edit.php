@@ -22,13 +22,10 @@ $editorBar .= '</div>';
 if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
 else $hideCheckboxValue = "";
 
-$cardNameReplaced = preg_replace('/\'/Um','\\\'',$cardName);
-
-
 $content['card'] = <<<CARDEDIT
 <h1>{$lang['footer-edit_page']} "{$cardName}"</h1>
 {$editorBar}
-<input id="cardsName" value="{$cardNameReplaced}" type="hidden">
+<input id="cardsName" value="{$cardName}" type="hidden">
 <input id="cardsType" value="{$type}" type="hidden">
 <div id="textEdit" contenteditable="true" required="" maxlength="1000000" name="text">{$loadedDB['text']}</div>
 <label for="hide-card">{$lang['edition-hide_card']}</label>
