@@ -83,7 +83,7 @@ $markdownArray = array(
 	'/\[ib\](.*)\[\/ib\]/Ums' => '<aside class="infobox">$1</aside>',
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
 	'/\!\[(.*)\]\((.*)\)/Um' => '<img src="$2" onclick="fullscreen(event)" alt="$1">',
-	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Um' => '<iframe width="560" height="315" frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>',
+	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Um' => '<iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>',
 	'/\!\((https?\:\/\/.*\.(mp3|wav|wave))\)/Um' => '<audio controls><source src="$1" type="audio/$2"></audio>',
 	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Um' => '<video controls><source src="$1" type="video/$2"></video>',
 	'/\[(.*)\]\((https?\:\/\/.*)\)/Um' => '<a href="$2" target="_blank">$1</a>'

@@ -2,36 +2,43 @@
 https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea*/
 if (document.getElementById("textEdit")) {
 var txtarea = document.getElementById("textEdit");
-/*range = document.createRange();
-range.setStart(txtarea, 0);
-range.setEnd(txtarea, 0);*/
 
-var latestCursorPositionStart = 0;
-var latestCursorPositionEnd = 0;
+function cursorPos() {
+	let sel = window.getSelection();
+	range = sel.getRangeAt(0);
+}
+cursorPos();
 
-txtarea.onblur = function(e) {
-	let select = window.getSelection();
-	latestCursorPositionStart = select.anchorOffset;
-	latestCursorPositionEnd = select.focusOffset;
+txtarea.onclick = function(e) {
+	cursorPos();
+}
+txtarea.onkeyup = function(e) {
+	cursorPos();
 }
 
 function addText(format,cursorMove) {
-	var selectedText = txtarea.innerHTML.substring(latestCursorPositionStart, latestCursorPositionEnd);
-	txtarea.innerHTML = txtarea.innerHTML.substring(0, latestCursorPositionStart) + format.substring(0, cursorMove) + selectedText + format.substring(cursorMove) + txtarea.innerHTML.substring(latestCursorPositionEnd);
+	formatStart = format.substring(0, cursorMove);
+	formatEnd = format.substring(cursorMove);
 
-	let range = document.createRange();
-	range.setStart(txtarea.childNodes[0], latestCursorPositionStart + cursorMove);
-	range.setEnd(txtarea.childNodes[0], latestCursorPositionStart + cursorMove + selectedText.length);
+	let sel = window.getSelection();
+	sel.removeAllRanges();
+
+	formatStartID = "format-"+UUID();
+	range.insertNode(newElement('span',{'txt':formatStart,'class':'format-txt','id':formatStartID}));
+	range.collapse()
+	formatEndID = "format-"+UUID();
+	range.insertNode(newElement('span',{'txt':formatEnd,'class':'format-txt','id':formatEndID}));
+	range.setStartAfter(document.getElementById(formatStartID));
+	range.setEndBefore(document.getElementById(formatEndID));
 
 	txtarea.focus();
-	let select = window.getSelection();
-	select.removeAllRanges();
-	select.addRange(range);
+	sel.addRange(range);
 }
 
 txtarea.onkeydown = function(e) {
-	latestCursorPositionStart = this.selectionStart;
-	latestCursorPositionEnd = this.selectionEnd;
+	let select = window.getSelection();
+	latestCursorPositionStart = select.anchorOffset;
+	latestCursorPositionEnd = select.focusOffset;
 	if((e.shiftKey || e.shiftKey) && ((e.keyCode==9 || e.which==9) || (e.keyCode==49 || e.which==49) || (e.keyCode==50 || e.which==50))){
 		switch (e.keyCode) {
 			case 49:
@@ -53,30 +60,26 @@ txtarea.onkeydown = function(e) {
 		var selectAdd = 3;
 		switch (e.keyCode) {
 			case 73:
-				var textAdd = "[i][/i]";
 				e.preventDefault();
+				addText("[i][/i]", selectAdd);
 				break;
 			case 66:
-				var textAdd = "[b][/b]";
 				e.preventDefault();
+				addText("[b][/b]", selectAdd);
 				break;
 			case 83:
-				var textAdd = "[s][/s]";
 				e.preventDefault();
+				addText("[s][/s]", selectAdd);
 				break;
 			case 85:
-				var textAdd = "[u][/u]";
 				e.preventDefault();
+				addText("[u][/u]", selectAdd);
 				break;
 			case 79:
-				var textAdd = "[c][/c]";
 				e.preventDefault();
+				addText("[c][/c]", selectAdd);
 				break;
-			default:
-				var textAdd = "";
-				var selectAdd = 0;
 		}
-		addText(textAdd, selectAdd);
 	}
 }
 }

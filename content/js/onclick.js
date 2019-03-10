@@ -1,6 +1,7 @@
 //Functions of onclicks to make code easier to read
 function addCardOC() {
-	API('add',
+	API(
+		'add',
 		{
 			'type': value('add-type'),
 			'name': value('add-name'),
@@ -18,7 +19,7 @@ function editCardOC() {
 		{
 			'type': value('cardsType'),
 			'name': value('cardsName'),
-			'text': document.getElementById('textEdit').innerHTML,
+			'text': document.getElementById('textEdit').innerText,
 			'group': value('group'),
 			'pass': value('pass'),
 			'hide': document.getElementById('hide-card').checked

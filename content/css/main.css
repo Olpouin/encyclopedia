@@ -44,8 +44,7 @@ footer a:last-of-type::after {
 }
 /*Notif*/
 .notif {
-	position: absolute;
-	/*display: none;*/
+	position: fixed;
 	z-index: 2;
 	top: 0;
 	left: 0;
@@ -331,9 +330,9 @@ footer a:last-of-type::after {
 		width: auto !important;
 	}
 	.infobox {
-		width: auto !important;
-		max-width: 300px;
+		width: 100% !important;
 		margin: 2px !important;
+		clear: both;
 	}
 	.card {
 		position: relative;
@@ -343,7 +342,7 @@ footer a:last-of-type::after {
 	.card blockquote {
 		width: auto !important;
 		margin-right: 0 !important;
-		clear: right;
+		clear: both;
 	}
 	.card > p {
 		max-width: none !important;

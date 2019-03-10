@@ -31,6 +31,7 @@ function newElement(type,param) {
 	if ('id' in param) elem.setAttribute('id', param.id);
 	if ('alt' in param) elem.setAttribute('alt', param.alt);
 	if ('src' in param) elem.setAttribute('src', param.src);
+	if ('contenteditable' in param) elem.setAttribute('contenteditable', param.contenteditable) ;
 	return elem;
 }
 function deleteElement(id) {

@@ -87,8 +87,8 @@ hr + br {
 	max-height: 400px;
 	margin: 5px 0;
 	position: relative;
-	clear: none;
-	display: inline-block;
+	clear: left;
+	display: block;
 }
 .card span {
 	max-height: 100%;
@@ -121,6 +121,8 @@ hr + br {
 	max-height: none !important;
 	margin: 0 !important;
 	vertical-align: middle;
+	display: inline-block;
+	clear: none;
 }
 .infobox-data {
 	display: flex;
@@ -185,4 +187,8 @@ hr + br {
 }
 .toc-title-6 {
 	margin-left: 22px;
+}
+
+.format-txt {
+	font-weight: bold;
 }
