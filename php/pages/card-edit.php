@@ -42,7 +42,7 @@ $content['card'] = <<<CARDEDIT
 		<h2>Formatage normal</h2>
 		- Couleur : [c]Texte[/c]<br>
 		- Couleur custom : [c#HEXA00]Texte[/c]<br>
-		- Citations : [quote]Texte de la citation[author]Auteur[/author][/quote]
+		- Citations : [quote]Texte de la citation[au]Auteur[/au][/quote]
 	</div>
 	<div>
 		<h2>Les infobox</h2>
