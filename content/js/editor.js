@@ -28,8 +28,8 @@ function addText(format,cursorMove) {
 	range.collapse()
 	formatEndID = "format-"+UUID();
 	range.insertNode(newElement('span',{'txt':formatEnd,'class':'format-txt','id':formatEndID}));
-	range.setStartAfter(document.getElementById(formatStartID));
-	range.setEndBefore(document.getElementById(formatEndID));
+	range.setStartBefore(document.getElementById(formatStartID));
+	range.setEndAfter(document.getElementById(formatEndID));
 
 	txtarea.focus();
 	sel.addRange(range);
