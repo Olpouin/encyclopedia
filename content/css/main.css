@@ -377,6 +377,9 @@ footer a:last-of-type::after {
 .open {
 	display: initial !important;
 }
+.hidden {
+	display: none;
+}
 .center {
 	text-align: center;
 }

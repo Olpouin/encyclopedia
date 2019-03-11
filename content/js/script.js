@@ -25,13 +25,12 @@ function UUID() {
 function newElement(type,param) {
 	var elem = document.createElement(type);
 	if ('txt' in param) elem.appendChild(document.createTextNode(param.txt));
-	if ('url' in param) elem.setAttribute('href', param.url);
-	if ('onclick' in param) elem.setAttribute('onclick', param.onclick);
 	if ('class' in param) elem.classList.add(param.class);
-	if ('id' in param) elem.setAttribute('id', param.id);
-	if ('alt' in param) elem.setAttribute('alt', param.alt);
-	if ('src' in param) elem.setAttribute('src', param.src);
-	if ('contenteditable' in param) elem.setAttribute('contenteditable', param.contenteditable) ;
+	if ('attr' in param) {
+		for (prop in param.attr) {
+			elem.setAttribute(prop, param.attr[prop]);
+		}
+	}
 	return elem;
 }
 function deleteElement(id) {
@@ -101,21 +100,21 @@ function fullscreen(e) {
 	let fullscrID = "fullscreen-"+UUID();
 	console.log("Generating fullscreen with ID "+fullscrID);
 
-	document.body.appendChild(newElement("div",{'id':fullscrID,'class':'fullscreen-image'}));//Main div
+	document.body.appendChild(newElement("div",{'class':'fullscreen-image','attr':{'id':fullscrID}}));//Main div
 	fullscr = document.getElementById(fullscrID);
 	fullscr.appendChild(newElement("div",{}));
 	let imgDiv = fullscr.firstChild;
 
-	imgDiv.appendChild(newElement("img",{'src':e.target.getAttribute('src'),'alt':e.target.getAttribute('alt')}));
+	imgDiv.appendChild(newElement("img",{'attr':{'src':e.target.getAttribute('src'),'alt':e.target.getAttribute('alt')}}));
 	fullscr.appendChild(newElement("h1",{'txt':e.target.getAttribute('alt')}));
-	fullscr.appendChild(newElement("button",{'class':'button-x','onclick':'deleteElement(\''+fullscrID+'\')','txt':'× '+langNotifClose}));
+	fullscr.appendChild(newElement("button",{'class':'button-x','txt':'× '+langNotifClose,'attr':{'onclick':'deleteElement(\''+fullscrID+'\')'}}));
 }
 //notification system
 function notify(title,text,param) {
 	let notifID = "notif-"+UUID();
 	console.log("Generating notification with ID "+notifID);
 
-	document.body.appendChild(newElement("div",{'id':notifID,'class':'notif'}));//Main div
+	document.body.appendChild(newElement("div",{'class':'notif','attr':{'id':notifID}}));//Main div
 	notif = document.getElementById(notifID);
 	notif.appendChild(newElement("div",{'class':'notif-zone'}));//Notif div
 	let notifZone = notif.firstChild;
@@ -124,6 +123,6 @@ function notify(title,text,param) {
 
 	notifZone.insertBefore(newElement("h1",{'txt':title}), notifButtons);
 	notifZone.insertBefore(newElement("p",{'txt':text}), notifButtons);
-	if ('url' in param) notifButtons.appendChild(newElement("a",{'txt':langNotifShow,'url':param.url,'class':'input'}));
-	notifButtons.appendChild(newElement("a",{'txt':langNotifClose,'onclick':'deleteElement(\''+notifID+'\')','class':'input'}))
+	if ('url' in param) notifButtons.appendChild(newElement("a",{'txt':langNotifShow,'class':'input','attr':{'href':param.url}}));
+	notifButtons.appendChild(newElement("a",{'txt':langNotifClose,'class':'input','attr':{'onclick':'deleteElement(\''+notifID+'\')'}}))
 }

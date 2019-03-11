@@ -74,7 +74,7 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 				<?=$content['sidenav']?>
 			</nav>
 			<div class="card-content">
-				<main class="card" id="card">
+				<main class="card format" id="card">
 					<button tabindex="-1" class="sidenav-button" style="font-size: 20px;" onclick="openNav();">&#9776;</button>
 					<?=$content['card']?>
 				</main>

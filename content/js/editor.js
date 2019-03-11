@@ -16,20 +16,32 @@ txtarea.onkeyup = function(e) {
 	cursorPos();
 }
 
-function addText(format,cursorMove) {
+function addText(format,cursorMove) { // Note to self : /!\ insertNode() might be broken in the future
 	formatStart = format.substring(0, cursorMove);
 	formatEnd = format.substring(cursorMove);
 
 	let sel = window.getSelection();
 	sel.removeAllRanges();
 
-	formatStartID = "format-"+UUID();
-	range.insertNode(newElement('span',{'txt':formatStart,'class':'format-txt','id':formatStartID}));
-	range.collapse()
-	formatEndID = "format-"+UUID();
-	range.insertNode(newElement('span',{'txt':formatEnd,'class':'format-txt','id':formatEndID}));
-	range.setStartBefore(document.getElementById(formatStartID));
-	range.setEndAfter(document.getElementById(formatEndID));
+	if (format == "[quote][au][/au][/quote]") {
+		oldData = range.cloneContents();
+		range.deleteContents();
+		var blockquote = newElement('blockquote',{});
+		blockquote.append(newElement('span',{'txt':'[quote]','class':'hidden'}));
+		blockquote.append(newElement('span',{'txt':oldData.textContent}));
+		blockquote.append(newElement('span',{'txt':'[au]','class':'hidden'}));
+		blockquote.append(newElement('cite',{'txt':'Auteur'}));
+		blockquote.append(newElement('span',{'txt':'[/au][/quote]','class':'hidden'}));
+		range.insertNode(blockquote);
+	} else {
+		formatStartID = "format-"+UUID();
+		range.insertNode(newElement('span',{'txt':formatStart,'class':'format-txt','attr':{'id':formatStartID}}));
+		range.collapse()
+		formatEndID = "format-"+UUID();
+		range.insertNode(newElement('span',{'txt':formatEnd,'class':'format-txt','attr':{'id':formatEndID}}));
+		range.setStartBefore(document.getElementById(formatStartID));
+		range.setEndAfter(document.getElementById(formatEndID));
+	}
 
 	txtarea.focus();
 	sel.addRange(range);

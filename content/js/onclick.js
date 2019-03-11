@@ -19,7 +19,7 @@ function editCardOC() {
 		{
 			'type': value('cardsType'),
 			'name': value('cardsName'),
-			'text': document.getElementById('textEdit').innerText,
+			'text': document.getElementById('textEdit').textContent,
 			'group': value('group'),
 			'pass': value('pass'),
 			'hide': document.getElementById('hide-card').checked
