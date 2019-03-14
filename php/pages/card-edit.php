@@ -1,6 +1,9 @@
 <?php
 $infoContent['g_title'] = "Édition : ".$cardName;
 
+$loadedDB['text'] = $format($loadedDB['text'], true); // TODO: Better $format function
+
+
 $fURL = $config['general']['path']."/content/icons/editor/";
 $fARR = $lang['editor-bar'];
 $editorBar = '<div class="editor-bar">';
@@ -8,12 +11,21 @@ foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
 	$editorBar .= '<div class="editor-bar_group">';
 	foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
 		$editor = $config['general']['editor-bar'][$groupNumber][$formatNumber];
-		$edFormat = $editor['format'];
 		$edName = $editor['name'];
+		$edImgSrc = $fURL.$edName;
 		if (!isset($editor['e'])) $editor['e'] = "";
-		$editorBar .= '<div tt-hlp="'.$editor['e'].'" tt-cmd="'.$edFormat.'" tt-name="'.$fARR[$edName].'" onclick="addText(\''.$edFormat.'\', '.$editor['cursor'].')">
-			<img src="'.$fURL.$edName.'.svg" alt="'.$fARR[$edName].'">
-		</div>';
+		if (isset($editor['format'])) {
+			if (isset($editor['param'])) $edParam = json_encode($editor['param']);
+			else $edParam = "{}";
+			$editorBar .= "<div tt-hlp='{$editor['e']}' tt-name='{$fARR[$edName]}' onclick='addFormat(\"{$editor['format']}\",{$edParam})' onmousedown='event.preventDefault();'>
+				<img src='{$edImgSrc}.svg' alt='{$fARR[$edName]}'>
+			</div>";
+		} elseif ($editor['txt']) {
+			$editorBar .= "<div tt-hlp='{$editor['e']}' tt-name='{$fARR[$edName]}' onclick='addText(\"{$editor['txt']}\",\"{$editor['cursor']}\")' onmousedown='event.preventDefault();'>
+				<img src='{$edImgSrc}.svg' alt='{$fARR[$edName]}'>
+			</div>";
+		}
+
 	}
 	$editorBar .= '</div>';
 }
@@ -27,7 +39,7 @@ $content['card'] = <<<CARDEDIT
 {$editorBar}
 <input id="cardsName" value="{$cardName}" type="hidden">
 <input id="cardsType" value="{$type}" type="hidden">
-<div id="textEdit" contenteditable="true" required="" maxlength="1000000" name="text">{$loadedDB['text']}</div>
+<div id="textEdit" class="format" contenteditable="true" required="" maxlength="1000000" name="text">{$loadedDB['text']}</div>
 <label for="hide-card">{$lang['edition-hide_card']}</label>
 <input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 <label for="group">{$lang['edition-group_placeholder']}</label>

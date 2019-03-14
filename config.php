@@ -43,30 +43,30 @@ require_once "lang/".$langSelected.".php"; //The language Selected
 
 $config['general']['editor-bar'] = [
 	[
-		['format' => '[h1][/h1]', 'cursor' => '4', 'name' => 'title1'],
-		['format' => '[h2][/h2]', 'cursor' => '4', 'name' => 'title2'],
-		['format' => '[h3][/h3]', 'cursor' => '4', 'name' => 'title3'],
-		['format' => '[h4][/h4]', 'cursor' => '4', 'name' => 'title4'],
-		['format' => '[h5][/h5]', 'cursor' => '4', 'name' => 'title5'],
-		['format' => '[h6][/h6]', 'cursor' => '4', 'name' => 'title6']
+		['format' => 'heading', 'name' => 'title1', 'param' => ['def' => 'h1']],
+		['format' => 'heading', 'name' => 'title2', 'param' => ['def' => 'h2']],
+		['format' => 'heading', 'name' => 'title3', 'param' => ['def' => 'h3']],
+		['format' => 'heading', 'name' => 'title4', 'param' => ['def' => 'h4']],
+		['format' => 'heading', 'name' => 'title5', 'param' => ['def' => 'h5']],
+		['format' => 'heading', 'name' => 'title6', 'param' => ['def' => 'h6']]
 	],
 	[
-		['format' => '[i][/i]', 'cursor' => '3', 'name' => 'italic', 'e' => 'CTRL + I'],
-		['format' => '[b][/b]', 'cursor' => '3', 'name' => 'bold', 'e' => 'CTRL + B'],
-		['format' => '[s][/s]', 'cursor' => '3', 'name' => 'strikethrough', 'e' => 'CTRL + S'],
-		['format' => '[u][/u]', 'cursor' => '3', 'name' => 'underlined', 'e' => 'CTRL + U'],
-		['format' => '[c][/c]', 'cursor' => '3', 'name' => 'color', 'e' => 'CTRL + O'],
+		['format' => 'italic', 'name' => 'italic', 'e' => 'CTRL + I'],
+		['format' => 'bold', 'name' => 'bold', 'e' => 'CTRL + B'],
+		['format' => 'strikeThrough', 'name' => 'strikethrough', 'e' => 'CTRL + S'],
+		['format' => 'underline', 'name' => 'underlined', 'e' => 'CTRL + U'],
+		['format' => 'foreColor', 'name' => 'color', 'e' => 'CTRL + O', 'param' => ['def' => '#003399']],
 	],
 	[
-		['format' => '![]()', 'cursor' => '2', 'name' => 'img', 'e' => "![{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
-		['format' => '[]()', 'cursor' => '1', 'name' => 'url', 'e' => "[{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
-		['format' => '!()', 'cursor' => '2', 'name' => 'sound', 'e' => "!({$lang['editor-bar']['url']})"],
-		['format' => '!()', 'cursor' => '2', 'name' => 'video', 'e' => "!({$lang['editor-bar']['url']})"]
+		['txt' => '![]()', 'cursor' => '2', 'name' => 'img', 'e' => "![{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
+		['txt' => '[]()', 'cursor' => '1', 'name' => 'url', 'e' => "[{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
+		['txt' => '!()', 'cursor' => '2', 'name' => 'sound', 'e' => "!({$lang['editor-bar']['url']})"],
+		['txt' => '!()', 'cursor' => '2', 'name' => 'video', 'e' => "!({$lang['editor-bar']['url']})"]
 	],
 	[
-		['format' => '[quote][au][/au][/quote]', 'cursor' => '7', 'name' => 'quote'],
-		['format' => '[hr]', 'cursor' => '4', 'name' => 'hr'],
-		['format' => '\t', 'cursor' => '1', 'name' => 'tab', 'e' => 'SHIFT + TAB']
+		['txt' => '[quote][au][/au][/quote]', 'cursor' => '7', 'name' => 'quote'],
+		['txt' => '[hr]', 'cursor' => '4', 'name' => 'hr'],
+		['txt' => '\t', 'cursor' => '1', 'name' => 'tab', 'e' => 'SHIFT + TAB']
 	]
 ];
 
