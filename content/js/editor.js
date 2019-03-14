@@ -83,23 +83,23 @@ txtarea.onkeydown = function(e) {
 		switch (e.keyCode) {
 			case 73:
 				e.preventDefault();
-				addText("[i][/i]", selectAdd);
+				addFormat("italic",{});
 				break;
 			case 66:
 				e.preventDefault();
-				addText("[b][/b]", selectAdd);
+				addFormat("bold",{});
 				break;
 			case 83:
 				e.preventDefault();
-				addText("[s][/s]", selectAdd);
+				addFormat("strikeThrough",{});
 				break;
 			case 85:
 				e.preventDefault();
-				addText("[u][/u]", selectAdd);
+				addFormat("underline",{});
 				break;
 			case 79:
 				e.preventDefault();
-				addText("[c][/c]", selectAdd);
+				addFormat("foreColor",{"def":"#003399"});
 				break;
 		}
 	}
