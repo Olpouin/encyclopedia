@@ -12,13 +12,25 @@ function searchCard($searchName, $array) {
 	return array('isFound'=>false);
 }
 
-$format = function($text) use($markdownArray) {
+$format = function($text, $editor) use($markdownArray) {
 	$text = htmlentities($text);
 	foreach ($markdownArray as $key => $value) {
+		if (!$editor) $text = preg_replace($key, $value['r'], $text);
+		else {
+			if ($value['e']) $text = preg_replace($key, $value['r'], $text);
+		}
+	}
+	if ($editor) $text = str_replace(array("\r\n", "\r", "\n"), '<br>', $text);
+	else $text = nl2br($text);
+	$text = preg_replace('/\t/', '&emsp;', $text);
+	return $text;
+};
+
+$serverFormat = function($text) use($serverMarkdownArray) {
+	$text = html_entity_decode($text);
+	foreach ($serverMarkdownArray as $key => $value) {
 		$text = preg_replace($key, $value, $text);
 	}
-	$text = nl2br($text);
-	$text = preg_replace('/\t/', '&emsp;', $text);
 	return $text;
 };
 

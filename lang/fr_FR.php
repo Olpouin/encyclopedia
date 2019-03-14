@@ -40,6 +40,7 @@ $lang['editor-bar'] = array(
 	'strikethrough' => 'Barré',
 	'underlined' => 'Soulignage',
 	'color' => 'Couleur',
+	'clear' => 'Effacer le formatage',
 	'img' => 'Image',
 	'url' => 'Lien',
 	'sound' => 'Son',
