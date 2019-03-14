@@ -8,7 +8,7 @@ nav:hover ~ .card {
 	overflow: hidden !important;
 }
 /**/
-.card h1:first-of-type {
+.card > h1:first-of-type {
 	text-align: center;
 	display: inline-block !important;
 	clear: both;
@@ -33,7 +33,6 @@ hr + br {
 }
 .format > h1,.format > h2,.format > h3,.format > h4,.format > h5,.format > h6 {
 	margin: 0;
-	display: inline-block;
 	font-size: 25px;
 }
 

@@ -260,7 +260,7 @@ footer a:last-of-type::after {
 	top: 40px;
 	left: -100px;
 	color: var(--color_main-opposite);
-	content: attr(tt-name)"\A"attr(tt-cmd)"\A"attr(tt-hlp);
+	content: attr(tt-name)"\A"attr(tt-hlp);
 	white-space: pre;
 	padding: 5px 15px;
 	position: absolute;
@@ -274,7 +274,6 @@ footer a:last-of-type::after {
 }
 /*FORMS DESIGN*/
 #textEdit {
-	white-space: pre-wrap;
 	width: 100%;
 	height: 500px;
 	margin-bottom: 5px;
@@ -282,6 +281,7 @@ footer a:last-of-type::after {
 	color: var(--color_main-opposite)
 	font: fixed;
 	overflow: auto;
+	display: inline-block;
 }
 .submit {
 	cursor: pointer;
