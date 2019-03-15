@@ -48,6 +48,8 @@ $lang['editor-bar'] = array(
 	'quote' => 'Quote',
 	'hr' => 'Horizontal bar',
 	'tab' => 'Tab',
+	'ib' => 'Infobox',
+	'ibd' => 'Infobox data',
 	'help-dsc' => 'Description'
 );
 $lang['error'] = array(

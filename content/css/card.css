@@ -81,9 +81,6 @@ hr + br {
 .format blockquote > cite::before {
 	content: '— ';
 }
-#textEdit blockquote > cite {
-	border-bottom: #003399 1px dotted;
-}
 .format p::before {
 	content: "\00a0\00a0\00a0\00a0";
 }
@@ -106,10 +103,11 @@ hr + br {
 	float: right;
 	clear: right;
 	margin: 15px 0 15px 15px;
+	font-size: 0.9em;
 }
-.infobox > br {
+/*.infobox > br {
 	display: none;
-}
+}*/
 .infobox h1 {
 	display: inline-block;
 	background-color: #003399;
@@ -131,9 +129,19 @@ hr + br {
 	clear: none;
 }
 .infobox-data {
-	display: flex;
+	display: table;
 	margin: 15px 10px;
 	hyphens: auto;
+	width: calc(100% - 20px);
+}
+.infobox-data span {
+	display: table-cell;
+	overflow-x: hidden;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+#textEdit .infobox-data span, #textEdit blockquote > cite, #textEdit h1, #textEdit h2, #textEdit h3, #textEdit h4, #textEdit h5, #textEdit h6 {
+	border: #003399 1px dotted;
 }
 .infobox-data-title {
 	width: 90px;

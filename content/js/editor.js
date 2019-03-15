@@ -41,6 +41,20 @@ function addText(format,cursorMove) { // Note to self : /!\ insertNode() might b
 		blockquote.append(newElement('span',{'txt':quoteText}));
 		blockquote.append(newElement('cite',{'txt':'Lorem Ipsum'}));
 		range.insertNode(blockquote);
+	} else if (format == "[ib][/ib]") {
+		let oldData = range.cloneContents();
+		let ibText = (oldData.textContent.length == 0) ? "Consectetur adipiscing elit" : oldData.textContent;
+		range.deleteContents();
+		let infobox = newElement('aside',{'class':'infobox','txt':ibText})
+		range.insertNode(infobox);
+	} else if (format == "[ibd][/ibd]") {
+		let oldData = range.cloneContents();
+		range.deleteContents();
+		let ibdText = (oldData.textContent.length == 0) ? "Consectetur" : oldData.textContent;
+		let ibd = newElement('div',{'class':'infobox-data'});
+		ibd.append(newElement('span',{'class':'infobox-data-title','txt':ibdText}));
+		ibd.append(newElement('span',{'txt':'1957'}));
+		range.insertNode(ibd);
 	} else {
 		formatStartID = "format-"+UUID();
 		range.insertNode(newElement('span',{'txt':formatStart,'class':'format-txt','attr':{'id':formatStartID}}));
