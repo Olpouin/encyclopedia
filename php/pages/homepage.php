@@ -4,7 +4,7 @@ $infoContent['g_title'] = "Accueil";
 $homepageReq = $db->prepare('SELECT * FROM bestiaire WHERE type = "$SERV" AND name = "homepage"');
 $homepageReq->execute();
 $homepage = $homepageReq->fetch();
-$homepage = $format($homepage['text']);
+$homepage = $format($homepage['text'], false);
 //Search
 if (isset($_GET['search'])) {
 $content['hp']['search'] = "<div class='center'>";

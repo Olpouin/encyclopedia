@@ -74,11 +74,15 @@ hr + br {
 .format blockquote > cite {
 	color: #999999;
 	font-size: 14px;
+	min-width: 25px;
 	display: block;
 	margin-top: 5px;
 }
 .format blockquote > cite::before {
 	content: '— ';
+}
+#textEdit blockquote > cite {
+	border-bottom: #003399 1px dotted;
 }
 .format p::before {
 	content: "\00a0\00a0\00a0\00a0";

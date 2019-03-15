@@ -33,17 +33,15 @@ function addText(format,cursorMove) { // Note to self : /!\ insertNode() might b
 	let sel = window.getSelection();
 	sel.removeAllRanges();
 
-	/*if (format == "[quote][au][/au][/quote]") {
-		oldData = range.cloneContents();
+	if (format == "[quote][au][/au][/quote]") {
+		let oldData = range.cloneContents();
+		let quoteText = (oldData.textContent.length == 0) ? "Consectetur adipiscing elit" : oldData.textContent;
 		range.deleteContents();
-		var blockquote = newElement('blockquote',{});
-		blockquote.append(newElement('span',{'txt':'[quote]','class':'hidden'}));
-		blockquote.append(newElement('span',{'txt':oldData.textContent}));
-		blockquote.append(newElement('span',{'txt':'[au]','class':'hidden'}));
-		blockquote.append(newElement('cite',{'txt':'Auteur'}));
-		blockquote.append(newElement('span',{'txt':'[/au][/quote]','class':'hidden'}));
+		let blockquote = newElement('blockquote',{});
+		blockquote.append(newElement('span',{'txt':quoteText}));
+		blockquote.append(newElement('cite',{'txt':'Lorem Ipsum'}));
 		range.insertNode(blockquote);
-	} else {*/
+	} else {
 		formatStartID = "format-"+UUID();
 		range.insertNode(newElement('span',{'txt':formatStart,'class':'format-txt','attr':{'id':formatStartID}}));
 		range.collapse()
@@ -51,7 +49,7 @@ function addText(format,cursorMove) { // Note to self : /!\ insertNode() might b
 		range.insertNode(newElement('span',{'txt':formatEnd,'class':'format-txt','attr':{'id':formatEndID}}));
 		range.setStartBefore(document.getElementById(formatStartID));
 		range.setEndAfter(document.getElementById(formatEndID));
-	//}
+	}
 
 	txtarea.focus();
 	sel.addRange(range);

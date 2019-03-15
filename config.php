@@ -72,7 +72,6 @@ $config['general']['editor-bar'] = [
 ];
 
 $markdownArray = array(
-	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => ['r'=>'<h$1 id="$2">$2</h1>','e'=>false],
 	'/\[hr\]/Ums' => ['r'=>'<hr>','e'=>false],
 	'/\[i\](.*)\[\/i\]/Ums' => ['r'=>'<i>$1</i>','e'=>true],
 	'/\[b\](.*)\[\/b\]/Ums' => ['r'=>'<b>$1</b>','e'=>true],
@@ -80,19 +79,20 @@ $markdownArray = array(
 	'/\[u\](.*)\[\/u\]/Ums' => ['r'=>'<u>$1</u>','e'=>true],
 	'/\[c\](.*)\[\/c\]/Ums' => ['r'=>'<span style="color:#003399;">$1</span>','e'=>true],
 	'/\[c#([a-fA-F0-9]{6})\](.*)\[\/c\]/Ums' => ['r'=>'<span style="color:#$1;">$2</span>','e'=>false],
-	'/\[quote\](.*)\[au\](.*)\[\/au\]\[\/quote\]/Ums' => ['r'=>'<blockquote><span>$1</span><cite>$2</cite></blockquote>','e'=>false],
+	'/\[quote\](.*)\[au\](.*)\[\/au\]\[\/quote\]/Ums' => ['r'=>'<blockquote><span>$1</span><cite>$2</cite></blockquote>','e'=>true],
 	'/\[ib\](.*)\[\/ib\]/Ums' => ['r'=>'<aside class="infobox">$1</aside>','e'=>false],
 	'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => ['r'=>'<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>','e'=>false],
 	'/\!\[(.*)\]\((.*)\)/Um' => ['r'=>'<img src="$2" onclick="fullscreen(event)" alt="$1">','e'=>false],
 	'/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Um' => ['r'=>'<iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/$1" allowfullscreen></iframe>','e'=>false],
 	'/\!\((https?\:\/\/.*\.(mp3|wav|wave))\)/Um' => ['r'=>'<audio controls><source src="$1" type="audio/$2"></audio>','e'=>false],
 	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Um' => ['r'=>'<video controls><source src="$1" type="video/$2"></video>','e'=>false],
-	'/\[(.*)\]\((https?\:\/\/.*)\)/Um' => ['r'=>'<a href="$2" target="_blank">$1</a>','e'=>false]
+	'/\[(.*)\]\((https?\:\/\/.*)\)/Um' => ['r'=>'<a href="$2" target="_blank">$1</a>','e'=>false],
+	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => ['r'=>'<h$1 id="$2">$2</h1>','e'=>false],
+	'/<h([1-6]) id="<(.*)>(.*)<\/(.*)>">/Ums' => ['r'=>'<h$1 id="$3">', 'e' => false]
 );
 
 $serverMarkdownArray = array(
 	'/\<br(\s*)?\/?\>/i' => "\n",
-	'/<div>(.*)<\/div>/Ums' => "$1",
 	'/\<i\>(.*)\<\/i\>/Ums' => '[i]$1[/i]',
 	'/\<b\>(.*)\<\/b\>/Ums' => '[b]$1[/b]',
 	'/\<strike\>(.*)\<\/strike\>/Ums' => '[s]$1[/s]',
@@ -102,7 +102,10 @@ $serverMarkdownArray = array(
 	'/\<font color="#003399"\>(.*)\<\/font\>/Ums' => '[c]$1[/c]',
 	'/\<span style="color:#([a-fA-F0-9]{6});"\>(.*)\<\/span\>/Ums' => '[c#$1]$2[/c]',
 	'/\<font color="([a-fA-F0-9]{6})"\>(.*)\<\/font\>/Ums' => '[c#$1]$2[/c]',
-	'/<h([1-6]) id="(.*)">(.*)<\/h([1-6])>/Ums' => '[h$1]$3[/h$1]',
+	'/<blockquote><span>(.*)<\/span><cite>(.*)<\/cite><\/blockquote>/Ums' => '[quote]$1[au]$2[/au][/quote]',
+	'/<div(.*)>(.*)<\/div>/Ums' => "$2",
+	'/<span(.*)>(.*)<\/span>/Ums' => "$2",
+	'/<em(.*)>(.*)<\/em>/Ums' => "$2",
 	'/<h([1-6])>(.*)<\/h([1-6])>/Ums' => '[h$1]$2[/h$1]'
 );
 
