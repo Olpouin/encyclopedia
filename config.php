@@ -76,7 +76,7 @@ $config['general']['editor-bar'] = [
 ];
 
 $markdownArray = array(
-	'/\[hr\]/Ums' => ['r'=>'<hr>','e'=>false],
+	'/\[hr\]/Ums' => ['r'=>'<hr>','e'=>true],
 	'/\[i\](.*)\[\/i\]/Ums' => ['r'=>'<i>$1</i>','e'=>true],
 	'/\[b\](.*)\[\/b\]/Ums' => ['r'=>'<b>$1</b>','e'=>true],
 	'/\[s\](.*)\[\/s\]/Ums' => ['r'=>'<s>$1</s>','e'=>true],
@@ -109,6 +109,7 @@ $serverMarkdownArray = array(
 	'/<blockquote><span>(.*)<\/span><cite>(.*)<\/cite><\/blockquote>/Ums' => '[quote]$1[au]$2[/au][/quote]',
 	'/<aside class="infobox">(.*)<\/aside>/Ums' => '[ib]$1[/ib]',
 	'/<div class="infobox-data"><span class="infobox-data-title">(.*)<\/span><span>(.*)<\/span><\/div>/Ums' => '[ibd]$1|$2[/ibd]',
+	'/<hr>/Ums' => '[hr]',
 	'/<div(.*)>(.*)<\/div>/Ums' => "$2",
 	'/<span(.*)>(.*)<\/span>/Ums' => "$2",
 	'/<em(.*)>(.*)<\/em>/Ums' => "$2",

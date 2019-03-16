@@ -58,6 +58,9 @@ function addText(format,cursorMove) { // Note to self : /!\ insertNode() might b
 			ibd.append(newElement('span',{'txt':'1957'}));
 			range.insertNode(ibd);
 			break;
+		case "[hr]":
+			range.insertNode(newElement('hr',{}));
+			break;
 		default:
 			formatStartID = "format-"+UUID();
 			range.insertNode(newElement('span',{'txt':formatStart,'class':'format-txt','attr':{'id':formatStartID}}));
