@@ -1,35 +1,58 @@
 <?php
 $infoContent['g_title'] = "Édition : ".$cardName;
 
-$loadedDB['text'] = $format($loadedDB['text'], true); // TODO: Better $format function
+if (isset($_COOKIE['prefeditor'])) {
+	if ($_COOKIE['prefeditor'] == "txt") {
+		$prefText = true;
+	} else {
+		$prefText = false;
+	}
+}
+
+if (!$prefText) {
+	$loadedDB['text'] = $format($loadedDB['text'], true); // TODO: Better $format function
+	$editorStart = '<div id="textEdit" class="format" contenteditable="true" required="" maxlength="1000000" name="text">';
+	$editorEnd = '</div>';
+	$onclick = 'false';
+} else {
+	$editorStart = '<textarea id="textEdit" required="" maxlength="1000000" name="text">';
+	$editorEnd = '</textarea>';
+	$onclick = 'true';
+}
 
 
 $fURL = $config['general']['path']."/content/icons/editor/";
 $fARR = $lang['editor-bar'];
-$editorBar = '<div class="editor-bar">';
-foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
-	$editorBar .= '<div class="editor-bar_group">';
-	foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
-		$editor = $config['general']['editor-bar'][$groupNumber][$formatNumber];
-		$edName = $editor['name'];
-		$edImgSrc = $fURL.$edName;
-		if (!isset($editor['e'])) $editor['e'] = "";
-		if (isset($editor['format'])) {
-			if (isset($editor['param'])) $edParam = json_encode($editor['param']);
-			else $edParam = "{}";
-			$editorBar .= "<div tt-hlp='{$editor['e']}' tt-name='{$fARR[$edName]}' onclick='addFormat(\"{$editor['format']}\",{$edParam})' onmousedown='event.preventDefault();'>
-				<img src='{$edImgSrc}.svg' alt='{$fARR[$edName]}'>
-			</div>";
-		} elseif ($editor['txt']) {
-			$editorBar .= "<div tt-hlp='{$editor['e']}' tt-name='{$fARR[$edName]}' onclick='addText(\"{$editor['txt']}\",\"{$editor['cursor']}\")' onmousedown='event.preventDefault();'>
-				<img src='{$edImgSrc}.svg' alt='{$fARR[$edName]}'>
-			</div>";
-		}
 
+if (!$prefText) {
+	$editorBar = '<div class="editor-bar">';
+	foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
+		$editorBar .= '<div class="editor-bar_group">';
+		foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
+			$editor = $config['general']['editor-bar'][$groupNumber][$formatNumber];
+			$edName = $editor['name'];
+			$edImgSrc = $fURL.$edName;
+			if (!isset($editor['e'])) $editor['e'] = "";
+			if (isset($editor['format'])) {
+				if (isset($editor['param'])) $edParam = json_encode($editor['param']);
+				else $edParam = "{}";
+				$editorBar .= "<div tt-hlp='{$editor['e']}' tt-name='{$fARR[$edName]}' onclick='addFormat(\"{$editor['format']}\",{$edParam})' onmousedown='event.preventDefault();'>
+					<img src='{$edImgSrc}.svg' alt='{$fARR[$edName]}'>
+				</div>";
+			} elseif ($editor['txt']) {
+				$editorBar .= "<div tt-hlp='{$editor['e']}' tt-name='{$fARR[$edName]}' onclick='addText(\"{$editor['txt']}\",\"{$editor['cursor']}\")' onmousedown='event.preventDefault();'>
+					<img src='{$edImgSrc}.svg' alt='{$fARR[$edName]}'>
+				</div>";
+			}
+
+		}
+		$editorBar .= '</div>';
 	}
 	$editorBar .= '</div>';
+} else {
+	$editorBar = "<br><br>";
 }
-$editorBar .= '</div>';
+
 
 if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
 else $hideCheckboxValue = "";
@@ -39,14 +62,14 @@ $content['card'] = <<<CARDEDIT
 {$editorBar}
 <input id="cardsName" value="{$cardName}" type="hidden">
 <input id="cardsType" value="{$type}" type="hidden">
-<div id="textEdit" class="format" contenteditable="true" required="" maxlength="1000000" name="text">{$loadedDB['text']}</div>
+{$editorStart}{$loadedDB['text']}{$editorEnd}
 <label for="hide-card">{$lang['edition-hide_card']}</label>
 <input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 <label for="group">{$lang['edition-group_placeholder']}</label>
 <input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$searchInfo['group']}"><br><br>
 <label for="pass">{$lang['password']}</label>
 <input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
-<button class="submit" onclick="editCardOC()">{$lang['send']}</button>
+<button class="submit" onclick="editCardOC({$onclick})">{$lang['send']}</button>
 <br>
 <h1 style="text-align:center;display:block;">{$lang['help']}</h1>
 <div class="flexboxData">

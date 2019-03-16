@@ -13,13 +13,14 @@ function addCardOC() {
 	);
 }
 
-function editCardOC() {
+function editCardOC(isTxt) {
+	var text = (isTxt) ? document.getElementById('textEdit').value : document.getElementById('textEdit').innerHTML;
 	API(
 		'edit',
 		{
 			'type': value('cardsType'),
 			'name': value('cardsName'),
-			'text': document.getElementById('textEdit').innerHTML,
+			'text': text,
 			'group': value('group'),
 			'pass': value('pass'),
 			'hide': document.getElementById('hide-card').checked

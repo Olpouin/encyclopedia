@@ -50,6 +50,11 @@ function changeParameters() {
 	}
 
 	document.cookie = "lang="+document.getElementById('pref-chooseLang').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
+	if (document.querySelector('#prefeditor').checked) {
+		document.cookie = "prefeditor=txt; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+	} else {
+		document.cookie = "prefeditor=html; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+	}
 
 	location.reload();
 }
@@ -57,6 +62,9 @@ function changeParameters() {
 function checkParameters() {
 	if (getCookie('mode').length != 0) {
 		if (document.querySelector('#nightmode') && getCookie('mode') == "night") document.querySelector('#nightmode').checked = true;
+	}
+	if (getCookie('prefeditor').length != 0) {
+		if (document.querySelector('#prefeditor') && getCookie('prefeditor') == "txt") document.querySelector('#prefeditor').checked = true;
 	}
 	if (document.getElementById('pref-chooseLang')) {
 		if (getCookie('lang').length != 0) document.getElementById('pref-chooseLang').value = getCookie('lang');
