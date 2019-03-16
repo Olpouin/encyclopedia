@@ -22,7 +22,6 @@ $format = function($text, $editor) use($markdownArray) {
 	}
 	if ($editor) $text = str_replace(array("\r\n", "\r", "\n"), '<br>', $text);
 	else $text = nl2br($text);
-	$text = preg_replace('/\t/', '&emsp;', $text);
 	return $text;
 };
 

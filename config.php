@@ -92,6 +92,7 @@ $markdownArray = array(
 	'/\!\((https?\:\/\/.*\.(mp4|webm|ogg|avi|mov))\)/Um' => ['r'=>'<video controls><source src="$1" type="video/$2"></video>','e'=>false],
 	'/\[(.*)\]\((https?\:\/\/.*)\)/Um' => ['r'=>'<a href="$2" target="_blank">$1</a>','e'=>false],
 	'/\[h([1-6])\](.*)\[\/h[1-6]\]/Ums' => ['r'=>'<h$1 id="$2">$2</h1>','e'=>true],
+	'/\t/Ums' => ['r'=>'&emsp;','e'=>false],
 	'/<h([1-6]) id="<(.*)>(.*)<\/(.*)>">/Ums' => ['r'=>'<h$1 id="$3">', 'e' => false]
 );
 
@@ -110,12 +111,14 @@ $serverMarkdownArray = array(
 	'/<aside class="infobox">(.*)<\/aside>/Ums' => '[ib]$1[/ib]',
 	'/<div class="infobox-data"><span class="infobox-data-title">(.*)<\/span><span>(.*)<\/span><\/div>/Ums' => '[ibd]$1|$2[/ibd]',
 	'/<hr>/Ums' => '[hr]',
+	'/\&emsp\;/Ums' => "\t",
 	'/<div(.*)>(.*)<\/div>/Ums' => "$2",
 	'/<span(.*)>(.*)<\/span>/Ums' => "$2",
 	'/<\/?span(.*)>/Ums' => '',
 	'/<\/?div(.*)>/Ums' => '',
-	'/<em(.*)>(.*)<\/em>/Ums' => "$2",
-	'/<h([1-6])(.*)>(.*)<\/h([1-6])>/Ums' => '[h$1]$3[/h$1]'
+	'/<h([1-6])(.*)>(.*)<\/h([1-6])>/Ums' => '[h$1]$3[/h$1]',
+	'/<\/?.*>/Ums' => '',
+	'/<em(.*)>(.*)<\/em>/Ums' => "$2"
 );
 
 $content['css']['nightmode'] = "
