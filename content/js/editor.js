@@ -26,7 +26,7 @@ function addFormat(format, param) {
 }
 document.execCommand('insertBrOnReturn');
 document.execCommand('enableInlineTableEditing');
-document.execCommand("defaultParagraphSeparator", false, "p");
+document.execCommand("defaultParagraphSeparator", false, "div");
 
 function addText(format,cursorMove) { // Note to self : /!\ insertNode() might be broken in the future
 	formatStart = format.substring(0, cursorMove);
