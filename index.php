@@ -29,21 +29,23 @@ if(isset($_GET['type'])) {
 	}
 }
 /*=== HEADER ===*/
-$headerContent = "";
+$content['header'] = "";
 if (isset($content['card'])) {
 	preg_match_all('/<img src="(.*)".*alt="(.*)".*>/Ums', $content['card'], $matches);
-	$headerContent .= '<meta property="og:image:url" content="'.$matches[1][0].'">';
-	$headerContent .= '<meta name="twitter:image" content="'.$matches[1][0].'">';
-	$headerContent .= '<meta name="twitter:card" content="summary_large_image">';
-	$headerContent .= '<meta property="og:image:alt" content="Artwork : '.$matches[2][0].'">';
+	if (isset($matches[1][0]) && isset($matches[2][0])) {
+		$content['header'] .= '<meta property="og:image:url" content="'.$matches[1][0].'">';
+		$content['header'] .= '<meta name="twitter:image" content="'.$matches[1][0].'">';
+		$content['header'] .= '<meta name="twitter:card" content="summary_large_image">';
+		$content['header'] .= '<meta property="og:image:alt" content="Artwork : '.$matches[2][0].'">';
+	}
 }
-$headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].'">';
+$content['header'] .= '<meta property="og:title" content="'.$infoContent['g_title'].'">';
 ?>
 <!DOCTYPE html>
 <html lang="<?=$langSelected?>">
 	<head>
 		<title><?=$infoContent['g_title']." • ".$config['general']['site_name']?></title>
-		<?=$headerContent?>
+		<?=$content['header']?>
 		<meta property="og:type" content="article">
 		<meta property="og:site_name" content="<?=$config['general']['site_name']?>">
 		<meta charset="utf-8">
