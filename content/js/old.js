@@ -1,4 +1,20 @@
-function addText(format,cursorMove) { // just in case
+/*OLD JAVASCRIPT WITH TEXT ONLY
+FORMATTING : https://codepen.io/chrisdavidmills/pen/gzYjag
+https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea*/
+function cursorPos() {
+	let sel = window.getSelection();
+	range = sel.getRangeAt(0);
+}
+cursorPos();
+
+txtarea.onclick = function(e) {
+	cursorPos();
+}
+txtarea.onkeyup = function(e) {
+	cursorPos();
+}
+
+function addText(format,cursorMove) {
 	formatStart = format.substring(0, cursorMove);
 	formatEnd = format.substring(cursorMove);
 

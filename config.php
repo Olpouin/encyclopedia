@@ -41,37 +41,38 @@ if (isset($_COOKIE['lang'])) {
 }
 require_once "lang/".$langSelected.".php"; //The language Selected
 
+//['format'=>'', 'name'=>'', 'e'=>'', 'param'=>[]]
 $config['general']['editor-bar'] = [
 	[
-		['format' => 'heading', 'name' => 'title1', 'param' => ['def' => 'h1']],
-		['format' => 'heading', 'name' => 'title2', 'param' => ['def' => 'h2']],
-		['format' => 'heading', 'name' => 'title3', 'param' => ['def' => 'h3']],
-		['format' => 'heading', 'name' => 'title4', 'param' => ['def' => 'h4']],
-		['format' => 'heading', 'name' => 'title5', 'param' => ['def' => 'h5']],
-		['format' => 'heading', 'name' => 'title6', 'param' => ['def' => 'h6']]
+		['format'=>'heading', 'name'=>'title1', 'param'=>['def'=>'h1']],
+		['format'=>'heading', 'name'=>'title2', 'param'=>['def'=>'h2']],
+		['format'=>'heading', 'name'=>'title3', 'param'=>['def'=>'h3']],
+		['format'=>'heading', 'name'=>'title4', 'param'=>['def'=>'h4']],
+		['format'=>'heading', 'name'=>'title5', 'param'=>['def'=>'h5']],
+		['format'=>'heading', 'name'=>'title6', 'param'=>['def'=>'h6']]
 	],
 	[
-		['format' => 'italic', 'name' => 'italic', 'e' => 'CTRL + I'],
-		['format' => 'bold', 'name' => 'bold', 'e' => 'CTRL + B'],
-		['format' => 'strikeThrough', 'name' => 'strikethrough', 'e' => 'CTRL + S'],
-		['format' => 'underline', 'name' => 'underlined', 'e' => 'CTRL + U'],
-		['format' => 'foreColor', 'name' => 'color', 'e' => 'CTRL + O', 'param' => ['def' => '#003399']],
-		['format' => 'removeFormat', 'name' => 'clear']
+		['format'=>'italic', 'name'=>'italic', 'e'=>'CTRL + I'],
+		['format'=>'bold', 'name'=>'bold', 'e'=>'CTRL + B'],
+		['format'=>'strikeThrough', 'name'=>'strikethrough', 'e'=>'CTRL + S'],
+		['format'=>'underline', 'name'=>'underlined', 'e'=>'CTRL + U'],
+		['format'=>'foreColor', 'name'=>'color', 'e'=>'CTRL + O', 'param'=>['def'=>'#003399']],
+		['format'=>'removeFormat', 'name'=>'clear']
 	],
 	[
-		['txt' => '![]()', 'cursor' => '2', 'name' => 'img', 'e' => "![{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
-		['txt' => '[]()', 'cursor' => '1', 'name' => 'url', 'e' => "[{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})"],
-		['txt' => '!()', 'cursor' => '2', 'name' => 'sound', 'e' => "!({$lang['editor-bar']['url']})"],
-		['txt' => '!()', 'cursor' => '2', 'name' => 'video', 'e' => "!({$lang['editor-bar']['url']})"]
+		['format'=>'insertText', 'name'=>'img', 'e'=>"![{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})", 'param'=>['def'=>'![]()']],
+		['format'=>'insertText', 'name'=>'url', 'e'=>"[{$lang['editor-bar']['help-dsc']}]({$lang['editor-bar']['url']})", 'param'=>['def'=>'[]()']],
+		['format'=>'insertText', 'name'=>'sound', 'e'=>"!({$lang['editor-bar']['url']})", 'param'=>['def'=>'!()']],
+		['format'=>'insertText', 'name'=>'video', 'e'=>"!({$lang['editor-bar']['url']})", 'param'=>['def'=>'!()']]
 	],
 	[
-		['txt' => '[quote][au][/au][/quote]', 'cursor' => '7', 'name' => 'quote'],
-		['format' => 'insertHorizontalRule', 'name' => 'hr'],
-		['format' => 'insertText', 'name' => 'tab', 'e' => 'SHIFT + TAB', 'param' => ['def' => '   ']]
+		['format'=>'insertHTML', 'name'=>'quote', 'param'=>['def'=>'<blockquote><span>Citation</span><cite>Auteur</cite></blockquote>']],
+		['format'=>'insertHorizontalRule', 'name'=>'hr'],
+		['format'=>'insertText', 'name'=>'tab', 'e'=>'SHIFT + TAB', 'param'=>['def'=>'   ']]
 	],
 	[
-		['format' => 'insertHTML', 'name' => 'ib', 'param' => ['def' => '<aside class="infobox"><br>Infobox<br></aside>']],
-		['format' => 'insertHTML', 'name' => 'ibd', 'param' => ['def' => '<div class="infobox-data"><span class="infobox-data-title">T</span><span>D</span></div>']]
+		['format'=>'insertHTML', 'name'=>'ib', 'param'=>['def'=>'<aside class="infobox"><br>Infobox<br></aside>']],
+		['format'=>'insertHTML', 'name'=>'ibd', 'param'=>['def'=>'<div class="infobox-data"><span class="infobox-data-title">T</span><span>D</span></div>']]
 	]
 ];
 
