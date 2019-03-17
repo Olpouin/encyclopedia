@@ -30,12 +30,13 @@ if(isset($_GET['type'])) {
 }
 /*=== HEADER ===*/
 $headerContent = "";
-if (isset($loadedText)) {
-	preg_match_all('/\!\[(.*)\]\((.*)\)/Ums', $loadedText, $matches);
-	$headerContent .= '<meta property="og:image:url" content="'.$matches['2']['0'].'">';
-	$headerContent .= '<meta name="twitter:image" content="'.$matches['2']['0'].'">';
+if (isset($content['card'])) {
+	preg_match_all('/<img src="(.*)".*alt="(.*)".*>/Ums', $content['card'], $matches);
+	var_dump($matches);
+	$headerContent .= '<meta property="og:image:url" content="'.$matches[1][0].'">';
+	$headerContent .= '<meta name="twitter:image" content="'.$matches[1][0].'">';
 	$headerContent .= '<meta name="twitter:card" content="summary_large_image">';
-	$headerContent .= '<meta property="og:image:alt" content="Artwork : '.$matches['1']['0'].'">';
+	$headerContent .= '<meta property="og:image:alt" content="Artwork : '.$matches[2][0].'">';
 }
 $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].'">';
 ?>
