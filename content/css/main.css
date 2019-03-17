@@ -2,6 +2,10 @@
 	font-family: 'opensans-regular';
 	src: url('../OpenSans-Regular.ttf');
 }
+@font-face {
+	font-family: 'opendyslexic-regular';
+	src: url('../OpenDyslexic3-Regular.ttf');
+}
 
 template { /*For IE users*/
 	display: none;

@@ -15,6 +15,7 @@ $lang = array(
 	'homepage-prefs-title' => 'Settings',
 	'homepage-prefs-nightmode' => 'Night mode',
 	'homepage-prefs-editor' => 'Text editor',
+	'homepage-prefs-dyslexic' => 'Dyslexic mode',
 	'homepage-prefs-confirm_changes' => 'Confirm changes',
 	'edition-info-example_title' => 'Example',
 	'edition-hide_card' => 'Hide the card (Not shown in the navigation bar)',

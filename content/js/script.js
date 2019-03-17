@@ -56,6 +56,12 @@ function changeParameters() {
 		document.cookie = "prefeditor=html; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
 	}
 
+	if (document.querySelector('#dyslexic').checked) {
+		document.cookie = "dyslexic=true; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+	} else {
+		document.cookie = "dyslexic=false; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+	}
+
 	location.reload();
 }
 //Check
@@ -65,6 +71,9 @@ function checkParameters() {
 	}
 	if (getCookie('prefeditor').length != 0) {
 		if (document.querySelector('#prefeditor') && getCookie('prefeditor') == "txt") document.querySelector('#prefeditor').checked = true;
+	}
+	if (getCookie('dyslexic').length != 0) {
+		if (document.querySelector('#dyslexic') && getCookie('dyslexic') == "true") document.querySelector('#dyslexic').checked = true;
 	}
 	if (document.getElementById('pref-chooseLang')) {
 		if (getCookie('lang').length != 0) document.getElementById('pref-chooseLang').value = getCookie('lang');

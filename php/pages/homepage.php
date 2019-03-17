@@ -48,6 +48,8 @@ $content['card'] = <<<HOMEPAGE
 	<label for="pref-chooseLang">{$lang['language']}</label><br><br>
 	<input class="checkbox" id="prefeditor" type="checkbox" value="on">
 	<label for="prefeditor" class="toggle">{$lang['homepage-prefs-editor']}</label><br><br>
+	<input class="checkbox" id="dyslexic" type="checkbox" value="on">
+	<label for="dyslexic" class="toggle">{$lang['homepage-prefs-dyslexic']}</label><br><br>
 	{$lang['cookie-warning']}<br>
 	<button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 </form>

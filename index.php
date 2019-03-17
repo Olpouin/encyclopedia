@@ -60,6 +60,10 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 				if ($_COOKIE['mode'] == 'night') {echo $content['css']['nightmode'];}
 				else echo $content['css']['daymode'];
 			} else echo $content['css']['daymode'];
+
+			if (isset($_COOKIE['dyslexic'])) {
+				if ($_COOKIE['dyslexic'] == 'true') {echo "html,select,button,input,blockquote{font-family: opendyslexic-regular,opensans-regular,sans-serif !important;";}
+			}
 		?>
 		</style>
 		<script>
@@ -95,7 +99,7 @@ $headerContent .= '<meta property="og:title" content="'.$infoContent['g_title'].
 					?>
 					<a href='https://github.com/Olpouin/gallery' target='_blank'><?=$lang['homepage-sourcecode']?></a>
 					<a href="<?=$footerEditURL?>"><?=$footerEditTXT?></a>
-					<a href="<?=$config['general']['path']?>[PATH]/#pref"><?=$lang['homepage-prefs-title']?></a>
+					<a href="<?=$config['general']['path']?>/#pref"><?=$lang['homepage-prefs-title']?></a>
 					<a href="#card"><?=$lang['footer-top']?></a>
 				</footer>
 			</div>
