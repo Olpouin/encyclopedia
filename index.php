@@ -32,7 +32,6 @@ if(isset($_GET['type'])) {
 $headerContent = "";
 if (isset($content['card'])) {
 	preg_match_all('/<img src="(.*)".*alt="(.*)".*>/Ums', $content['card'], $matches);
-	var_dump($matches);
 	$headerContent .= '<meta property="og:image:url" content="'.$matches[1][0].'">';
 	$headerContent .= '<meta name="twitter:image" content="'.$matches[1][0].'">';
 	$headerContent .= '<meta name="twitter:card" content="summary_large_image">';
