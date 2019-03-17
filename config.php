@@ -66,12 +66,12 @@ $config['general']['editor-bar'] = [
 	],
 	[
 		['txt' => '[quote][au][/au][/quote]', 'cursor' => '7', 'name' => 'quote'],
-		['txt' => '[hr]', 'cursor' => '4', 'name' => 'hr'],
-		['txt' => '\t', 'cursor' => '1', 'name' => 'tab', 'e' => 'SHIFT + TAB']
+		['format' => 'insertHorizontalRule', 'name' => 'hr'],
+		['format' => 'insertText', 'name' => 'tab', 'e' => 'SHIFT + TAB', 'param' => ['def' => '   ']]
 	],
 	[
-		['txt' => '[ib][/ib]', 'cursor' => '4', 'name' => 'ib'],
-		['txt' => '[ibd][/ibd]', 'cursor' => '5', 'name' => 'ibd']
+		['format' => 'insertHTML', 'name' => 'ib', 'param' => ['def' => '<aside class="infobox"><br>Infobox<br></aside>']],
+		['format' => 'insertHTML', 'name' => 'ibd', 'param' => ['def' => '<div class="infobox-data"><span class="infobox-data-title">T</span><span>D</span></div>']]
 	]
 ];
 

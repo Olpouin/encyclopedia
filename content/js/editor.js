@@ -25,6 +25,8 @@ function addFormat(format, param) {
 	document.execCommand(format, false, val);
 }
 document.execCommand('insertBrOnReturn');
+document.execCommand('enableInlineTableEditing');
+document.execCommand("defaultParagraphSeparator", false, "p");
 
 function addText(format,cursorMove) { // Note to self : /!\ insertNode() might be broken in the future
 	formatStart = format.substring(0, cursorMove);
@@ -44,23 +46,6 @@ function addText(format,cursorMove) { // Note to self : /!\ insertNode() might b
 			blockquote.append(newElement('cite',{'txt':'Lorem Ipsum'}));
 			range.insertNode(blockquote);
 			break;
-		case "[ib][/ib]":
-			let ibText = (oldData.textContent.length == 0) ? "Consectetur adipiscing elit" : oldData.textContent;
-			range.deleteContents();
-			let infobox = newElement('aside',{'class':'infobox','txt':ibText})
-			range.insertNode(infobox);
-			break;
-		case "[ibd][/ibd]":
-			range.deleteContents();
-			let ibdText = (oldData.textContent.length == 0) ? "Consectetur" : oldData.textContent;
-			let ibd = newElement('div',{'class':'infobox-data'});
-			ibd.append(newElement('span',{'class':'infobox-data-title','txt':ibdText}));
-			ibd.append(newElement('span',{'txt':'1957'}));
-			range.insertNode(ibd);
-			break;
-		case "[hr]":
-			range.insertNode(newElement('hr',{}));
-			break;
 		default:
 			formatStartID = "format-"+UUID();
 			range.insertNode(newElement('span',{'txt':formatStart,'class':'format-txt','attr':{'id':formatStartID}}));
@@ -79,22 +64,27 @@ txtarea.onkeydown = function(e) {
 	let select = window.getSelection();
 	latestCursorPositionStart = select.anchorOffset;
 	latestCursorPositionEnd = select.focusOffset;
+
+	/*if (e.keyCode === 13) {
+		document.execCommand('insertHTML', false, '<br><br>');
+		return false;
+	}*/
+
 	if((e.shiftKey || e.shiftKey) && ((e.keyCode==9 || e.which==9) || (e.keyCode==49 || e.which==49) || (e.keyCode==50 || e.which==50))){
 		switch (e.keyCode) {
 			case 49:
+				addFormat("insertHTML",{"def":"<aside class=\"infobox\"><h1>Titre</h1>![Desc](URL)<div class=\"infobox-data\"><span class=\"infobox-data-title\">T</span><span>D</span></div><div class=\"infobox-data\"><span class=\"infobox-data-title\">T</span><span>D</span></div><div class=\"infobox-data\"><span class=\"infobox-data-title\">T</span><span>D</span></div><br><br><br></aside>"})
 				var textAdd = "[ib]\r\n[h1][/h1]\r\n![]()\r\n[ibd]|[/ibd]\r\n[ibd]|[/ibd]\r\n[ibd]|[/ibd]\r\n[/ib]";
 				var selectAdd = 9;
 				break;
 			case 50:
-				var textAdd = "[ibd]|[/ibd]";
-				var selectAdd = 5;
+				addText("[ibd]|[/ibd]", 5);
 				break;
 			default:
-				var textAdd = "\t";
-				var selectAdd = 1;
+				addFormat("insertText",{"def":"   "})
 		}
 		e.preventDefault();
-		addText(textAdd, selectAdd);
+
 	}
 	if ((e.keyCode == 17 || e.which == 17) || e.ctrlKey) {
 		var selectAdd = 3;
