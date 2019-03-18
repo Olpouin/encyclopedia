@@ -17,7 +17,7 @@ if (isset($data['type'])) {
 										if (strlen($data['addPass']) < 1) $data['addPass'] = NULL;
 										else $data['addPass'] = password_hash($data['addPass'], PASSWORD_DEFAULT);
 									} else $data['addPass'] = NULL;
-									$createCard = $db->prepare('INSERT INTO bestiaire(name, type, groupe, password, hidden) VALUES(?, ?, ?, ?, 1)');
+									$createCard = $db->prepare("INSERT INTO {$config['database']['table']}(name, type, groupe, password, hidden) VALUES(?, ?, ?, ?, 1)");
 									$createCard->execute(
 										array(
 											$data['name'],

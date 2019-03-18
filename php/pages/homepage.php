@@ -1,14 +1,14 @@
 <?php
 $infoContent['g_title'] = "Accueil";
 //Main text
-$homepageReq = $db->prepare('SELECT * FROM bestiaire WHERE type = "$SERV" AND name = "homepage"');
+$homepageReq = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '\$SERV' AND name = 'homepage'");
 $homepageReq->execute();
 $homepage = $homepageReq->fetch();
 $homepage = $format($homepage['text'], false);
 //Search
 if (isset($_GET['search'])) {
 $content['hp']['search'] = "<div class='center'>";
-	$searchDB = $db->prepare('SELECT * FROM bestiaire WHERE (name REGEXP ? OR groupe REGEXP ?) AND hidden = 0');
+	$searchDB = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE (name REGEXP ? OR groupe REGEXP ?) AND hidden = 0");
 	$searchDB->execute(array($_GET['search'],$_GET['search']));
 	while ($listing = $searchDB->fetch()) {
 		$content['hp']['search'] .= $previewBox($listing);
@@ -16,9 +16,9 @@ $content['hp']['search'] = "<div class='center'>";
 $content['hp']['search'] .= "</div>";
 } else $content['hp']['search'] = "";
 //4 random cards
-$totalDBCounter = $db->query('select count(*) from bestiaire where hidden = \'0\'')->fetchColumn();
+$totalDBCounter = $db->query("select count(*) from {$config['database']['table']} where hidden = '0'")->fetchColumn();
 $content['hp']['rand'] = "<div class='center'><h2>".str_replace('[TOTALPAGES]', $totalDBCounter, $lang['homepage-top_message'])."</h2>";
-$boxList = $db->prepare('SELECT * FROM bestiaire WHERE hidden = 0 ORDER BY rand() LIMIT 4');
+$boxList = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0 ORDER BY rand() LIMIT 4");
 $boxList->execute();
 while ($listing = $boxList->fetch()) {
 	$content['hp']['rand'] .= $previewBox($listing);

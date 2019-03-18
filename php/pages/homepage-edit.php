@@ -12,7 +12,7 @@ if (isset($_POST['pass'])) {
 		foreach ($config['types'] as $key => $value) {
 			$typesForm .= '<option value="'.$key.'">'.ucfirst($value).'</option>';
 		}
-		$cards = $db->prepare('SELECT * FROM bestiaire');
+		$cards = $db->prepare("SELECT * FROM {$config['database']['table']}");
 		$cards->execute();
 		$stats['c'] = $stats['t'] = "";
 		$stats['g']['length'] = $stats['g']['img'] = $stats['g']['vid'] = $stats['g']['cards'] = $stats['g']['words'] = 0;
@@ -30,7 +30,7 @@ if (isset($_POST['pass'])) {
 		$stats['g']['length-moy'] = round($stats['g']['length'] / $stats['g']['cards'], 2);
 		$stats['g']['words-moy'] = round($stats['g']['length'] / $stats['g']['words'], 2);
 
-		$topCards = $db->prepare('SELECT * FROM bestiaire ORDER BY CHAR_LENGTH(text) DESC LIMIT 10');
+		$topCards = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY CHAR_LENGTH(text) DESC LIMIT 10");
 		$topCards->execute();
 		while ($topCard = $topCards->fetch()) {
 			$topCard['stat-strlen'] = strlen($topCard['text']);

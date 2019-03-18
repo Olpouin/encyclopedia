@@ -28,7 +28,7 @@ if(isset($data['type'])) {
 									else $hidden = 0;
 									$text = $serverFormat($text);
 
-									$searchDB = $db->prepare('UPDATE bestiaire SET text = ?, groupe = ?, hidden = ? WHERE name = ? AND type = ?');
+									$searchDB = $db->prepare("UPDATE {$config['database']['table']} SET text = ?, groupe = ?, hidden = ? WHERE name = ? AND type = ?");
 									$searchDB->execute(
 										array(
 											$text,

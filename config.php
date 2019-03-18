@@ -4,7 +4,8 @@ $config['database'] = array(
 	"host" => "",
 	"name" => "",
 	"username" => "",
-	"password" => ""
+	"table" => ""
+	"password" => "",
 );
 $config['types'] = array(
 	"b" => "bestiaire",
@@ -158,7 +159,7 @@ $configTypes = $config['types'];
 preg_match('/(\/(.*))\//Um', $_SERVER['PHP_SELF'], $detectedPaths);
 $config['general']['path'] = $detectedPaths['1'];
 //Cards listing
-$cardList = $db->prepare('SELECT * FROM bestiaire ORDER BY type,groupe,name');
+$cardList = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY type,groupe,name");
 $cardList->execute();
 $config['cardsList'] = array();
 while ($data = $cardList->fetch()) {
