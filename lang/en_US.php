@@ -80,11 +80,12 @@ $lang['api'] = array(
 	],
 	"successes" => [
 		"admin-config" => "General parameters has been changed",
-		"add" => "The card has been created"
+		"add" => "The card has been created",
+		"edit" => "The card has been edited"
 	],
 	"isset" => "Missing variable: ",
 	"errorserv-lang" => "The language does not exit",
-	"error-pass" => "Mot de passe incorrect",
+	"error-pass" => "Wrong password",
 	"admin-config" => [
 		"name-size" => "Website name too short or too long (1 < name < 20)",
 		"image-size" => "Images' URL too short or too long (7 < URL < 100"
@@ -93,7 +94,6 @@ $lang['api'] = array(
 	"error-name-size" => "Name too long or too short. Reminder: The upper limit is 35 characters.",
 	'error-name-alreadyexist' => 'The card already exist.',
 	"error-name-notfound" => "Parameter 'name' sent doesn't exist.",
-	"error-pass-wrong" => "Wrong password.",
 	"error-group-size" => "Group's name is too long. Reminder: The limit is 25 characters.",
 	"error-text-size" => "Text too long or too short. Reminder: The upper limit is 1 000 000 characters.",
 	"success" => "Success",
