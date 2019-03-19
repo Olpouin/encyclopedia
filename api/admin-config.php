@@ -26,5 +26,5 @@ $configGeneralUPDATE->execute(
 	)
 );
 
-echo($APIresponse('success',$langAPI['successes']['admin-config']))
+echo($APIresponse('success',$langAPI['successes']['admin-config']));
 ?>

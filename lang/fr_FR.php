@@ -79,7 +79,8 @@ $lang['api'] = array(
 		"success" => "Succès"
 	],
 	"successes" => [
-		"admin-config" => "Les paramètres généraux ont étés modifiés"
+		"admin-config" => "Les paramètres généraux ont étés modifiés",
+		"add" => "La carte a été crée"
 	],
 	"isset" => "Variable manquante : ",
 	"errorserv-lang" => "Le langage n'existe pas",
@@ -88,17 +89,13 @@ $lang['api'] = array(
 		"name-size" => "Nom du site trop court ou trop long (1 < nom < 20)",
 		"image-size" => "URL de l'image trop court ou trop long (7 < URL < 100"
 	],
-	"error-type" => "Type de la fiche manquant.",
 	"error-type-notfound" => "Type de la fiche inexistant.",
-	"error-name" => "Nom de la fiche manquant.",
 	"error-name-size" => "Nom trop court ou trop long. Rappel : La limite maximale est de 35 caractères et minimale de 1 caractère.",
 	'error-name-alreadyexist' => 'La fiche existe déjà.',
 	"error-name-notfound" => "Nom de la fiche inexistant.",
 	"error-pass-wrong" => "Mot de passe incorrect.",
-	"error-group" => "Groupe de la fiche manquant.",
 	"error-group-size" => "Le nom du groupe est trop court ou trop long. Rappel : La limite maximale est de 25 de caractères et minimale de 1 caractère.",
 	"error-text-size" => "Le texte est trop court ou trop long. Rappel : La limite maximale est de 1 000 000 de caractères et minimale de 10 caractères.",
-	"success-edit" => "La fiche a bien été modifiée.",
-	"success-add" => "La fiche a bien été crée."
+	"success-edit" => "La fiche a bien été modifiée."
 )
 ?>
