@@ -12,6 +12,14 @@ function searchCard($searchName, $array) {
 	return array('isFound'=>false);
 }
 
+$APIresponse = function ($title, $msg) use($langAPI) {
+	$resp = [
+		'title'=>$langAPI['titles'][$title],
+		'message'=>$msg
+	];
+	return json_encode($resp);
+};
+
 $format = function($text, $editor) use($markdownArray) {
 	$text = htmlentities($text);
 	foreach ($markdownArray as $key => $value) {
@@ -24,7 +32,6 @@ $format = function($text, $editor) use($markdownArray) {
 	else $text = nl2br($text);
 	return $text;
 };
-
 $serverFormat = function($text) use($serverMarkdownArray) {
 	$text = html_entity_decode($text);
 	foreach ($serverMarkdownArray as $key => $value) {

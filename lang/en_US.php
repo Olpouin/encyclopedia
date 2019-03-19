@@ -22,6 +22,9 @@ $lang = array(
 	'edition-group_placeholder' => 'Card\'s group',
 	'edition-name_placeholder' => 'Card\'s name',
 	'edition-type_placeholder' => 'Card\'s type',
+	'edition-gene-deflang_placeholder' => 'Default language',
+	'edition-gene-sitename_placeholder' => 'Site\'s name',
+	'edition-gene-defimg_placeholder' => 'Infobox default image',
 	'notif-show' => 'Show card',
 	'footer-edit_page' => 'Edit card',
 	'footer-show_page' => 'Return to the card',
@@ -70,14 +73,27 @@ $lang['error'] = array(
 );
 
 $lang['api'] = array(
-	"error" => "Error",
+	"titles" => [
+		"error" => "Error",
+		"serverror" => "Server error",
+		"success" => "Success"
+	],
+	"successes" => [
+		"admin-config" => "General parameters has been changed"
+	],
+	"isset" => "Missing variable: ",
+	"errorserv-lang" => "The language does not exit",
+	"error-pass" => "Mot de passe incorrect",
+	"admin-config" => [
+		"name-size" => "Website name too short or too long (1 < name < 20)",
+		"image-size" => "Images' URL too short or too long (7 < URL < 100"
+	],
 	"error-type" => "Card's type is missing.",
 	"error-type-notfound" => "Can't find a card : Parameter 'type' sent doesn't exist.",
 	"error-name" => "Card's name is missing.",
 	"error-name-size" => "Name too long or too short. Reminder: The upper limit is 35 characters.",
 	'error-name-alreadyexist' => 'The card already exist.',
 	"error-name-notfound" => "Parameter 'name' sent doesn't exist.",
-	"error-pass" => "Card's password is missing.",
 	"error-pass-wrong" => "Wrong password.",
 	"error-group" => "Card's group is missing.",
 	"error-group-size" => "Group's name is too long. Reminder: The limit is 25 characters.",

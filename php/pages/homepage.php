@@ -1,7 +1,7 @@
 <?php
 $infoContent['g_title'] = "Accueil";
 //Main text
-$homepageReq = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '\$SERV' AND name = 'homepage'");
+$homepageReq = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '[SERVERDATA]' AND name = 'homepage'");
 $homepageReq->execute();
 $homepage = $homepageReq->fetch();
 $homepage = $format($homepage['text'], false);

@@ -22,6 +22,9 @@ $lang = array(
 	'edition-group_placeholder' => 'Groupe de la fiche',
 	'edition-name_placeholder' => 'Nom de la fiche',
 	'edition-type_placeholder' => 'Type de la fiche',
+	'edition-gene-deflang_placeholder' => 'Langue par défaut',
+	'edition-gene-sitename_placeholder' => 'Nom du site',
+	'edition-gene-defimg_placeholder' => 'Image par défaut des Infobox',
 	'notif-show' => 'Afficher la page',
 	'footer-edit_page' => 'Modifier la page',
 	'footer-show_page' => 'Retourner à la fiche',
@@ -70,19 +73,31 @@ $lang['error'] = array(
 );
 
 $lang['api'] = array(
-	"error" => "Erreur",
+	"titles" => [
+		"error" => "Erreur",
+		"serverror" => "Erreur serveur",
+		"success" => "Succès"
+	],
+	"successes" => [
+		"admin-config" => "Les paramètres généraux ont étés modifiés"
+	],
+	"isset" => "Variable manquante : ",
+	"errorserv-lang" => "Le langage n'existe pas",
+	"error-pass" => "Mot de passe incorrect",
+	"admin-config" => [
+		"name-size" => "Nom du site trop court ou trop long (1 < nom < 20)",
+		"image-size" => "URL de l'image trop court ou trop long (7 < URL < 100"
+	],
 	"error-type" => "Type de la fiche manquant.",
 	"error-type-notfound" => "Type de la fiche inexistant.",
 	"error-name" => "Nom de la fiche manquant.",
 	"error-name-size" => "Nom trop court ou trop long. Rappel : La limite maximale est de 35 caractères et minimale de 1 caractère.",
 	'error-name-alreadyexist' => 'La fiche existe déjà.',
 	"error-name-notfound" => "Nom de la fiche inexistant.",
-	"error-pass" => "Mot de passe manquant.",
 	"error-pass-wrong" => "Mot de passe incorrect.",
 	"error-group" => "Groupe de la fiche manquant.",
 	"error-group-size" => "Le nom du groupe est trop court ou trop long. Rappel : La limite maximale est de 25 de caractères et minimale de 1 caractère.",
 	"error-text-size" => "Le texte est trop court ou trop long. Rappel : La limite maximale est de 1 000 000 de caractères et minimale de 10 caractères.",
-	"success" => "Succès",
 	"success-edit" => "La fiche a bien été modifiée.",
 	"success-add" => "La fiche a bien été crée."
 )

@@ -11,17 +11,34 @@ $config['types'] = array(
 	"b" => "bestiaire",
 	"p" => "personnages",
 	"l" => "lieux",
-	"e" => "entités"
-);
-$config['general'] = array(
-	"globalPassword" => '', //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);"
-	"language" => "fr",
-	"site_name" => "Gallery",
-	"box-default_image" => "https://img.com/img.jpg"
-	"default_language" => "fr_FR",
+	"e" => "entités",
+	's' => 'souvenirs'
 );
 
-if (preg_match("/((edit|add)\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
+$config['lang'] = [
+	'en_US' => 'English, US',
+	'fr_FR' => 'Français, France'
+];
+
+$dsn = "mysql:host={$config['database']['host']};dbname={$config['database']['name']};charset=utf8";
+try {
+	$db = new PDO($dsn,
+		$config['database']['username'],
+		$config['database']['password'],
+		array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+	);
+} catch (Exception $e) {
+	die('Error : '.$e->getMessage());
+}
+
+$configGeneralDB = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '[SERVERDATA]' AND name = 'general'");
+$configGeneralDB->execute();
+$configGeneralJSON = $configGeneralDB->fetch();
+
+$config['general'] = json_decode($configGeneralJSON['text'], true);
+$config['general']['globalPassword'] = ''; //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);"
+
+if (preg_match("/((edit|add|admin-config)\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
 	$langDir = "../lang/";
 } else {
 	$langDir = "lang/";
@@ -41,6 +58,7 @@ if (isset($_COOKIE['lang'])) {
 	$langSelected = $config['general']['default_language'];
 }
 require_once "lang/".$langSelected.".php"; //The language Selected
+$langAPI = $lang['api'];
 
 //['format'=>'', 'name'=>'', 'e'=>'', 'param'=>[]]
 $config['general']['editor-bar'] = [
@@ -144,16 +162,6 @@ $content['css']['daymode'] = "
 }";
 /*Automated things that you should not change*/
 //Database connection
-$dsn = "mysql:host={$config['database']['host']};dbname={$config['database']['name']};charset=utf8";
-try {
-	$db = new PDO($dsn,
-		$config['database']['username'],
-		$config['database']['password'],
-		array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-	);
-} catch (Exception $e) {
-	die('Error : '.$e->getMessage());
-}
 $configTypes = $config['types'];
 //Path detection
 preg_match('/(\/(.*))\//Um', $_SERVER['PHP_SELF'], $detectedPaths);

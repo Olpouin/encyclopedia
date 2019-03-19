@@ -8,6 +8,11 @@ $noPassword = <<<NOPASS
 NOPASS;
 if (isset($_POST['pass'])) {
 	if (password_verify($_POST['pass'],$config['general']['globalPassword'])) {
+		$langForm = "";
+		foreach ($config['lang'] as $key => $value) {
+			$langSelected = ($key == $config['general']['default_language']) ? "selected='selected'" : "";
+			$langForm .= "<option {$langSelected} value='{$key}'>{$value}</option>";
+		}
 		$typesForm = '';
 		foreach ($config['types'] as $key => $value) {
 			$typesForm .= '<option value="'.$key.'">'.ucfirst($value).'</option>';
@@ -82,6 +87,20 @@ TOPCARDSTAT;
 	</div>
 	<div>
 		<h2>Gérer les types</h2>
+	</div>
+	<div>
+		<h2>Paramètres généraux</h2>
+		<select id="gene-lang">
+			{$langForm}
+		</select>
+		<label for="gene-lang">{$lang['edition-gene-deflang_placeholder']}</label><br><br>
+		<input id="gene-sitename" type="text" placeholder="{$lang['edition-gene-sitename_placeholder']}" value="{$config['general']['site_name']}">
+		<label for="gene-sitename">{$lang['edition-gene-sitename_placeholder']}</label><br><br>
+		<input id="gene-defimg" type="text" placeholder="{$lang['edition-gene-defimg_placeholder']}" value="{$config['general']['box-default_image']}">
+		<label for="gene-defimg">{$lang['edition-gene-defimg_placeholder']}</label><br><br>
+		<button class="submit" onclick="changeMainParam()">{$lang['send']}</button>
+	</div>
+	<div>
 	</div>
 	<div>
 		<h2>Statistiques</h2>

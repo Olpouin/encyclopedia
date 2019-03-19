@@ -39,60 +39,60 @@ if(isset($data['type'])) {
 											)
 										);
 									$json = array(
-										'title' => $lang['api']['success'],
+										'title' => $lang['api']['titles']['success'],
 										'message' => $lang['api']['success-edit']
 									);
 								} else {
 									$json = array(
-										'title' => $lang['api']['error'],
+										'title' => $lang['api']['titles']['error'],
 										'message' => $lang['api']['error-group-size']
 									);
 								}
 							} else {
 								$json = array(
-									'title' => $lang['api']['error'],
+									'title' => $lang['api']['titles']['error'],
 									'message' => $lang['api']['error-group']
 								);
 							}
 						} else {
 							$json = array(
-								'title' => $lang['api']['error'],
+								'title' => $lang['api']['titles']['error'],
 								'message' => $lang['api']['error-text-size']
 							);
 						}
 					} else {
 						$json = array(
-							'title' => $lang['api']['error'],
+							'title' => $lang['api']['titles']['error'],
 							'message' => $lang['api']['error-pass-wrong']
 						);
 					}
 				} else {
 					$json = array(
-						'title' => $lang['api']['error'],
+						'title' => $lang['api']['titles']['error'],
 						'message' => $lang['api']['error-pass']
 					);
 				}
 			} else {
 				$json = array(
-					'title' => $lang['api']['error'],
+					'title' => $lang['api']['titles']['error'],
 					'message' => $lang['api']['error-name-notfound']
 				);
 			}
 		} else {
 			$json = array(
-				'title' => $lang['api']['error'],
+				'title' => $lang['api']['titles']['error'],
 				'message' => $lang['api']['error-name']
 			);
 		}
 	} else {
 		$json = array(
-			'title' => $lang['api']['error'],
+			'title' => $lang['api']['titles']['error'],
 			'message' => $lang['api']['error-type-notfound']
 		);
 	}
 } else {
 	$json = array(
-		'title' => $lang['api']['error'],
+		'title' => $lang['api']['titles']['error'],
 		'message' => $lang['api']['error-type']
 	);
 }
