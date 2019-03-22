@@ -25,6 +25,12 @@ while ($listing = $boxList->fetch()) {
 }
 $content['hp']['rand'] .= "</div>";
 
+$langForm = "";
+foreach ($config['lang'] as $key => $value) {
+	$langSelected = ($key == $config['general']['default_language']) ? "selected='selected'" : "";
+	$langForm .= "<option {$langSelected} value='{$key}'>{$value}</option>";
+}
+
 //HTML
 $content['card'] = <<<HOMEPAGE
 {$homepage}

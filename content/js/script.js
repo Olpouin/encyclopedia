@@ -75,10 +75,6 @@ function checkParameters() {
 	if (getCookie('dyslexic').length != 0) {
 		if (document.querySelector('#dyslexic') && getCookie('dyslexic') == "true") document.querySelector('#dyslexic').checked = true;
 	}
-	if (document.getElementById('pref-chooseLang')) {
-		if (getCookie('lang').length != 0) document.getElementById('pref-chooseLang').value = getCookie('lang');
-		else document.getElementById('pref-chooseLang').value = "fr";
-	}
 }
 checkParameters(); //when page loaded, chack all parameters
 //http requests function

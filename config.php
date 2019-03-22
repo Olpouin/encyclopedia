@@ -38,26 +38,12 @@ $configGeneralJSON = $configGeneralDB->fetch();
 $config['general'] = json_decode($configGeneralJSON['text'], true);
 $config['general']['globalPassword'] = ''; //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);"
 
-if (preg_match("/((edit|add|admin-config)\.php)$/", $_SERVER['PHP_SELF'])) { //check file because there would be errors in the APIs
-	$langDir = "../lang/";
-} else {
-	$langDir = "lang/";
-}
-$languages = array_diff(scandir($langDir), array('..', '.'));
 if (isset($_COOKIE['lang'])) {
-	if ($_COOKIE['lang']) {
-		if (in_array(htmlentities($_COOKIE['lang'].'.php'), $languages)) {
-			$langSelected = $_COOKIE['lang'];
-		} else {
-			$langSelected = $config['general']['default_language'];
-		}
-	} else {
-		$langSelected = $config['general']['default_language'];
-	}
-} else {
-	$langSelected = $config['general']['default_language'];
-}
-require_once "lang/".$langSelected.".php"; //The language Selected
+	if (array_key_exists($_COOKIE['lang'], $config['lang'])) $langSelected = $_COOKIE['lang'];
+	else $langSelected = $config['general']['default_language'];
+} else $langSelected = $config['general']['default_language'];
+$lang = require_once "lang/".$langSelected.".php";
+
 $langAPI = $lang['api'];
 
 //['format'=>'', 'name'=>'', 'e'=>'', 'param'=>[]]
@@ -166,6 +152,7 @@ $configTypes = $config['types'];
 //Path detection
 preg_match('/(\/(.*))\//Um', $_SERVER['PHP_SELF'], $detectedPaths);
 $config['general']['path'] = $detectedPaths['1'];
+
 //Cards listing
 $cardList = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY type,groupe,name");
 $cardList->execute();

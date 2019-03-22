@@ -98,5 +98,7 @@ $lang['api'] = array(
 	"error-text-size" => "Text too long or too short. Reminder: The upper limit is 1 000 000 characters.",
 	"success" => "Success",
 	"success-edit" => "The card was successfully edited."
-)
+);
+
+return $lang;
 ?>

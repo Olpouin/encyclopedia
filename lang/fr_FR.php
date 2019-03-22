@@ -97,5 +97,7 @@ $lang['api'] = array(
 	"error-group-size" => "Le nom du groupe est trop court ou trop long. Rappel : La limite maximale est de 25 de caractères et minimale de 1 caractère.",
 	"error-text-size" => "Le texte est trop court ou trop long. Rappel : La limite maximale est de 1 000 000 de caractères et minimale de 10 caractères.",
 	"success-edit" => "La fiche a bien été modifiée."
-)
+);
+
+return $lang;
 ?>
