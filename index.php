@@ -1,4 +1,6 @@
 <?php
+if (!isset($_COOKIE['mode'])) $_COOKIE['mode'] = "day";
+if (!isset($_COOKIE['dyslexic'])) $_COOKIE['dyslexic'] = false;
 /*==== BASIC FILES ====*/
 require_once 'config.php'; /*Various functions*/
 require_once 'php/functions.inc.php'; /*Various functions*/
@@ -7,25 +9,19 @@ require_once 'php/sidenav.php'; /*Well... The sidenav.*/
 if(isset($_GET['type'])) {
 	$type = $_GET['type'];
 	if(array_key_exists($type, $configTypes)) {
-		if(isset($_GET['name']) AND !empty($_GET['name'])) { /*Shows a card*/
-			require_once("php/pages/card.php");
-		} else { /*Shows a type (Cards large groups)*/
-			require_once("php/pages/type.php");
-		}
+		if(isset($_GET['name']) AND !empty($_GET['name'])) require_once "php/pages/card.php"; //Shows a card
+		else require_once "php/pages/type.php"; //Shows a type (Cards large groups)
 	} else {
 		$err = "404-1";
-		require_once("php/pages/error.php");
+		require_once "php/pages/error.php";
 	}
 } else { /*Shows the homepage*/
 	if (isset($_GET['error'])) {
 		$err = $_GET['error'];
-		require_once("php/pages/error.php");
+		require_once "php/pages/error.php";
 	} else {
-		if (isset($_GET['edit'])) {
-			require_once('php/pages/homepage-edit.php');
-		} else {
-			require_once("php/pages/homepage.php");
-		}
+		if (isset($_GET['edit'])) require_once "php/pages/homepage-edit.php";
+		else require_once "php/pages/homepage.php";
 	}
 }
 /*=== HEADER ===*/
@@ -49,29 +45,24 @@ $content['header'] .= '<meta property="og:title" content="'.$infoContent['g_titl
 		<meta property="og:type" content="article">
 		<meta property="og:site_name" content="<?=$config['general']['site_name']?>">
 		<meta charset="utf-8">
-		<script src="<?=$config['general']['path']?>/content/js/script.js" defer></script>
-		<script src="<?=$config['general']['path']?>/content/js/editor.js" defer></script>
-		<script src="<?=$config['general']['path']?>/content/js/onclick.js"></script>
-		<link rel="icon" href="<?=$config['general']['path']?>/content/favicon.ico">
-		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/main.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/sidenav.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="<?=$config['general']['path']?>/content/css/card.css" type="text/css" media="screen">
+		<script src="<?=PATH?>/content/js/script.js" defer></script>
+		<script src="<?=PATH?>/content/js/editor.js" defer></script>
+		<script src="<?=PATH?>/content/js/onclick.js"></script>
+		<link rel="icon" href="<?=PATH?>/content/favicon.ico">
+		<link rel="stylesheet" href="<?=PATH?>/content/css/main.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=PATH?>/content/css/sidenav.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=PATH?>/content/css/card.css" type="text/css" media="screen">
 		<style>
 		<?php
-			if (isset($_COOKIE['mode'])) {
-				if ($_COOKIE['mode'] == 'night') {echo $content['css']['nightmode'];}
-				else echo $content['css']['daymode'];
-			} else echo $content['css']['daymode'];
-
-			if (isset($_COOKIE['dyslexic'])) {
-				if ($_COOKIE['dyslexic'] == 'true') {echo "html,select,button,input,blockquote{font-family: opendyslexic-regular,opensans-regular,sans-serif !important;";}
-			}
+			if ($_COOKIE['mode'] == 'night') {echo $content['css']['nightmode'];}
+			else echo $content['css']['daymode'];
+			if ($_COOKIE['dyslexic'] == "true") {echo "html,select,button,input,blockquote{font-family: opendyslexic-regular,opensans-regular,sans-serif !important;";}
 		?>
 		</style>
 		<script>
 			const langNotifShow = "<?=$lang['notif-show']?>";
 			const langNotifClose = "<?=$lang['close']?>";
-			var path = "<?=$config['general']['path']?>";
+			var path = "<?=PATH?>";
 		</script>
 	</head>
 	<body>
@@ -88,12 +79,8 @@ $content['header'] .= '<meta property="og:title" content="'.$infoContent['g_titl
 					<?php
 					if (!isset($_GET['edit'])) {
 						$footerEditTXT = $lang['footer-edit_page'];
-						if (isset($_GET['type'])) {
-							$footerEditURL = $_SERVER['REQUEST_URI']."&edit";
-						}
-						else {
-							$footerEditURL = $_SERVER['REQUEST_URI']."?edit";
-						}
+						if (isset($_GET['type'])) $footerEditURL = $_SERVER['REQUEST_URI']."&edit";
+						else $footerEditURL = $_SERVER['REQUEST_URI']."?edit";
 					} else {
 						$footerEditURL = substr($_SERVER['REQUEST_URI'], 0, -5);
 						$footerEditTXT = $lang['footer-show_page'];
@@ -101,7 +88,7 @@ $content['header'] .= '<meta property="og:title" content="'.$infoContent['g_titl
 					?>
 					<a href='https://github.com/Olpouin/gallery' target='_blank'><?=$lang['homepage-sourcecode']?></a>
 					<a href="<?=$footerEditURL?>"><?=$footerEditTXT?></a>
-					<a href="<?=$config['general']['path']?>/#pref"><?=$lang['homepage-prefs-title']?></a>
+					<a href="<?=PATH?>/#pref"><?=$lang['homepage-prefs-title']?></a>
 					<a href="#card"><?=$lang['footer-top']?></a>
 				</footer>
 			</div>

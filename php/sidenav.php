@@ -6,9 +6,7 @@ foreach ($config['cardsList'] as $type => $groups) {
 	$selectedClass = "";
 	if (isset($_GET['type']) && isset($_GET['name'])) {
 		if (empty($_GET['name'])) {
-			if (urldecode($_GET['type']) == $type) {
-				$selectedClass = "selectedPage";
-			}
+			if (urldecode($_GET['type']) == $type) $selectedClass = "selectedPage";
 		}
 	}
 	$content['sidenav'] .= '<ul class="type"><span><a class="'.$selectedClass.'" href="'.$hrefGen($type).'">'.ucfirst($config['types'][$type]).'</a></span>';
@@ -18,13 +16,9 @@ foreach ($config['cardsList'] as $type => $groups) {
 			if (($data['hidden'] == 0) OR (isset($_POST['pass']) && password_verify($_POST['pass'],$config['general']['globalPassword']))) {
 				$selectedClass = "";
 				if (isset($_GET['name'])) {
-					if (urldecode($_GET['name']) == $card) {
-						$selectedClass .= "selectedPage";
-					}
+					if (urldecode($_GET['name']) == $card) $selectedClass .= "selectedPage";
 				}
-				if ($data['hidden'] == 1) {
-					$selectedClass .= " hiddenPage";
-				}
+				if ($data['hidden'] == 1) $selectedClass .= " hiddenPage";
 				$content['sidenav'] .= '<li><a class="'.$selectedClass.'" href="'.$hrefGen($type,$card).$editURL.'">'.htmlentities($card).'</a></li>';
 			}
 		}

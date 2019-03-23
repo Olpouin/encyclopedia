@@ -165,5 +165,7 @@ while ($data = $cardList->fetch()) {
 	}
 }
 
+define("PATH",$config['general']['path']);
+
 require_once 'php/functions.inc.php';
 ?>
