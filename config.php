@@ -36,7 +36,10 @@ $configGeneralDB->execute();
 $configGeneralJSON = $configGeneralDB->fetch();
 
 $config['general'] = json_decode($configGeneralJSON['text'], true);
-$config['general']['globalPassword'] = ''; //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);"
+$globalPasswords = [
+	'pass 1',
+	'pass 2'
+]; //The general password. Hash with "password_hash("YOURPASSWORD", PASSWORD_DEFAULT);". Possibility to set multiple passwords.
 
 if (isset($_COOKIE['lang'])) {
 	if (array_key_exists($_COOKIE['lang'], $config['lang'])) $langSelected = $_COOKIE['lang'];

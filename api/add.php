@@ -9,7 +9,7 @@ if (!isset($data['name'])) exit($APIresponse('servererror', $langAPI['isset']."n
 if (!isset($data['group'])) exit($APIresponse('servererror', $langAPI['isset']."group"));
 if (!isset($data['addPass'])) exit($APIresponse('servererror', $langAPI['isset']."addPass"));
 
-if (!password_verify($data['pass'], $config['general']['globalPassword'])) exit($APIresponse('error',$langAPI['error-pass']));
+if (!$checkPassword($data['pass'])) exit($APIresponse('error',$langAPI['error-pass']));
 
 if (!array_key_exists($data['type'], $configTypes)) exit($APIresponse('serverror', $langAPI['error-type-notfound']));
 $search = searchCard($data['name'], $config['cardsList'][$data['type']]);

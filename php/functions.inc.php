@@ -20,6 +20,13 @@ $APIresponse = function ($title, $msg) use($langAPI) {
 	return json_encode($resp);
 };
 
+$checkPassword = function ($pass) use($globalPasswords) {
+	foreach ($globalPasswords as $key) {
+		if (password_verify($pass, $key)) return true;
+	}
+	return false;
+};
+
 $format = function($text, $editor) use($markdownArray) {
 	$text = htmlentities($text);
 	foreach ($markdownArray as $key => $value) {

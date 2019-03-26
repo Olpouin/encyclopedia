@@ -12,7 +12,7 @@ if(!isset($data['hide'])) exit($APIresponse('servererror', $langAPI['isset']."hi
 
 $name = urldecode($data['name']);
 $search = searchCard($name, $config['cardsList'][$data['type']]);
-if (!password_verify($data['pass'], $config['general']['globalPassword']) AND !password_verify($data['pass'], $search['card']['password'])) exit($APIresponse('error',$langAPI['error-pass']));
+if (!$checkPassword($data['pass']) AND !password_verify($data['pass'], $search['card']['password'])) exit($APIresponse('error',$langAPI['error-pass']));
 
 if(!array_key_exists($data['type'], $configTypes)) exit($APIresponse('servererror', $langAPI['error-type-notfound']));
 if (!$search['isFound']) exit($APIresponse('servererror', $langAPI['error-name-notfound']));

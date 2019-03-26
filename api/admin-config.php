@@ -8,7 +8,7 @@ if (!isset($data['default_language'])) exit($APIresponse('serverror', $langAPI['
 if (!isset($data['site_name'])) exit($APIresponse('serverror', $langAPI['isset']."site_name"));
 if (!isset($data['box-default_image'])) exit($APIresponse('serverror', $langAPI['isset']."box-default_image"));
 
-if (!password_verify($data['pass'], $config['general']['globalPassword'])) exit($APIresponse('error',$langAPI['error-pass']));
+if (!$checkPassword($data['pass'])) exit($APIresponse('error',$langAPI['error-pass']));
 
 if (!array_key_exists($data['default_language'], $config['lang'])) exit($APIresponse('serverror', $langAPI['errorserv-lang']));
 if (strlen($data['site_name']) > 20 OR strlen($data['site_name']) < 1) exit($APIresponse('error',$langAPI['admin-config']['name-size']));
