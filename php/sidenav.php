@@ -13,7 +13,7 @@ foreach ($config['cardsList'] as $type => $groups) {
 	foreach ($groups as $group => $cards) {
 		$content['sidenav'] .= "<ul><span>".$group."</span>";
 		foreach ($cards as $card => $data) {
-			if (($data['hidden'] == 0) OR (isset($_POST['pass']) && password_verify($_POST['pass'],$config['general']['globalPassword']))) {
+			if (($data['hidden'] == 0) OR (isset($_POST['pass']) && $checkPassword($_POST['pass']))) {
 				$selectedClass = "";
 				if (isset($_GET['name'])) {
 					if (urldecode($_GET['name']) == $card) $selectedClass .= "selectedPage";

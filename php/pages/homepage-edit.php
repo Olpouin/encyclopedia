@@ -7,7 +7,7 @@ $noPassword = <<<NOPASS
 </form>
 NOPASS;
 if (isset($_POST['pass'])) {
-	if (password_verify($_POST['pass'],$config['general']['globalPassword'])) {
+	if ($checkPassword($_POST['pass'])) {
 		$langForm = "";
 		foreach ($config['lang'] as $key => $value) {
 			$langSelected = ($key == $config['general']['default_language']) ? "selected='selected'" : "";
