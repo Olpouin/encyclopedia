@@ -11,6 +11,13 @@ document.execCommand('insertBrOnReturn');
 document.execCommand('enableInlineTableEditing');
 document.execCommand("defaultParagraphSeparator", false, "div");
 
+txtarea.onpaste = function(e) {
+	let paste = (event.clipboardData || window.clipboardData).getData('text');
+	addFormat("insertText",{"def":paste});
+
+	e.preventDefault();
+}
+
 txtarea.onkeydown = function(e) {
 	if((e.shiftKey || e.shiftKey) && ((e.keyCode==9 || e.which==9) || (e.keyCode==49 || e.which==49) || (e.keyCode==50 || e.which==50))){
 		switch (e.keyCode) {
