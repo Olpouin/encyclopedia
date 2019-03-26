@@ -37,6 +37,7 @@ $serverFormat = function($text) use($serverMarkdownArray) {
 	foreach ($serverMarkdownArray as $key => $value) {
 		$text = preg_replace($key, $value, $text);
 	}
+	$text = strip_tags($text);
 	return $text;
 };
 

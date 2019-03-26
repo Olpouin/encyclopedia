@@ -1,5 +1,6 @@
 <?php
 $infoContent['g_title'] = "Accueil";
+if (!isset($_COOKIE['lang'])) $_COOKIE['lang'] = $config['general']['default_language'];
 $content['hp']['search'] = $content['hp']['rand'] = $content['hp']['langForm'] = "";
 //Main text
 $homepageReq = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '[SERVERDATA]' AND name = 'homepage'");
@@ -26,9 +27,13 @@ while ($listing = $boxList->fetch()) {
 }
 
 foreach ($config['lang'] as $key => $value) {
-	$langSelected = ($key == $config['general']['default_language']) ? "selected='selected'" : "";
+	$langSelected = ($key == $_COOKIE['lang']) ? "selected" : "";
 	$content['hp']['langForm'] .= "<option {$langSelected} value='{$key}'>{$value}</option>";
 }
+
+$prefNightmode = ($_COOKIE['mode'] == "night") ? "checked" : "";
+$prefTextedit = ($_COOKIE['prefeditor'] == "txt") ? "checked" : "";
+$prefDyslexic = ($_COOKIE['dyslexic'] == "true") ? "checked" : "";
 
 //HTML
 $content['card'] = <<<HOMEPAGE
@@ -47,15 +52,15 @@ $content['card'] = <<<HOMEPAGE
 	<h2 id="pref">{$lang['homepage-prefs-title']}</h2>
 </div>
 <form action="">
-	<input class="checkbox" id="nightmode" type="checkbox" value="on">
+	<input class="checkbox" id="nightmode" type="checkbox" {$prefNightmode} value="on">
 	<label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br><br>
 	<select id="pref-chooseLang">
 		{$content['hp']['langForm']}
 	</select>
 	<label for="pref-chooseLang">{$lang['language']}</label><br><br>
-	<input class="checkbox" id="prefeditor" type="checkbox" value="on">
+	<input class="checkbox" id="prefeditor" type="checkbox" {$prefTextedit} value="on">
 	<label for="prefeditor" class="toggle">{$lang['homepage-prefs-editor']}</label><br><br>
-	<input class="checkbox" id="dyslexic" type="checkbox" value="on">
+	<input class="checkbox" id="dyslexic" type="checkbox" {$prefDyslexic} value="on">
 	<label for="dyslexic" class="toggle">{$lang['homepage-prefs-dyslexic']}</label><br><br>
 	{$lang['cookie-warning']}<br>
 	<button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>

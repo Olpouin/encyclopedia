@@ -33,50 +33,26 @@ function newElement(type,param) {
 	}
 	return elem;
 }
+//smalls functions to make code shorter
 function deleteElement(id) {
 	document.getElementById(id).parentNode.removeChild(document.getElementById(id));
 }
-//smalls functions to make code shorter
 function value(ID) {
 	return document.getElementById(ID).value;
 }
 ////Parameters
 //Change
 function changeParameters() {
-	if (document.querySelector('#nightmode').checked) {
-		document.cookie = "mode=night; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
-	} else {
-		document.cookie = "mode=day; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
-	}
+	document.cookie = (document.querySelector('#nightmode').checked) ? "mode=night; expires=Thu, 18 Dec 9999 12:00:00 UTC;" : "mode=day; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
 
 	document.cookie = "lang="+document.getElementById('pref-chooseLang').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
-	if (document.querySelector('#prefeditor').checked) {
-		document.cookie = "prefeditor=txt; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
-	} else {
-		document.cookie = "prefeditor=html; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
-	}
 
-	if (document.querySelector('#dyslexic').checked) {
-		document.cookie = "dyslexic=true; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
-	} else {
-		document.cookie = "dyslexic=false; expires=Thu, 18 Dec 9999 12:00:00 UTC;"
-	}
+	document.cookie = (document.querySelector('#prefeditor').checked) ? "prefeditor=txt; expires=Thu, 18 Dec 9999 12:00:00 UTC;" : "prefeditor=html; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
+
+	document.cookie = (document.querySelector('#dyslexic').checked) ? "dyslexic=true; expires=Thu, 18 Dec 9999 12:00:00 UTC;" : "dyslexic=false; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
 
 	location.reload();
 }
-//Check
-function checkParameters() {
-	if (getCookie('mode').length != 0) {
-		if (document.querySelector('#nightmode') && getCookie('mode') == "night") document.querySelector('#nightmode').checked = true;
-	}
-	if (getCookie('prefeditor').length != 0) {
-		if (document.querySelector('#prefeditor') && getCookie('prefeditor') == "txt") document.querySelector('#prefeditor').checked = true;
-	}
-	if (getCookie('dyslexic').length != 0) {
-		if (document.querySelector('#dyslexic') && getCookie('dyslexic') == "true") document.querySelector('#dyslexic').checked = true;
-	}
-}
-checkParameters(); //when page loaded, chack all parameters
 //http requests function
 function API(APIname,data,redirect) {
 	document.documentElement.classList.add("wait");

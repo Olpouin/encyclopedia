@@ -118,14 +118,8 @@ $serverMarkdownArray = array(
 	'/<div class="infobox-data"><span class="infobox-data-title">(.*)<\/span><span>(.*)<\/span><\/div>/Ums' => '[ibd]$1|$2[/ibd]',
 	'/<hr>/Ums' => '[hr]',
 	'/\&emsp\;/Ums' => "\t",
-	'/<div(.*)>(.*)<\/div>/Ums' => "$2",
-	'/<span(.*)>(.*)<\/span>/Ums' => "$2",
-	'/<\/?span(.*)>/Ums' => '',
-	'/<\/?div(.*)>/Ums' => '',
 	'/<h([1-6])(.*)>(.*)\n<\/h([1-6])>/Ums' => '<h$1$2>$3<h$4>',
 	'/<h([1-6])(.*)>(.*)<\/h([1-6])>/Ums' => '[h$1]$3[/h$1]',
-	'/<\/?.*>/Ums' => '',
-	'/<em(.*)>(.*)<\/em>/Ums' => "$2"
 );
 
 $content['css']['nightmode'] = "

@@ -1,6 +1,7 @@
 <?php
 if (!isset($_COOKIE['mode'])) $_COOKIE['mode'] = "day";
 if (!isset($_COOKIE['dyslexic'])) $_COOKIE['dyslexic'] = false;
+if (!isset($_COOKIE['prefeditor'])) $_COOKIE['dyslexic'] = "html";
 /*==== BASIC FILES ====*/
 require_once 'config.php'; /*Various functions*/
 require_once 'php/functions.inc.php'; /*Various functions*/
