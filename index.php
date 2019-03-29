@@ -3,9 +3,23 @@ if (!isset($_COOKIE['mode'])) $_COOKIE['mode'] = "day";
 if (!isset($_COOKIE['dyslexic'])) $_COOKIE['dyslexic'] = false;
 if (!isset($_COOKIE['prefeditor'])) $_COOKIE['dyslexic'] = "html";
 /*==== BASIC FILES ====*/
-require_once 'config.php'; /*Various functions*/
-require_once 'php/functions.inc.php'; /*Various functions*/
-require_once 'php/sidenav.php'; /*Well... The sidenav.*/
+require_once 'config.php';
+
+//Cards listing
+$cardList = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY type,groupe,name");
+$cardList->execute();
+$config['cardsList'] = array();
+while ($data = $cardList->fetch()) {
+	if (isset($config['types'][$data['type']])) {
+		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['password'] = $data['password'];
+		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['text'] = $data['text'];
+		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['hidden'] = $data['hidden'];
+	}
+}
+
+$settings = require_once 'php/settings.php';
+require_once 'php/functions.inc.php';
+require_once 'php/sidenav.php';
 /*Looking the right page to choose*/
 if(isset($_GET['type'])) {
 	$type = $_GET['type'];
@@ -55,9 +69,7 @@ $content['header'] .= '<meta property="og:title" content="'.$infoContent['g_titl
 		<link rel="stylesheet" href="<?=PATH?>/content/css/card.css" type="text/css" media="screen">
 		<style>
 		<?php
-			if ($_COOKIE['mode'] == 'night') {echo $content['css']['nightmode'];}
-			else echo $content['css']['daymode'];
-			if ($_COOKIE['dyslexic'] == "true") {echo "html,select,button,input,blockquote{font-family: opendyslexic-regular,opensans-regular,sans-serif !important;";}
+			echo $settings['mode'],$settings['dyslexic'];
 		?>
 		</style>
 		<script>

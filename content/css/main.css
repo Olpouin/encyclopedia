@@ -20,7 +20,6 @@ html.wait, html.wait * {
 	cursor: wait !important;
 }
 html {
-	font-family: opensans-regular, sans-serif;
 	background-color: var(--color_main);
 }
 body {

@@ -125,42 +125,12 @@ $serverMarkdownArray = array(
 	'/<h([1-6])(.*)>(.*)<\/h([1-6])>/Ums' => '[h$1]$3[/h$1]',
 );
 
-$content['css']['nightmode'] = "
-:root {
-	--color_main: #000000;
-	--color_borders: #323232;
-	--color_sidenav: #060606;
-	--color_main-opposite: #FFFFFF;
-	--color_infobox-text_color: #F8F8F8;
-	--invert-value: 100%;
-}";
-$content['css']['daymode'] = "
-:root {
-	--color_main: #FFFFFF;
-	--color_borders: #DCDCDC;
-	--color_sidenav: #FAFAFA;
-	--color_main-opposite: #000000;
-	--color_infobox-text_color: #F8F8F8;
-	--invert-value: 0%;
-}";
 /*Automated things that you should not change*/
 //Database connection
 $configTypes = $config['types'];
 //Path detection
 preg_match('/(\/(.*))\//Um', $_SERVER['PHP_SELF'], $detectedPaths);
 $config['general']['path'] = $detectedPaths['1'];
-
-//Cards listing
-$cardList = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY type,groupe,name");
-$cardList->execute();
-$config['cardsList'] = array();
-while ($data = $cardList->fetch()) {
-	if (isset($config['types'][$data['type']])) {
-		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['password'] = $data['password'];
-		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['text'] = $data['text'];
-		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['hidden'] = $data['hidden'];
-	}
-}
 
 define("PATH",$config['general']['path']);
 
