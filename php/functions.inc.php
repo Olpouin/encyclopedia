@@ -12,6 +12,15 @@ function searchCard($searchName, $array) {
 	return array('isFound'=>false);
 }
 
+function rand_color() {
+    return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+}
+function textToColor($str) { //https://stackoverflow.com/questions/3724111/how-can-i-convert-strings-to-an-html-color-code-hash
+  $code = dechex(crc32($str));
+  $code = substr($code, 0, 6);
+  return "#".$code;
+}
+
 $APIresponse = function ($title, $msg) use($langAPI) {
 	$resp = [
 		'title'=>$langAPI['titles'][$title],

@@ -1,4 +1,21 @@
-//Functions of onclicks to make code easier to read
+function generateChart(type, id, data, param) {
+	let ctx = document.getElementById(id).getContext('2d');
+	let scales = {};
+	if ('yaxis' in param) scales.yAxes = [{ticks:{callback:function(value){return value + param.yaxis;}}}];
+	new Chart(ctx,
+		{
+			type: type,
+			data : data,
+			options: {
+				legend: {
+					display: false
+				},
+				scales: scales
+			}
+		}
+	);
+}
+
 function editCardOC(isTxt) { //Edit a card
 	var text = (isTxt) ? document.getElementById('textEdit').value : document.getElementById('textEdit').innerHTML;
 	API(

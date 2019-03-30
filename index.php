@@ -63,10 +63,12 @@ $content['header'] .= '<meta property="og:title" content="'.$infoContent['g_titl
 		<script src="<?=PATH?>/content/js/script.js" defer></script>
 		<script src="<?=PATH?>/content/js/editor.js" defer></script>
 		<script src="<?=PATH?>/content/js/onclick.js"></script>
+		<script src="<?=PATH?>/content/js/chart.min.js"></script>
 		<link rel="icon" href="<?=PATH?>/content/favicon.ico">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/sidenav.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/card.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=PATH?>/content/css/chard.min.css" type="text/css" media="screen">
 		<style>
 		<?php
 			echo $settings['mode'],$settings['dyslexic'];

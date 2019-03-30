@@ -35,7 +35,55 @@ $prefNightmode = ($_COOKIE['mode'] == "night") ? "checked" : "";
 $prefTextedit = ($_COOKIE['prefeditor'] == "txt") ? "checked" : "";
 $prefDyslexic = ($_COOKIE['dyslexic'] == "true") ? "checked" : "";
 
-//HTML
+//STATS
+$stats['topCards'] = $stats['topTypes'] = [
+	'datasets' => [
+		['data' => [], 'backgroundColor' => []]
+	],
+	'labels' => [],
+];
+
+$cards = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0");
+$cards->execute();
+$stats['c'] = $stats['t'] = $stats['g']['totaltxt'] = "";
+$stats['g']['length'] = $stats['g']['img'] = $stats['g']['vid'] = $stats['g']['cards'] = $stats['g']['words'] = 0;
+while ($card = $cards->fetch()) {
+	$stats['g']['length'] += strlen($card['text']);
+	$stats['g']['words'] += str_word_count($card['text']);
+	preg_match_all('/\!\[.*\]\(.*\)/Um', $card['text'], $imgMatches);
+	$stats['g']['img'] += count($imgMatches[0]);
+	preg_match_all('/\!\(https?\:\/\/www\.youtube\.com\/watch\?v\=(.*)\)/Um', $card['text'], $vidMatches);
+	$stats['g']['vid'] += count($vidMatches[0]);
+	$stats['g']['cards'] += 1;
+	if (isset($stats['g']['t'][$card['type']])) $stats['g']['t'][$card['type']] += strlen($card['text']);
+	else $stats['g']['t'][$card['type']] = strlen($card['text']);
+}
+$stats['g']['length-moy'] = round($stats['g']['length'] / $stats['g']['cards'], 2);
+$stats['g']['img-moy'] = round($stats['g']['img'] / $stats['g']['cards'], 2);
+$stats['g']['vid-moy'] = round($stats['g']['vid'] / $stats['g']['cards'], 2);
+$stats['g']['words-moy'] = round($stats['g']['length'] / $stats['g']['words'], 2);
+
+
+$topCards = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0 ORDER BY CHAR_LENGTH(text) DESC LIMIT 10"); //TOP CARDS
+$topCards->execute();
+while ($topCard = $topCards->fetch()) {
+	$value = round(( strlen($topCard['text']) / $stats['g']['length'] ) * 100, 1);
+	array_push($stats['topCards']['datasets'][0]['data'], strlen($topCard['text']));
+	array_push($stats['topCards']['datasets'][0]['backgroundColor'], textToColor($topCard['name']));
+	array_push($stats['topCards']['labels'], $topCard['name']);
+}
+foreach ($stats['g']['t'] as $key => $value) { //TYPES
+	if (isset($config['types'][$key])) $name = ucfirst($config['types'][$key]);
+	else $name = $key;
+	$label = $name." (".$value." caractères)";
+	$value = round(($value / $stats['g']['length'] ) * 100, 1);
+	array_push($stats['topTypes']['datasets'][0]['data'], $value);
+	array_push($stats['topTypes']['datasets'][0]['backgroundColor'], textToColor($name));
+	array_push($stats['topTypes']['labels'], $label);
+}
+
+$stats['topCards'] = json_encode($stats['topCards']);
+$stats['topTypes'] = json_encode($stats['topTypes']);
 $content['card'] = <<<HOMEPAGE
 {$homepage}
 <label for="card-search-homepage">{$lang['homepage-search_input']}</label>
@@ -48,9 +96,33 @@ $content['card'] = <<<HOMEPAGE
 	<h2>{$content['hp']['randTitle']}</h2>
 	{$content['hp']['rand']}
 </div>
-<div class="center">
-	<h2 id="pref">{$lang['homepage-prefs-title']}</h2>
+<h2 class="center">Statistiques</h2>
+<div class="flexboxData">
+	<div>
+		<h2>Top des fiches</h2>
+		<canvas id="chart-topcards"></canvas>
+	</div>
+	<div>
+		<h2>Proportion des catégories</h2>
+		<canvas id="chart-toptypes"></canvas>
+	</div>
+	<div>
+		<h2>Général</h2>
+		Total de fiches : {$stats['g']['cards']}<br>
+		Total de caractères: {$stats['g']['length']}<br>
+		Nombre total de mots : {$stats['g']['words']}<br>
+		Total d'images : {$stats['g']['img']}<br>
+		Total de vidéos YouTube : {$stats['g']['vid']}<br>
+		<br>
+		Moyenne de lettre par mots : {$stats['g']['words-moy']}<br>
+		Moyenne d'images par fiche : {$stats['g']['img-moy']}<br>
+		Moyenne de vidéos par fiche : {$stats['g']['vid-moy']}<br>
+		Moyenne de caractères par fiche : {$stats['g']['length-moy']}<br>
+	</div>
+	<div>
+	</div>
 </div>
+<h2 class="center" id="pref">{$lang['homepage-prefs-title']}</h2>
 <form action="">
 	<input class="checkbox" id="nightmode" type="checkbox" {$prefNightmode} value="on">
 	<label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br><br>
@@ -65,5 +137,10 @@ $content['card'] = <<<HOMEPAGE
 	{$lang['cookie-warning']}<br>
 	<button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
 </form>
+
+<script>
+	generateChart('bar', 'chart-topcards', {$stats['topCards']}, {'yaxis': ' caractères'});
+	generateChart('doughnut', 'chart-toptypes', {$stats['topTypes']}, {});
+</script>
 HOMEPAGE;
 ?>
