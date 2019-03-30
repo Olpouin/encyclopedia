@@ -46,7 +46,7 @@ $stats['topCards'] = $stats['topTypes'] = [
 $cards = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0");
 $cards->execute();
 $stats['c'] = $stats['t'] = $stats['g']['totaltxt'] = "";
-$stats['g']['length'] = $stats['g']['img'] = $stats['g']['vid'] = $stats['g']['cards'] = $stats['g']['words'] = 0;
+$stats['g']['length'] = $stats['g']['img'] = $stats['g']['vid'] = $stats['g']['cards'] = $stats['g']['words'] = $stats['topCards-length'] = 0;
 while ($card = $cards->fetch()) {
 	$stats['g']['length'] += strlen($card['text']);
 	$stats['g']['words'] += str_word_count($card['text']);
@@ -68,10 +68,12 @@ $topCards = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hid
 $topCards->execute();
 while ($topCard = $topCards->fetch()) {
 	$value = round(( strlen($topCard['text']) / $stats['g']['length'] ) * 100, 1);
+	$stats['topCards-length'] += strlen($topCard['text']);
 	array_push($stats['topCards']['datasets'][0]['data'], strlen($topCard['text']));
 	array_push($stats['topCards']['datasets'][0]['backgroundColor'], textToColor($topCard['name']));
 	array_push($stats['topCards']['labels'], $topCard['name']);
 }
+$stats['topCard-perc'] = round(( $stats['topCards-length'] / $stats['g']['length'] ) * 100, 1);
 foreach ($stats['g']['t'] as $key => $value) { //TYPES
 	if (isset($config['types'][$key])) $name = ucfirst($config['types'][$key]);
 	else $name = $key;
@@ -101,6 +103,7 @@ $content['card'] = <<<HOMEPAGE
 	<div>
 		<h2>Top des fiches</h2>
 		<canvas id="chart-topcards"></canvas>
+		Les 10 premières fiches représentent {$stats['topCard-perc']}% de la galerie.
 	</div>
 	<div>
 		<h2>Proportion des catégories</h2>
