@@ -121,7 +121,6 @@ $serverMarkdownArray = array(
 	'/<div class="infobox-data"><span class="infobox-data-title">(.*)<\/span><span>(.*)<\/span><\/div>/Ums' => '[ibd]$1|$2[/ibd]',
 	'/<hr>/Ums' => '[hr]',
 	'/\&emsp\;/Ums' => "\t",
-	'/<h([1-6])(.*)>(.*)\n<\/h([1-6])>/Ums' => '<h$1$2>$3<h$4>',
 	'/<h([1-6])(.*)>(.*)<\/h([1-6])>/Ums' => '[h$1]$3[/h$1]',
 );
 
@@ -133,6 +132,18 @@ preg_match('/(\/(.*))\//Um', $_SERVER['PHP_SELF'], $detectedPaths);
 $config['general']['path'] = $detectedPaths['1'];
 
 define("PATH",$config['general']['path']);
+
+//Cards listing
+$cardList = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY type,groupe,name");
+$cardList->execute();
+$config['cardsList'] = array();
+while ($data = $cardList->fetch()) {
+	if (isset($config['types'][$data['type']])) {
+		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['password'] = $data['password'];
+		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['text'] = $data['text'];
+		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['hidden'] = $data['hidden'];
+	}
+}
 
 require_once 'php/functions.inc.php';
 ?>

@@ -5,18 +5,6 @@ if (!isset($_COOKIE['prefeditor'])) $_COOKIE['dyslexic'] = "html";
 /*==== BASIC FILES ====*/
 require_once 'config.php';
 
-//Cards listing
-$cardList = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY type,groupe,name");
-$cardList->execute();
-$config['cardsList'] = array();
-while ($data = $cardList->fetch()) {
-	if (isset($config['types'][$data['type']])) {
-		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['password'] = $data['password'];
-		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['text'] = $data['text'];
-		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['hidden'] = $data['hidden'];
-	}
-}
-
 $settings = require_once 'php/settings.php';
 require_once 'php/functions.inc.php';
 require_once 'php/sidenav.php';
