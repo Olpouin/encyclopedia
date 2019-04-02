@@ -16,6 +16,7 @@ nav:hover ~ .card {
 	width: 100%;
 	margin-top: 0;
 	border-bottom: none;
+	text-decoration: none !important;
 }
 .format hr {
 	margin: 0;
@@ -26,14 +27,20 @@ hr + br {
 	display: none;
 }
 .format > h1 {
-	font-size: 35px !important;
+	font-size: 40px !important;
 }
 .format > h2 {
+	font-size: 35px !important;
+	margin-left: 10px !important;
+}
+.format > h3 {
 	font-size: 30px !important;
+	margin-left: 20px !important;
 }
 .format > h1,.format > h2,.format > h3,.format > h4,.format > h5,.format > h6 {
 	margin: 0;
 	font-size: 25px;
+	text-decoration: underline;
 }
 
 .large-space {
