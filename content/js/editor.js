@@ -11,6 +11,16 @@ document.execCommand('insertBrOnReturn');
 document.execCommand('enableInlineTableEditing');
 document.execCommand("defaultParagraphSeparator", false, "div");
 
+window.onbeforeunload = function (e) { //https://stackoverflow.com/questions/10311341/confirmation-before-closing-of-tab-browser
+	e = e || window.event;
+	// For IE and Firefox prior to version 4
+	if (e) {
+		e.returnValue = 'Sure?';
+	}
+	// For Safari
+	return 'Sure?';
+};
+
 txtarea.onpaste = function(e) {
 	let paste = (event.clipboardData || window.clipboardData).getData('text');
 	addFormat("insertText",{"def":paste});
