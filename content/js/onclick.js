@@ -1,7 +1,7 @@
 function generateChart(type, id, data, param) {
 	let ctx = document.getElementById(id).getContext('2d');
 	let scales = {};
-	if ('yaxis' in param) scales.yAxes = [{ticks:{callback:function(value){return value + param.yaxis;}}}];
+	if ('yaxis' in param) scales.yAxes = [{ticks:{callback:function(value){return value + param.yaxis;},min:0}}];
 	new Chart(ctx,
 		{
 			type: type,

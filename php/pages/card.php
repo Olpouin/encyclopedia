@@ -20,7 +20,7 @@ if (!$searchInfo['isFound']) {
 			$toc .= "</details>";
 		} else $toc = "";
 		$formatText = $format($loadedDB['text'], false);
-		$content['card'] = "<h1>{$cardName}</h1>{$toc}{$formatText}";
+		$content['card'] = "<h1>{$cardName}</h1>{$toc}<p>{$formatText}</p>";
 	}
 }
 ?>
