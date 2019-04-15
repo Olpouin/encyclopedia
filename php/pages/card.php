@@ -10,7 +10,7 @@ if (!$searchInfo['isFound']) {
 	if (isset($_GET['edit'])) { /*EDIT PAGE*/
 		require('card-edit.php');
 	} else { /*DISPLAY PAGE*/
-		$infoContent['g_title'] = $cardName;
+		$infoContent['g_title'] = $cardName." (".ucfirst($config['types'][$_GET['type']]).")";
 		//Thanks to http://www.10stripe.com/articles/automatically-generate-table-of-contents-php.php !
 		preg_match_all("/\[h[1-6].*\](.*)\[\/h[1-6]\]/Ums", preg_replace('/\[ib.*\[\/ib\]/Ums', '', $loadedDB['text']), $tocTitles);
 		if (!empty(implode("",$tocTitles[0]))) {
