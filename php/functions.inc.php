@@ -56,23 +56,20 @@ $serverFormat = function($text) use($serverMarkdownArray) {
 	$text = strip_tags($text);
 	return $text;
 };
-
-$hrefGen = function ($type = null, $name = null) use ($config) {
+function hrefGen($type = null, $name = null) {
 	if (isset($type)) {
-		if (isset($name)) {
-			return $config['general']['path'].'/'.urlencode($type).'/'.urlencode($name);
-		}
-		return $config['general']['path'].'/'.urlencode($type).'/';
+		if (isset($name)) return PATH.'/'.urlencode($type).'/'.urlencode($name);
+		else return PATH.'/'.urlencode($type).'/';
 	}
-	return $config['general']['path'];
+	return PATH;
 };
 
-$previewBox = function ($card) use ($config) {
+function previewBox($card) {
 	preg_match('/\!\[(.*)\]\((.*)\)/m', $card['text'], $matches);
 	if (empty($matches)) {
-		$matches['2'] = $config['general']['box-default_image'];
+		$matches['2'] = DEFAULT_IMAGE;
 	}
-	$formattedCard = '<a href="'.$config['general']['path'].'/'.$card['type'].'/'.urlencode($card['name']).'" title="'.$card['name'].'" ><div class="previewBox" style="background-image: url('.$matches['2'].');"><span>'.$card['name'].'</span></div></a>';
+	$formattedCard = '<a href="'.hrefGen($card['type'], $card['name']).'" title="'.$card['name'].'" ><div class="previewBox" style="background-image: url('.$matches['2'].');"><span>'.$card['name'].'</span></div></a>';
 	return $formattedCard;
 };
 

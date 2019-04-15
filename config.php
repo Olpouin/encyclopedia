@@ -131,8 +131,6 @@ $configTypes = $config['types'];
 preg_match('/(\/(.*))\//Um', $_SERVER['PHP_SELF'], $detectedPaths);
 $config['general']['path'] = $detectedPaths['1'];
 
-define("PATH",$config['general']['path']);
-
 //Cards listing
 $cardList = $db->prepare("SELECT * FROM {$config['database']['table']} ORDER BY type,groupe,name");
 $cardList->execute();
@@ -144,6 +142,9 @@ while ($data = $cardList->fetch()) {
 		$config['cardsList'][$data['type']][$data['groupe']][$data['name']]['hidden'] = $data['hidden'];
 	}
 }
+
+define("PATH",$config['general']['path']);
+define("DEFAULT_IMAGE",$config['general']['box-default_image']);
 
 require_once 'php/functions.inc.php';
 ?>

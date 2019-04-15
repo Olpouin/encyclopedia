@@ -13,7 +13,7 @@ if (isset($_GET['search'])) {
 	$searchDB = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE (name REGEXP ? OR groupe REGEXP ?) AND hidden = 0");
 	$searchDB->execute(array($_GET['search'],$_GET['search']));
 	while ($listing = $searchDB->fetch()) {
-		$content['hp']['search'] .= $previewBox($listing);
+		$content['hp']['search'] .= previewBox($listing);
 	}
 	$content['hp']['search'] .= "</div>";
 }
@@ -23,7 +23,7 @@ $content['hp']['randTitle'] = str_replace('[TOTALPAGES]', $totalDBCounter, $lang
 $boxList = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0 ORDER BY rand() LIMIT 4");
 $boxList->execute();
 while ($listing = $boxList->fetch()) {
-	$content['hp']['rand'] .= $previewBox($listing);
+	$content['hp']['rand'] .= previewBox($listing);
 }
 
 foreach ($config['lang'] as $key => $value) {
