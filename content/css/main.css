@@ -18,6 +18,10 @@ template { /*For IE users*/
 	width: calc(100% - 251px);
 }
 
+::selection {
+	color: var(--general-text);
+	background: var(--general-color);
+}
 html.wait, html.wait * {
 	cursor: wait !important;
 }
