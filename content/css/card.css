@@ -21,13 +21,14 @@ nav:hover ~ .card {
 .format hr {
 	margin: 0;
 	border: none;
-	border-top: solid 1px var(--color_main-opposite);
+	border-top: solid 1px var(--hr);
 }
 hr + br {
 	display: none;
 }
 .format > h1 {
 	font-size: 40px !important;
+	color: var(--general-color);
 }
 .format > h2 {
 	font-size: 35px !important;
@@ -56,8 +57,11 @@ hr + br {
 	height: 315px;
 }
 .format a {
+	text-decoration: none;
+	color: var(--general-link);
+}
+.format a:hover {
 	text-decoration: underline;
-	color: #003399;
 }
 .format blockquote {
 	font-family: Georgia, serif;
@@ -88,9 +92,6 @@ hr + br {
 .format blockquote > cite::before {
 	content: '— ';
 }
-.format p::before {
-	content: "\00a0\00a0\00a0\00a0";
-}
 .format img {
 	cursor: pointer;
 	max-width: 100%;
@@ -106,7 +107,7 @@ hr + br {
 /*INFOBOX*/
 .infobox {
 	width: 300px;
-	background-color: var(--color_sidenav);
+	background-color: var(--infobox-background);
 	float: right;
 	clear: right;
 	margin: 15px 0 15px 15px;
@@ -117,13 +118,13 @@ hr + br {
 }*/
 .infobox h1 {
 	display: inline-block;
-	background-color: #003399;
+	background-color: var(--general-color);
 	width: 100%;
 	height: auto;
 	text-align: center;
 	padding: 0.5em 0;
 	margin: 0;
-	color: var(--color_infobox-text_color);
+	color: var(--infobox-text_h1);
 }
 .infobox img {
 	width: 100%;
@@ -148,7 +149,7 @@ hr + br {
 	word-break: break-all;
 }
 #textEdit .infobox-data span, #textEdit blockquote > cite, #textEdit h1, #textEdit h2, #textEdit h3, #textEdit h4, #textEdit h5, #textEdit h6 {
-	border: #003399 1px dotted;
+	border: var(--general-color) 1px dotted;
 }
 .infobox-data-title {
 	width: 90px;
@@ -163,14 +164,16 @@ hr + br {
 }
 /*TOC*/
 .toc {
-	border: solid 1px var(--color_borders);
-	display: inline-block;
-	float: left;
+	background-color: var(--toc-background);
+	box-shadow: 1px 1px 3px 0 var(--general-shadow);
+	border-radius: 5px;
+	display: block;
+	position: relative;
+	top: -20px;
 	padding: 10px;
-	margin: 5px;
+	margin: 15px;
 	text-decoration: none;
 	width: 300px;
-	clear: left;
 	text-align: left;
 }
 .toc a {
@@ -179,19 +182,28 @@ hr + br {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	text-indent: 5px;
-	color: var(--color_main-opposite) !important;
+	color: var(--general-text) !important;
 }
 .toc a:hover {
 	text-decoration: underline;
 }
 .toc summary {
+	display: block;
 	text-align: center;
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 16px;
 }
+.toc summary::after {
+	content: " [Afficher]";
+	color: var(--general-color);
+}
+.toc[open] summary::after {
+	content: " [Masquer]";
+	color: var(--general-color);
+}
 .toc-title-2, .toc-title-3, .toc-title-4, .toc-title-5, .toc-title-6 {
-	border-left: 3px solid var(--color_borders);
+	border-left: 3px solid var(--general-border);
 	padding-left: 3px;
 }
 .toc-title-2 {

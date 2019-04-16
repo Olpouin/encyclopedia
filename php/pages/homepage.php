@@ -1,7 +1,7 @@
 <?php
 $infoContent['g_title'] = "Accueil";
 if (!isset($_COOKIE['lang'])) $_COOKIE['lang'] = $config['general']['default_language'];
-$content['hp']['search'] = $content['hp']['rand'] = $content['hp']['langForm'] = "";
+$content['hp']['search'] = $content['hp']['langForm'] = $content['hp']['themeForm'] = "";
 //Main text
 $homepageReq = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '[SERVERDATA]' AND name = 'homepage'");
 $homepageReq->execute();
@@ -30,8 +30,12 @@ foreach ($config['lang'] as $key => $value) {
 	$langSelected = ($key == $_COOKIE['lang']) ? "selected" : "";
 	$content['hp']['langForm'] .= "<option {$langSelected} value='{$key}'>{$value}</option>";
 }
+foreach ($settings['modesList'] as $key => $value) {
+	$themeSelected = ($key == $_COOKIE['theme']) ? "selected" : "";
+	$name = ucfirst($key);
+	$content['hp']['themeForm'] .= "<option {$themeSelected} value='{$key}'>{$name}</option>";
+}
 
-$prefNightmode = ($_COOKIE['mode'] == "night") ? "checked" : "";
 $prefTextedit = ($_COOKIE['prefeditor'] == "txt") ? "checked" : "";
 $prefDyslexic = ($_COOKIE['dyslexic'] == "true") ? "checked" : "";
 
@@ -127,8 +131,10 @@ $content['card'] = <<<HOMEPAGE
 </div>
 <h2 class="center" id="pref">{$lang['homepage-prefs-title']}</h2>
 <form action="">
-	<input class="checkbox" id="nightmode" type="checkbox" {$prefNightmode} value="on">
-	<label for="nightmode" class="toggle">{$lang['homepage-prefs-nightmode']}</label><br><br>
+	<select id="pref-theme">
+		{$content['hp']['themeForm']}
+	</select>
+	<label for="pref-theme" class="toggle">{$lang['homepage-prefs-theme']}</label><br><br>
 	<select id="pref-chooseLang">
 		{$content['hp']['langForm']}
 	</select>

@@ -43,7 +43,7 @@ function value(ID) {
 ////Parameters
 //Change
 function changeParameters() {
-	document.cookie = (document.querySelector('#nightmode').checked) ? "mode=night; expires=Thu, 18 Dec 9999 12:00:00 UTC;" : "mode=day; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
+	document.cookie = "theme="+document.getElementById('pref-theme').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
 
 	document.cookie = "lang="+document.getElementById('pref-chooseLang').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
 
@@ -112,6 +112,6 @@ function notify(title,text,param) {
 
 	notifZone.insertBefore(newElement("h1",{'txt':title}), notifButtons);
 	notifZone.insertBefore(newElement("p",{'txt':text}), notifButtons);
-	if ('url' in param) notifButtons.appendChild(newElement("a",{'txt':langNotifShow,'class':'input','attr':{'href':param.url}}));
-	notifButtons.appendChild(newElement("a",{'txt':langNotifClose,'class':'input','attr':{'onclick':'deleteElement(\''+notifID+'\')'}}))
+	if ('url' in param) notifButtons.appendChild(newElement("a",{'txt':langNotifShow,'class':'button','attr':{'href':param.url}}));
+	notifButtons.appendChild(newElement("a",{'txt':langNotifClose,'class':'button','attr':{'onclick':'deleteElement(\''+notifID+'\')'}}))
 }
