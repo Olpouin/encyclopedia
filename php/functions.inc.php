@@ -1,17 +1,4 @@
 <?php
-function searchCard($searchName, $array) {
-	foreach ($array as $group => $cardArray) {
-		if (array_key_exists($searchName, $cardArray)) {
-			return array(
-				'isFound' => true,
-				'group' => $group,
-				'card' => $cardArray[$searchName]
-			);
-		}
-	}
-	return array('isFound'=>false);
-}
-
 function rand_color() {
     return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
 }
