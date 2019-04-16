@@ -36,9 +36,9 @@ $checkPassword = function ($pass) use($globalPasswords) {
 	return false;
 };
 
-$format = function($text, $editor) use($markdownArray) {
+function format($text, $editor) {
 	$text = htmlentities($text);
-	foreach ($markdownArray as $key => $value) {
+	foreach (MARKDOWN_TO_CLIENT as $key => $value) {
 		if (!$editor) $text = preg_replace($key, $value['r'], $text);
 		else {
 			if ($value['e']) $text = preg_replace($key, $value['r'], $text);
@@ -56,6 +56,7 @@ $serverFormat = function($text) use($serverMarkdownArray) {
 	$text = strip_tags($text);
 	return $text;
 };
+
 function hrefGen($type = null, $name = null) {
 	if (isset($type)) {
 		if (isset($name)) return PATH.'/'.urlencode($type).'/'.urlencode($name);
@@ -66,11 +67,25 @@ function hrefGen($type = null, $name = null) {
 
 function previewBox($card) {
 	preg_match('/\!\[(.*)\]\((.*)\)/m', $card['text'], $matches);
-	if (empty($matches)) {
-		$matches['2'] = DEFAULT_IMAGE;
-	}
-	$formattedCard = '<a href="'.hrefGen($card['type'], $card['name']).'" title="'.$card['name'].'" ><div class="previewBox" style="background-image: url('.$matches['2'].');"><span>'.$card['name'].'</span></div></a>';
-	return $formattedCard;
+	//$imgPreview = "";
+	//if (!empty($matches)) $imgPreview = '<div class="previewBoxImg" style="background-image: url('.$matches['2'].');"></div>';
+	if (empty($matches)) $matches['2'] = DEFAULT_IMAGE;
+	$cardURL = hrefGen($card['type'], $card['name']);
+	$langEdit = LANG['edit'];
+	$langRead = LANG['read'];
+	$formattedCard = <<<FORMATTEDCARD
+<div class="previewBox">
+	<a href="{$cardURL}" title="{$card['name']}">
+		<div class="previewBoxImg" style="background-image: url({$matches['2']});"></div>
+		<div class="previewBoxText">
+			<span>{$card['name']}</span>
+		</div>
+	</a>
+	<a class="button" href="{$cardURL}">{$langRead}</a>
+	<a class="button" href="{$cardURL}&edit">{$langEdit}</a>
+</div>
+FORMATTEDCARD;
+return $formattedCard;
 };
 
 

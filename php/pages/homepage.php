@@ -6,7 +6,7 @@ $content['hp']['search'] = $content['hp']['langForm'] = $content['hp']['themeFor
 $homepageReq = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '[SERVERDATA]' AND name = 'homepage'");
 $homepageReq->execute();
 $homepage = $homepageReq->fetch();
-$homepage = $format($homepage['text'], false);
+$homepage = format($homepage['text'], false);
 //Search
 if (isset($_GET['search'])) {
 	$content['hp']['search'] = "<div class='center'>";
@@ -16,14 +16,6 @@ if (isset($_GET['search'])) {
 		$content['hp']['search'] .= previewBox($listing);
 	}
 	$content['hp']['search'] .= "</div>";
-}
-//4 random cards
-$totalDBCounter = $db->query("select count(*) from {$config['database']['table']} where hidden = '0'")->fetchColumn();
-$content['hp']['randTitle'] = str_replace('[TOTALPAGES]', $totalDBCounter, $lang['homepage-top_message']);
-$boxList = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0 ORDER BY rand() LIMIT 4");
-$boxList->execute();
-while ($listing = $boxList->fetch()) {
-	$content['hp']['rand'] .= previewBox($listing);
 }
 
 foreach ($config['lang'] as $key => $value) {
@@ -98,10 +90,6 @@ $content['card'] = <<<HOMEPAGE
 	<input class="cardSearch-button" type="submit" value="{$lang['homepage-search_button']}">
 </form>
 {$content['hp']['search']}
-<div class='center'>
-	<h2>{$content['hp']['randTitle']}</h2>
-	{$content['hp']['rand']}
-</div>
 <h2 class="center">Statistiques</h2>
 <div class="flexboxData">
 	<div>

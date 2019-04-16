@@ -145,6 +145,8 @@ while ($data = $cardList->fetch()) {
 
 define("PATH",$config['general']['path']);
 define("DEFAULT_IMAGE",$config['general']['box-default_image']);
+define("MARKDOWN_TO_CLIENT", $markdownArray);
+define("LANG",$lang);
 
 require_once 'php/functions.inc.php';
 ?>

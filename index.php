@@ -1,7 +1,7 @@
 <?php
-if (!isset($_COOKIE['mode'])) $_COOKIE['mode'] = "day";
+if (!isset($_COOKIE['theme'])) $_COOKIE['theme'] = "sky";
 if (!isset($_COOKIE['dyslexic'])) $_COOKIE['dyslexic'] = false;
-if (!isset($_COOKIE['prefeditor'])) $_COOKIE['dyslexic'] = "html";
+if (!isset($_COOKIE['prefeditor'])) $_COOKIE['prefeditor'] = "html";
 /*==== BASIC FILES ====*/
 require_once 'config.php';
 
@@ -53,14 +53,12 @@ $content['header'] .= '<meta property="og:title" content="'.$infoContent['g_titl
 		<script src="<?=PATH?>/content/js/onclick.js"></script>
 		<script src="<?=PATH?>/content/js/chart.min.js"></script>
 		<link rel="icon" href="<?=PATH?>/content/favicon.ico">
-		<link rel="stylesheet" href="<?=PATH?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/sidenav.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/card.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=PATH?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/chard.min.css" type="text/css" media="screen">
 		<style>
-		<?php
-			echo $settings['mode'],$settings['dyslexic'];
-		?>
+		<?=$settings['design'],$settings['dyslexic']?>
 		</style>
 		<script>
 			const langNotifShow = "<?=$lang['notif-show']?>";

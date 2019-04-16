@@ -2,6 +2,9 @@
 $lang = array(
 	'help' => 'Aide',
 	'close' => 'Fermer',
+	'edit' => 'Modifier',
+	'read' => 'Lire',
+	'stats' => 'Stats',
 	'language' => "Langage",
 	'password' => 'Mot de passe',
 	'wrong' => 'Incorrect',
