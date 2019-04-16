@@ -11,11 +11,14 @@ if(!isset($data['group'])) exit($APIresponse('servererror', $langAPI['isset']."g
 if(!isset($data['hide'])) exit($APIresponse('servererror', $langAPI['isset']."hide"));
 
 $name = urldecode($data['name']);
-$search = searchCard($name, $config['cardsList'][$data['type']]);
-if (!$checkPassword($data['pass']) AND !password_verify($data['pass'], $search['card']['password'])) exit($APIresponse('error',$langAPI['error-pass']));
+$cardR = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0 AND type = ? AND name = ?");
+$cardR->execute(array($data['type'],$name));
+$card = $cardR->fetch(PDO::FETCH_ASSOC);
+if (!empty($card)) exit($APIresponse('servererror',$langAPI['error-name-notfound']));
+
+if (!$checkPassword($data['pass']) AND !password_verify($data['pass'], $card['password'])) exit($APIresponse('error',$langAPI['error-pass']));
 
 if(!array_key_exists($data['type'], $configTypes)) exit($APIresponse('servererror', $langAPI['error-type-notfound']));
-if (!$search['isFound']) exit($APIresponse('servererror', $langAPI['error-name-notfound']));
 if (strlen($data['text']) > 1000000 OR strlen($data['text']) < 0) exit($APIresponse('error',$langAPI['error-text-size']));
 if (strlen($data['group']) > 25 OR strlen($data['group']) < 0) exit($APIresponse('error',$langAPI['error-group-size']));
 

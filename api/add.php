@@ -12,8 +12,10 @@ if (!isset($data['addPass'])) exit($APIresponse('servererror', $langAPI['isset']
 if (!$checkPassword($data['pass'])) exit($APIresponse('error',$langAPI['error-pass']));
 
 if (!array_key_exists($data['type'], $configTypes)) exit($APIresponse('serverror', $langAPI['error-type-notfound']));
-$search = searchCard($data['name'], $config['cardsList'][$data['type']]);
-if ($search['isFound']) exit($APIresponse('error',$langAPI['error-name-alreadyexist']));
+$cardR = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0 AND type = ? AND name = ?");
+$cardR->execute(array($data['type'],$data['name']));
+$card = $cardR->fetch(PDO::FETCH_ASSOC);
+if (!empty($card)) exit($APIresponse('error',$langAPI['error-name-alreadyexist']));
 if (strlen($data['name']) > 35 OR strlen($data['name']) < 1) exit($APIresponse('error',$langAPI['error-name-size']));
 if (strlen($data['group']) > 25 OR strlen($data['group']) <= 0) exit($APIresponse('error',$langAPI['error-group-size']));
 

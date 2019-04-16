@@ -2,15 +2,12 @@
 $infoContent['g_title'] = "Édition : ".$cardName;
 
 if (isset($_COOKIE['prefeditor'])) {
-	if ($_COOKIE['prefeditor'] == "txt") {
-		$prefText = true;
-	} else {
-		$prefText = false;
-	}
-}
+	if ($_COOKIE['prefeditor'] == "txt") $prefText = true;
+	else $prefText = false;
+} else $prefText = false;
 
 if (!$prefText) {
-	$loadedDB['text'] = $format($loadedDB['text'], true); // TODO: Better $format function
+	$card['text'] = format($card['text'], true); // TODO: Better $format function
 	$editorStart = '<div id="textEdit" class="format" contenteditable="true" required="" maxlength="1000000" name="text">';
 	$editorEnd = '</div>';
 	$onclick = 'false';
@@ -46,7 +43,7 @@ if (!$prefText) {
 }
 
 
-if ($loadedDB['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
+if ($card['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
 else $hideCheckboxValue = "";
 
 $content['card'] = <<<CARDEDIT
@@ -54,11 +51,11 @@ $content['card'] = <<<CARDEDIT
 {$editorBar}
 <input id="cardsName" value="{$cardName}" type="hidden">
 <input id="cardsType" value="{$type}" type="hidden">
-{$editorStart}{$loadedDB['text']}{$editorEnd}
+{$editorStart}{$card['text']}{$editorEnd}
 <label for="hide-card">{$lang['edition-hide_card']}</label>
 <input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 <label for="group">{$lang['edition-group_placeholder']}</label>
-<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$searchInfo['group']}"><br><br>
+<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$card['groupe']}"><br><br>
 <label for="pass">{$lang['password']}</label>
 <input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
 <button class="submit" onclick="editCardOC({$onclick})">{$lang['send']}</button>
