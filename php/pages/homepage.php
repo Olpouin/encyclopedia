@@ -10,7 +10,7 @@ $homepage = format($homepage['text'], false);
 //Search
 if (isset($_GET['search'])) {
 	$content['hp']['search'] = "<div class='center'>";
-	$searchDB = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE (name REGEXP ? OR groupe REGEXP ?) AND hidden = 0");
+	$searchDB = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE (name REGEXP ? OR groupe REGEXP ?) AND hidden = 0 ORDER BY name,groupe");
 	$searchDB->execute(array($_GET['search'],$_GET['search']));
 	while ($listing = $searchDB->fetch()) {
 		$content['hp']['search'] .= previewBox($listing);
