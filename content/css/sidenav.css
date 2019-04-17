@@ -19,14 +19,26 @@ nav > span {
 	font-weight: bolder;
 	text-align: center;
 }
-nav ul.type > span {
+nav summary {
+	cursor: pointer;
+	display: block;
 	font-weight: bold;
 	font-size: 16px;
 }
-nav ul.type {
+nav summary::before {
+	content: "+";
+	margin: 0 5px 0 0;
+	font-size: 1.2em;
+	font-family: monospace;
+}
+nav details[open] summary::before {
+	content: "-";
+	font-family: monospace;
+}
+nav details {
 	padding-left: 8px;
 }
-nav ul.type:last-of-type {
+nav details:last-of-type {
 	padding-bottom: 25px;
 }
 nav ul {
