@@ -48,7 +48,7 @@ $modes['galaxy'] = <<<MODE_GALAXY
 --general-text: #E0E0E0;
 --general-text_second: #EEEEEE;
 --general-text_third: #DDDDDD;
---general-link: #260099;
+--general-link: #5500cc;
 --general-border: #323232;
 --general-scrollbar: #323232;
 --sidenav-background: #111314;
