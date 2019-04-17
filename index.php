@@ -1,13 +1,18 @@
 <?php
-if (!isset($_COOKIE['theme'])) $_COOKIE['theme'] = "sky";
+if (!isset($_COOKIE['theme'])) $_COOKIE['theme'] = "sky.css";
 if (!isset($_COOKIE['dyslexic'])) $_COOKIE['dyslexic'] = false;
 if (!isset($_COOKIE['prefeditor'])) $_COOKIE['prefeditor'] = "html";
 /*==== BASIC FILES ====*/
 require_once 'config.php';
-
-$settings = require_once 'php/settings.php';
 require_once 'php/functions.inc.php';
 require_once 'php/sidenav.php';
+//Settings
+$settings['themes'] = array_diff(scandir('content/css/themes'), array('..', '.'));
+if (!in_array($_COOKIE['theme'], $settings['themes'])) $_COOKIE['theme'] = 'sky.css';
+
+$settings['dyslexic'] = ($_COOKIE['dyslexic'] == "true") ?
+	"html,select,button,input,blockquote{font-family:opendyslexic-regular,sans-serif!important;}"
+	: "html{font-family:opensans-regular,sans-serif;}";
 /*Looking the right page to choose*/
 if(isset($_GET['type'])) {
 	$type = $_GET['type'];
@@ -57,8 +62,9 @@ $content['header'] .= '<meta property="og:title" content="'.$infoContent['g_titl
 		<link rel="stylesheet" href="<?=PATH?>/content/css/card.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=PATH?>/content/css/chard.min.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=PATH?>/content/css/themes/<?=$_COOKIE['theme']?>" type="text/css" media="screen">
 		<style>
-		<?=$settings['design'],$settings['dyslexic']?>
+		<?=$settings['dyslexic']?>
 		</style>
 		<script>
 			const langNotifShow = "<?=$lang['notif-show']?>";

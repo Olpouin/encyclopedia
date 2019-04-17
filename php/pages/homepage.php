@@ -22,10 +22,10 @@ foreach ($config['lang'] as $key => $value) {
 	$langSelected = ($key == $_COOKIE['lang']) ? "selected" : "";
 	$content['hp']['langForm'] .= "<option {$langSelected} value='{$key}'>{$value}</option>";
 }
-foreach ($settings['modesList'] as $key => $value) {
-	$themeSelected = ($key == $_COOKIE['theme']) ? "selected" : "";
-	$name = ucfirst($key);
-	$content['hp']['themeForm'] .= "<option {$themeSelected} value='{$key}'>{$name}</option>";
+foreach ($settings['themes'] as $value) {
+	$themeSelected = ($value == $_COOKIE['theme']) ? "selected" : "";
+	$name = ucwords(strtolower(str_replace('_', ' ', substr($value, 0, -4))));
+	$content['hp']['themeForm'] .= "<option {$themeSelected} value='{$value}'>{$name}</option>";
 }
 
 $prefTextedit = ($_COOKIE['prefeditor'] == "txt") ? "checked" : "";
