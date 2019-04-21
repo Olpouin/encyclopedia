@@ -8,9 +8,9 @@ function textToColor($str) { //https://stackoverflow.com/questions/3724111/how-c
   return "#".$code;
 }
 
-$APIresponse = function ($title, $msg) use($langAPI) {
+function APIresponse($title, $msg) {
 	$resp = [
-		'title'=>$langAPI['titles'][$title],
+		'title'=>LANG['api']['titles'][$title],
 		'message'=>$msg
 	];
 	return json_encode($resp);

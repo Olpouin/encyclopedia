@@ -78,7 +78,7 @@ $lang['error'] = array(
 $lang['api'] = array(
 	"titles" => [
 		"error" => "Error",
-		"serverror" => "Server error",
+		"servererror" => "Server error",
 		"success" => "Success"
 	],
 	"successes" => [
