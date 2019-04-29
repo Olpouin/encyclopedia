@@ -119,20 +119,37 @@ $content['card'] = <<<HOMEPAGE
 </div>
 <h2 class="center" id="pref">{$lang['homepage-prefs-title']}</h2>
 <form action="">
-	<select id="pref-theme">
-		{$content['hp']['themeForm']}
-	</select>
-	<label for="pref-theme" class="toggle">{$lang['homepage-prefs-theme']}</label><br><br>
-	<select id="pref-chooseLang">
-		{$content['hp']['langForm']}
-	</select>
-	<label for="pref-chooseLang">{$lang['language']}</label><br><br>
-	<input class="checkbox" id="prefeditor" type="checkbox" {$prefTextedit} value="on">
-	<label for="prefeditor" class="toggle">{$lang['homepage-prefs-editor']}</label><br><br>
-	<input class="checkbox" id="dyslexic" type="checkbox" {$prefDyslexic} value="on">
-	<label for="dyslexic" class="toggle">{$lang['homepage-prefs-dyslexic']}</label><br><br>
-	{$lang['cookie-warning']}<br>
-	<button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button>
+	<div class="flexboxData borderMedium">
+		<div>
+			<h2>Design</h2>
+			<select id="pref-theme">
+				{$content['hp']['themeForm']}
+			</select>
+			<label for="pref-theme" class="toggle">{$lang['homepage-prefs-theme']}</label><br><br>
+			<input class="checkbox" id="dyslexic" type="checkbox" {$prefDyslexic} value="on">
+			<label for="dyslexic" class="toggle">{$lang['homepage-prefs-dyslexic']}</label>
+		</div>
+		<div>
+			<h2>Technique</h2>
+			<select id="pref-chooseLang">
+				{$content['hp']['langForm']}
+			</select>
+			<label for="pref-chooseLang">{$lang['language']}</label><br><br>
+			<input class="checkbox" id="prefeditor" type="checkbox" {$prefTextedit} value="on">
+			<label for="prefeditor" class="toggle">{$lang['homepage-prefs-editor']}</label>
+		</div>
+		<div>
+			<h2>Vie privée</h2>
+			Soon
+		</div>
+		<div>
+		</div>
+		<div class="center">
+			<button class="input" onclick="changeParameters()">{$lang['homepage-prefs-confirm_changes']}</button><br>
+			<span>*{$lang['cookie-warning']}</span>
+		</div>
+
+	</div>
 </form>
 
 <script>
