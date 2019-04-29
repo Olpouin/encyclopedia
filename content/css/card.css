@@ -32,11 +32,16 @@ hr + br {
 }
 .format > h2 {
 	font-size: 35px !important;
-	margin-left: 10px !important;
 }
 .format > h3 {
 	font-size: 30px !important;
+	margin-left: 10px !important;
+}
+.format > h4 {
 	margin-left: 20px !important;
+}
+.format > h5 {
+	margin-left: 30px !important;
 }
 .format > h1,.format > h2,.format > h3,.format > h4,.format > h5,.format > h6 {
 	margin: 0;
