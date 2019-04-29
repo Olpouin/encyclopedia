@@ -34,6 +34,17 @@ try {
 $configGeneralDB = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = '[SERVERDATA]' AND name = 'general'");
 $configGeneralDB->execute();
 $configGeneralJSON = $configGeneralDB->fetch();
+if (!$configGeneralJSON) {
+	$createConfig = $db->prepare("INSERT INTO {$config['database']['table']}(name, type, text, hidden) VALUES(?, ?, ?, 1)");
+	$createConfig->execute(array(
+		'general',
+		'[SERVERDATA]',
+		'{"default_language":"en_US","site_name":"Gallery","box-default_image":"https:\/\/url.com\/img.jpg"}'
+	));
+
+	$configGeneralDB->execute();
+	$configGeneralJSON = $configGeneralDB->fetch();
+}
 
 $config['general'] = json_decode($configGeneralJSON['text'], true);
 $globalPasswords = [
