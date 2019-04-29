@@ -92,6 +92,10 @@ $config['general']['editor-bar'] = [
 	[
 		['format'=>'insertHTML', 'name'=>'ib', 'param'=>['def'=>'<aside class="infobox"><br>Infobox<br></aside>']],
 		['format'=>'insertHTML', 'name'=>'ibd', 'param'=>['def'=>'<div class="infobox-data"><span class="infobox-data-title">T</span><span>D</span></div>']]
+	],
+	[
+		['format'=>'subscript', 'name'=>'subscript'],
+		['format'=>'superscript', 'name'=>'superscript']
 	]
 ];
 

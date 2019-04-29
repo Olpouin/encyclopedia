@@ -58,6 +58,8 @@ $lang['editor-bar'] = array(
 	'tab' => 'Tab',
 	'ib' => 'Infobox',
 	'ibd' => 'Infobox data',
+	'subscript' => 'Subscript',
+	'superscript' => 'Superscript',
 	'help-dsc' => 'Description'
 );
 $lang['error'] = array(
