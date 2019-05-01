@@ -32,4 +32,5 @@ $createCard->execute(
 );
 
 echo(APIresponse('success',$langAPI['successes']['add']));
+logging('Fiche créee : '.$data['name'].' ('.ucfirst($config['types'][$data['type']]).')');
 ?>

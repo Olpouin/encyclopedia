@@ -16,6 +16,36 @@ function APIresponse($title, $msg) {
 	return json_encode($resp);
 };
 
+function logging($title, $desc = '', $color="3447003") {
+	/*
+	You can do whatever you want to log informations here.
+	To make it quicker and easier to read, I just redirect everything to a Discord channel with the webhook feature because I frequently use Discord.
+	Here's the code if you would like to use it.*/
+	/*$url = '';
+	$data = [
+		'content' => '',
+		'username' => '',
+		'embeds' => [
+			[
+				'title' => $title,
+				'description' => $desc,
+				'color' => $color,
+				'timestamp' => date('c')
+			]
+		]
+	];
+
+	$options = array(
+			'http' => array(
+			'header'  => "Content-type: application/json\r\n",
+			'method'  => 'POST',
+			'content' => json_encode($data)
+		)
+	);
+	$context  = stream_context_create($options);
+	file_get_contents($url, false, $context);*/
+}
+
 $checkPassword = function ($pass) use($globalPasswords) {
 	foreach ($globalPasswords as $key) {
 		if (password_verify($pass, $key)) return true;

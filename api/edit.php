@@ -37,4 +37,5 @@ $searchDB->execute(
 );
 
 echo(APIresponse('success',$langAPI['successes']['edit']));
+logging('Fiche modifiée : '.$name.' ('.ucfirst($config['types'][$data['type']]).')');
 ?>
