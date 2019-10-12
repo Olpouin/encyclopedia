@@ -18,6 +18,9 @@ nav:hover ~ .card {
 	border-bottom: none;
 	text-decoration: none !important;
 }
+.card-content {
+	tab-size: 4;
+}
 .format hr {
 	margin: 0;
 	border: none;
@@ -26,27 +29,27 @@ nav:hover ~ .card {
 hr + br {
 	display: none;
 }
-.format > h1 {
-	font-size: 40px !important;
+}
+
+.format h1,.format h2,.format h3,.format h4,.format h5,.format h6 {
+	margin: 0;
+	font-size: 30px;
+	text-decoration: underline;
+}
+.format h1 {
 	color: var(--general-color);
 }
-.format > h2 {
-	font-size: 35px !important;
+.format h3 {
+	margin-left: 10px;
 }
-.format > h3 {
-	font-size: 30px !important;
-	margin-left: 10px !important;
+.format h4 {
+	margin-left: 20px;
 }
-.format > h4 {
-	margin-left: 20px !important;
+.format h5 {
+	margin-left: 30px;
 }
-.format > h5 {
-	margin-left: 30px !important;
-}
-.format > h1,.format > h2,.format > h3,.format > h4,.format > h5,.format > h6 {
-	margin: 0;
-	font-size: 25px;
-	text-decoration: underline;
+.format h6 {
+	margin-left: 40px;
 }
 
 .large-space {
@@ -106,23 +109,37 @@ hr + br {
 	clear: left;
 	display: block;
 }
+.format img[class*=stretch] {
+	width: 100%;
+}
 .format span {
 	max-height: 100%;
 }
+
+.format table, .format table th, .format table td {
+	border: 2px solid var(--table-border);
+	border-collapse: collapse;
+	font-weight: normal;
+}
+.format table th, format table td {
+	padding: 15px;
+}
 /*INFOBOX*/
-.infobox {
+.format aside {
 	width: 300px;
 	background-color: var(--infobox-background);
 	float: right;
 	clear: right;
-	margin: 15px 0 15px 15px;
+	margin: 0 0 0 15px;
 	font-size: 0.9em;
+	white-space: normal;
 }
 /*.infobox > br {
 	display: none;
 }*/
-.infobox h1 {
+.format aside h1 {
 	display: inline-block;
+	text-decoration: none;
 	background-color: var(--general-color);
 	width: 100%;
 	height: auto;
@@ -131,7 +148,7 @@ hr + br {
 	margin: 0;
 	color: var(--infobox-text_h1);
 }
-.infobox img {
+.format aside img {
 	width: 100%;
 	height: 100%;
 	max-width: none !important;
@@ -142,8 +159,8 @@ hr + br {
 	clear: none;
 }
 .infobox-data {
-	display: table;
-	margin: 15px 10px;
+	display: block;
+	margin: 10px 10px;
 	hyphens: auto;
 	width: calc(100% - 20px);
 }
@@ -152,6 +169,7 @@ hr + br {
 	overflow-x: hidden;
 	word-wrap: break-word;
 	word-break: break-all;
+	white-space: pre;
 }
 #textEdit .infobox-data span, #textEdit blockquote > cite, #textEdit h1, #textEdit h2, #textEdit h3, #textEdit h4, #textEdit h5, #textEdit h6 {
 	border: var(--general-color) 1px dotted;
@@ -161,7 +179,7 @@ hr + br {
 	min-width: 90px;
 	font-weight: bold;
 }
-.infobox video, .infobox iframe {
+.format aside video, .format aside iframe {
 	width: 100%;
 	max-width: none;
 	max-height: none;
@@ -227,6 +245,32 @@ hr + br {
 	margin-left: 22px;
 }
 
-/*.format-txt {
-	font-weight: bold;
-}*/
+
+.ce-block--stretched > div {
+	max-width: 650px !important;
+}
+/*EDITOR*/
+#editor {
+	max-height: 75vh;
+	overflow-y: scroll;
+	border: 2px solid var(--general-border);
+}
+.cdx-input {
+	background-color: var(--general-background);
+	color: var(--general-text);
+	border: 2px solid var(--general-border);
+	transition: border 200ms linear 0s;
+	border-radius: 5px;
+	padding: 10px 15px;
+}
+.cdx-input:hover {
+	border: 2px solid var(--general-color);
+	transition: border 400ms linear 0s;
+}
+.cdx-input:focus {
+	border: 2px ridge var(--general-color);
+}
+
+.cdx-quote__caption {
+	color: #999999;
+}

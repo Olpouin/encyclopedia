@@ -1,83 +1,39 @@
 <?php
+Config::add('head.js', 'editor/editor.min');
+Config::add('head.js', 'editor/tools/header');
+Config::add('head.js', 'editor/tools/list');
+Config::add('head.js', 'editor/tools/quote');
+Config::add('head.js', 'editor/tools/simple-image');
+Config::add('head.js', 'editor/tools/strikethrough');
+Config::add('head.js', 'editor/tools/subscript');
+Config::add('head.js', 'editor/tools/superscript');
+Config::add('head.js', 'editor/tools/table');
+Config::add('head.js', 'editor/tools/underline');
 $infoContent['g_title'] = "Édition : ".$cardName;
 
-if (isset($_COOKIE['prefeditor'])) {
-	if ($_COOKIE['prefeditor'] == "txt") $prefText = true;
-	else $prefText = false;
-} else $prefText = false;
-
-if (!$prefText) {
-	$card['text'] = format($card['text'], true); // TODO: Better $format function
-	$editorStart = '<div id="textEdit" class="format" contenteditable="true" required="" maxlength="1000000" name="text">';
-	$editorEnd = '</div>';
-	$onclick = 'false';
-} else {
-	$editorStart = '<textarea id="textEdit" required="" maxlength="1000000" name="text">';
-	$editorEnd = '</textarea>';
-	$onclick = 'true';
-}
-
-
-$fURL = $config['general']['path']."/content/icons/editor/";
-$fARR = $lang['editor-bar'];
-
-if (!$prefText) {
-	$editorBar = '<div class="editor-bar">';
-	foreach ($config['general']['editor-bar'] as $groupNumber => $groupData) {
-		$editorBar .= '<div class="editor-bar_group">';
-		foreach ($config['general']['editor-bar'][$groupNumber] as $formatNumber => $formatNumber) {
-			$editor = $config['general']['editor-bar'][$groupNumber][$formatNumber];
-			$edImgSrc = $fURL.$editor['name'];
-			if (!isset($editor['e'])) $editor['e'] = "";
-			if (isset($editor['param'])) $edParam = json_encode($editor['param']);
-			else $edParam = "{}";
-			$editorBar .= "<div tt-hlp='{$editor['e']}' tt-name='{$fARR[$editor['name']]}' onclick='addFormat(\"{$editor['format']}\",{$edParam})' onmousedown='event.preventDefault();'>
-				<img src='{$edImgSrc}.svg' alt='{$fARR[$editor['name']]}'>
-			</div>";
-		}
-		$editorBar .= '</div>';
-	}
-	$editorBar .= '</div>';
-} else {
-	$editorBar = "<br><br>";
-}
-
-
-if ($card['hidden'] == 1) $hideCheckboxValue = "checked=\"checked\"";
+if ($card->hidden()) $hideCheckboxValue = "checked=\"checked\"";
 else $hideCheckboxValue = "";
-
+$text = nl2br($card->text());
 $content['card'] = <<<CARDEDIT
 <h1>{$lang['footer-edit_page']} "{$cardName}"</h1>
-{$editorBar}
 <input id="cardsName" value="{$cardName}" type="hidden">
 <input id="cardsType" value="{$type}" type="hidden">
-{$editorStart}{$card['text']}{$editorEnd}
+<div id="editor" class="format"></div>
 <label for="hide-card">{$lang['edition-hide_card']}</label>
 <input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 <label for="group">{$lang['edition-group_placeholder']}</label>
-<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$card['groupe']}"><br><br>
+<input id="group" type="text" name="group" required="" placeholder="{$lang['edition-group_placeholder']}" value="{$card->group()}"><br><br>
 <label for="pass">{$lang['password']}</label>
 <input id="pass" type="password" name="pass" required="" placeholder="{$lang['password']}">
-<button class="submit" onclick="editCardOC({$onclick})">{$lang['send']}</button>
+<button class="submit" onclick="editCardOC()">{$lang['send']}</button>
 <br>
 <h1 style="text-align:center;display:block;">{$lang['help']}</h1>
 <div class="flexboxData">
-	<div>
-		<h2>Formatage normal</h2>
-		- Couleur : [c]Texte[/c]<br>
-		- Couleur custom : [c#HEXA00]Texte[/c]<br>
-		- Citations : [quote]Texte de la citation[au]Auteur[/au][/quote]
-	</div>
 	<div>
 		<h2>Les infobox</h2>
 		- Une infobox se délimite par [ib]Données de l'infobox...[/ib]<br>
 		- Dans les infobox, les tags [h1] et les images fonctionnent.<br>
 		- Vous pouvez entrer des informations avec [ibd]Titre/nom|Information[/ibd]<br>
-	</div>
-	<div>
-		<h2>Raccourcis</h2>
-		- Créer une infobox rapidement : SHIFT + 1<br>
-		- Créer une [ibd] rapidement : SHIFT + 2<br>
 	</div>
 	<div>
 		<h2>{$lang['edition-info-example_title']}</h2>
@@ -90,15 +46,64 @@ $content['card'] = <<<CARDEDIT
 [ibd]Cupiditate quas|Rem[/ibd]
 [ibd]Est sit omnis|Occaecati labore soluta nam[/ibd]
 [/ib]
-Reiciendis et cum aut et omnis aliquam odit. Aspernatur nostrum esse consequuntur.
-[h1]Lorem ipsum[/h1]
-[quote]
-Ut occaecati magni quis.
-[author]Qui dolore quisquam[/author]
-[/quote]
-[i]Sit tempora sit qui qui tempora.[/i] Et facere odit minus doloribus inventore autem occaecati vel.
 		</pre>
 	</div>
 </div>
+<script>
+const editor = new EditorJS({
+	holder: 'editor',
+	tools: {
+		header: Header,
+		quote: {
+			class: Quote,
+			inlineToolbar: true
+		},
+		list: {
+			class: List,
+			inlineToolbar: true
+		},
+		table: {
+			class: Table,
+			inlineToolbar: true
+		},
+		image: SimpleImage,
+		strikethrough: Strikethrough,
+		underline: Underline,
+		subscript: {
+			class: Subscript,
+			shortcut: 'CTRL+DOWN'
+		},
+		superscript: {
+			class: Superscript,
+			shortcut: 'CTRL+UP'
+		}
+	},
+	autofocus: true,
+	onReady: () => {
+		console.log('Editor.JS is ready!')
+	},
+	data: {blocks:{$text}}
+});
+
+function editCardOC() { //Edit a card
+	editor.save().then((outputData) => {
+		var text = outputData.blocks;
+		API(
+			'edit',
+			{
+				'type': value('cardsType'),
+				'name': value('cardsName'),
+				'text': text,
+				'group': value('group'),
+				'pass': value('pass'),
+				'hide': document.getElementById('hide-card').checked
+			},
+			window.location.pathname.slice(0,-5)
+		);
+	}).catch((error) => {
+		console.log('Error : ',error);
+	})
+}
+</script>
 CARDEDIT;
 ?>
