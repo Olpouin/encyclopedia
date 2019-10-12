@@ -17,7 +17,6 @@ $lang = array(
 	'cookie-warning' => 'En modifiant les paramètres par défaut, vous acceptez l\'utilisation de cookies.',
 	'homepage-prefs-title' => 'Préférences',
 	'homepage-prefs-theme' => 'Thème',
-	'homepage-prefs-editor' => 'Éditeur par texte',
 	'homepage-prefs-dyslexic' => 'Mode dyslexie',
 	'homepage-prefs-confirm_changes' => 'Confirmer les changements',
 	'edition-info-example_title' => 'Exemple',
@@ -76,33 +75,5 @@ $lang['error'] = array(
 		"Unknown error" => "Nous ne pouvons pas trouver l'erreur ou aucun message d'erreur n'a été préparé pour ce cas."
 	)
 );
-
-$lang['api'] = array(
-	"titles" => [
-		"error" => "Erreur",
-		"servererror" => "Erreur serveur",
-		"success" => "Succès"
-	],
-	"successes" => [
-		"admin-config" => "Les paramètres généraux ont étés modifiés",
-		"add" => "La fiche a été crée",
-		"edit" => "La fiche a été modifiée"
-	],
-	"isset" => "Variable manquante : ",
-	"errorserv-lang" => "Le langage n'existe pas",
-	"error-pass" => "Mot de passe incorrect",
-	"admin-config" => [
-		"name-size" => "Nom du site trop court ou trop long (1 < nom < 20)",
-		"image-size" => "URL de l'image trop court ou trop long (7 < URL < 100"
-	],
-	"error-type-notfound" => "Type de la fiche inexistant.",
-	"error-name-size" => "Nom trop court ou trop long. Rappel : La limite maximale est de 35 caractères et minimale de 1 caractère.",
-	'error-name-alreadyexist' => 'La fiche existe déjà.',
-	"error-name-notfound" => "Nom de la fiche inexistant.",
-	"error-group-size" => "Le nom du groupe est trop court ou trop long. Rappel : La limite maximale est de 25 de caractères et minimale de 1 caractère.",
-	"error-text-size" => "Le texte est trop court ou trop long. Rappel : La limite maximale est de 1 000 000 de caractères et minimale de 10 caractères.",
-	"success-edit" => "La fiche a bien été modifiée."
-);
-
 return $lang;
 ?>

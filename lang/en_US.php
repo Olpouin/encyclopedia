@@ -17,7 +17,6 @@ $lang = array(
 	'cookie-warning' => 'By changing the default settings, you allow the use of cookies.',
 	'homepage-prefs-title' => 'Settings',
 	'homepage-prefs-theme' => 'Theme',
-	'homepage-prefs-editor' => 'Text editor',
 	'homepage-prefs-dyslexic' => 'Dyslexic mode',
 	'homepage-prefs-confirm_changes' => 'Confirm changes',
 	'edition-info-example_title' => 'Example',
@@ -76,34 +75,5 @@ $lang['error'] = array(
 		"Unknown error" => "We can't find what error you got or (most likely) there are no error message prepared for this case. Sorry."
 	)
 );
-
-$lang['api'] = array(
-	"titles" => [
-		"error" => "Error",
-		"servererror" => "Server error",
-		"success" => "Success"
-	],
-	"successes" => [
-		"admin-config" => "General parameters has been changed",
-		"add" => "The card has been created",
-		"edit" => "The card has been edited"
-	],
-	"isset" => "Missing variable: ",
-	"errorserv-lang" => "The language does not exit",
-	"error-pass" => "Wrong password",
-	"admin-config" => [
-		"name-size" => "Website name too short or too long (1 < name < 20)",
-		"image-size" => "Images' URL too short or too long (7 < URL < 100"
-	],
-	"error-type-notfound" => "Can't find a card : Parameter 'type' sent doesn't exist.",
-	"error-name-size" => "Name too long or too short. Reminder: The upper limit is 35 characters.",
-	'error-name-alreadyexist' => 'The card already exist.',
-	"error-name-notfound" => "Parameter 'name' sent doesn't exist.",
-	"error-group-size" => "Group's name is too long. Reminder: The limit is 25 characters.",
-	"error-text-size" => "Text too long or too short. Reminder: The upper limit is 1 000 000 characters.",
-	"success" => "Success",
-	"success-edit" => "The card was successfully edited."
-);
-
 return $lang;
 ?>
