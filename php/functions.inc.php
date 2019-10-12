@@ -10,7 +10,7 @@ function textToColor($str) { //https://stackoverflow.com/questions/3724111/how-c
 
 function APIresponse($title, $msg) {
 	$resp = [
-		'title'=>LANG['api']['titles'][$title],
+		'title'=>$title,
 		'message'=>$msg
 	];
 	return json_encode($resp);
@@ -46,33 +46,7 @@ function logging($title, $desc = '', $color="3447003") {
 	file_get_contents($url, false, $context);*/
 }
 
-$checkPassword = function ($pass) use($globalPasswords) {
-	foreach ($globalPasswords as $key) {
-		if (password_verify($pass, $key)) return true;
-	}
-	return false;
-};
 
-function format($text, $editor) {
-	$text = htmlentities($text);
-	foreach (MARKDOWN_TO_CLIENT as $key => $value) {
-		if (!$editor) $text = preg_replace($key, $value['r'], $text);
-		else {
-			if ($value['e']) $text = preg_replace($key, $value['r'], $text);
-		}
-	}
-	if ($editor) $text = str_replace(array("\r\n", "\r", "\n"), '<br>', $text);
-	else $text = nl2br($text);
-	return $text;
-};
-$serverFormat = function($text) use($serverMarkdownArray) {
-	$text = html_entity_decode($text);
-	foreach ($serverMarkdownArray as $key => $value) {
-		$text = preg_replace($key, $value, $text);
-	}
-	$text = strip_tags($text);
-	return $text;
-};
 
 function hrefGen($type = null, $name = null) {
 	if (isset($type)) {
