@@ -1,36 +1,35 @@
 <?php //exit(APIresponse('', $langAPI['']));
-require_once('../config.php');
+require_once('../core.php');
+require_once('../php/class/card.php');
 header('Content-Type: application/json');
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['pass'])) exit(APIresponse('servererror', $langAPI['isset']."pass"));
-if (!isset($data['type'])) exit(APIresponse('servererror', $langAPI['isset']."type"));
-if (!isset($data['name'])) exit(APIresponse('servererror', $langAPI['isset']."name"));
-if (!isset($data['group'])) exit(APIresponse('servererror', $langAPI['isset']."group"));
-if (!isset($data['addPass'])) exit(APIresponse('servererror', $langAPI['isset']."addPass"));
+if (!isset($data['pass'])) exit(APIresponse('error', "isset-pass"));
+if (!isset($data['type'])) exit(APIresponse('error', "isset-type"));
+if (!isset($data['name'])) exit(APIresponse('error', "isset-name"));
+if (!isset($data['group'])) exit(APIresponse('error', "isset-group"));
+if (!isset($data['addPass'])) exit(APIresponse('error', "isset-addPass"));
 
-if (!$checkPassword($data['pass'])) exit(APIresponse('error',$langAPI['error-pass']));
+if (!Config::checkPassword($data['pass'])) exit(APIresponse('error','wrong-password'));
 
-if (!array_key_exists($data['type'], $configTypes)) exit(APIresponse('servererror', $langAPI['error-type-notfound']));
-$cardR = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE hidden = 0 AND type = ? AND name = ?");
-$cardR->execute(array($data['type'],$data['name']));
-$card = $cardR->fetch(PDO::FETCH_ASSOC);
-if (!empty($card)) exit(APIresponse('error',$langAPI['error-name-alreadyexist']));
-if (strlen($data['name']) > 35 OR strlen($data['name']) < 1) exit(APIresponse('error',$langAPI['error-name-size']));
-if (strlen($data['group']) > 25 OR strlen($data['group']) <= 0) exit(APIresponse('error',$langAPI['error-group-size']));
 
-$addPass = (strlen($data['addPass']) < 1) ? NULL : password_hash($data['addPass'], PASSWORD_DEFAULT);
+$card = new Card();
+if ($card->load($data['type'], $data['name'])) exit(APIresponse('error','already-exist'));
 
-$createCard = $db->prepare("INSERT INTO {$config['database']['table']}(name, type, groupe, password, hidden) VALUES(?, ?, ?, ?, 1)");
-$createCard->execute(
-	array(
-		$data['name'],
-		$data['type'],
-		$data['group'],
-		$addPass
-	)
+if (!$card->setName($data['name'])) exit(APIresponse('error', 'size-name'));
+if (!$card->setType($data['type'])) exit(APIresponse('error', 'set-type'));
+if (!$card->setGroup($data['group'])) exit(APIresponse('error','size-group'));
+if (!$card->setPassword($data['addPass'])) exit(APIresponse('error','set-password'));
+$card->setHidden("1");
+
+if (!$card->create()) exit(APIresponse('error','already-exist'));
+
+echo(APIresponse('success','added'));
+logging(
+	'Fiche crée',
+	"**Nom :** ".$data['name'].
+	"\n**Groupe :** ".$data['group'].
+	"\n**Type :** ".$data['type']." (".Config::read('gene.types')[$data['type']].")".
+	"\n[Accéder à la fiche](https://".$_SERVER['HTTP_HOST'].PATH."/".$data['type']."/".urlencode($data['name']).")"
 );
-
-echo(APIresponse('success',$langAPI['successes']['add']));
-logging('Fiche créee : '.$data['name'].' ('.ucfirst($config['types'][$data['type']]).')');
 ?>

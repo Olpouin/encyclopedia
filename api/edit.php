@@ -1,41 +1,34 @@
 <?php
-require_once('../config.php');
+require_once('../core.php');
+require_once('../php/class/card.php');
+
+$card = new Card();
 header('Content-Type: application/json');
 $data = json_decode(file_get_contents('php://input'), true);
 
-if(!isset($data['type'])) exit(APIresponse('servererror', $langAPI['isset']."type"));
-if(!isset($data['text'])) exit(APIresponse('servererror', $langAPI['isset']."text"));
-if(!isset($data['name'])) exit(APIresponse('servererror', $langAPI['isset']."name"));
-if(!isset($data['pass'])) exit(APIresponse('servererror', $langAPI['isset']."pass"));
-if(!isset($data['group'])) exit(APIresponse('servererror', $langAPI['isset']."group"));
-if(!isset($data['hide'])) exit(APIresponse('servererror', $langAPI['isset']."hide"));
+if(!isset($data['type'])) exit(APIresponse('error', "isset-type"));
+if(!isset($data['text'])) exit(APIresponse('error', "isset-text"));
+if(!isset($data['name'])) exit(APIresponse('error', "isset-name"));
+if(!isset($data['pass'])) exit(APIresponse('error', "isset-pass"));
+if(!isset($data['group'])) exit(APIresponse('error', "isset-group"));
+if(!isset($data['hide'])) exit(APIresponse('error', "isset-hide"));
 
 $name = urldecode($data['name']);
-$cardR = $db->prepare("SELECT * FROM {$config['database']['table']} WHERE type = ? AND name = ?");
-$cardR->execute(array($data['type'],$name));
-$card = $cardR->fetch(PDO::FETCH_ASSOC);
-if (empty($card)) exit(APIresponse('servererror',$langAPI['error-name-notfound']));
+if (!$card->load($data['type'], $name)) exit(APIresponse('error','notfound'));
 
-if (!$checkPassword($data['pass']) AND !password_verify($data['pass'], $card['password'])) exit(APIresponse('error',$langAPI['error-pass']));
-
-if(!array_key_exists($data['type'], $configTypes)) exit(APIresponse('servererror', $langAPI['error-type-notfound']));
-if (strlen($data['text']) > 1000000 OR strlen($data['text']) < 0) exit(APIresponse('error',$langAPI['error-text-size']));
-if (strlen($data['group']) > 25 OR strlen($data['group']) < 0) exit(APIresponse('error',$langAPI['error-group-size']));
-
+if (!$card->password($data['pass'])) exit(APIresponse('error','wrong-password'));
+if (!$card->setText($data['text'])) exit(APIresponse('error','size-text'));
 $hidden = ($data['hide']) ? 1 : 0;
-$data['text'] = $serverFormat($data['text']);
+$card->setHidden($hidden);
+if (!$card->setGroup($data['group'])) exit(APIresponse('error','size-group'));
 
-$searchDB = $db->prepare("UPDATE {$config['database']['table']} SET text = ?, groupe = ?, hidden = ? WHERE name = ? AND type = ?");
-$searchDB->execute(
-	array (
-		$data['text'],
-		$data['group'],
-		$hidden,
-		$name,
-		$data['type']
-	)
+if(!$card->upload()) exit(APIresponse('error','unknown'));
+
+echo(APIresponse('success','edited'));
+logging(
+	'Fiche modifiée',
+	"**Nom :** ".$name.
+	"\n**Type :** ".$data['type']." (".Config::read('gene.types')[$data['type']].")".
+	"\n[Accéder à la fiche](https://".$_SERVER['HTTP_HOST'].PATH."/".$data['type']."/".urlencode($name).")"
 );
-
-echo(APIresponse('success',$langAPI['successes']['edit']));
-logging('Fiche modifiée : '.$name.' ('.ucfirst($config['types'][$data['type']]).')');
 ?>
