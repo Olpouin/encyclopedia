@@ -29,8 +29,10 @@ nav:hover ~ .card {
 hr + br {
 	display: none;
 }
-}
 
+.format p {
+	text-indent: 30px;
+}
 .format h1,.format h2,.format h3,.format h4,.format h5,.format h6 {
 	margin: 0;
 	font-size: 30px;

@@ -367,9 +367,6 @@ footer a:last-of-type::after, .navMenuGroups a:last-of-type::after {
 		margin-right: 0 !important;
 		clear: both;
 	}
-	.card > p {
-		max-width: none !important;
-	}
 	#notif {
 		top: 0;
 		left: 0;
