@@ -17,6 +17,9 @@ class Card {
 		'/&lt;sup&gt;(.*)&lt;\/sup&gt;/Ums' => '<sup>$1</sup>',
 		'/&lt;a href=&quot;(.*)&quot;&gt;(.*)&lt;\/a&gt;/Ums' => '<a href="$1" target="_blank" rel="external">$2</a>',
 		'/&lt;br&gt;/Ums' => '<br>',
+		'/\[ib\](.*)\[ibd\](.*)\|(.*)\[\/ibd\](.*)\[\/ib\]/Ums' => '[ib]$1<div class="infobox-data"><span class="infobox-data-title">$2</span><span>$3</span></div>$4[/ib]',
+		'/\[ib\](.*)\!\[(.*)\]\((.*)\)(.*)\[\/ib\]/Um' => '[ib]$1<img src="$3" onclick="fullscreen(event)" alt="$2">$4[/ib]',
+		'/\[ib\](.*)\[\/ib\]/Ums' => '<aside>$1</aside>'
 	);
 
 	private function secure($txt) {
