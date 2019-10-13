@@ -17,7 +17,8 @@ class Card {
 		'/&lt;sup&gt;(.*)&lt;\/sup&gt;/Ums' => '<sup>$1</sup>',
 		'/&lt;a href=&quot;(.*)&quot;&gt;(.*)&lt;\/a&gt;/Ums' => '<a href="$1" target="_blank" rel="external">$2</a>',
 		'/&lt;br&gt;/Ums' => '<br>',
-		'/\[ib\](.*)\[ibd\](.*)\|(.*)\[\/ibd\](.*)\[\/ib\]/Ums' => '[ib]$1<div class="infobox-data"><span class="infobox-data-title">$2</span><span>$3</span></div>$4[/ib]',
+		'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
+		'/\[h1\](.*)\[\/h1\]/Ums' => '<h1>$1</h1>',
 		'/\[ib\](.*)\!\[(.*)\]\((.*)\)(.*)\[\/ib\]/Um' => '[ib]$1<img src="$3" onclick="fullscreen(event)" alt="$2">$4[/ib]',
 		'/\[ib\](.*)\[\/ib\]/Ums' => '<aside>$1</aside>'
 	);
