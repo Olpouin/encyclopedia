@@ -1,15 +1,15 @@
 <?php
-$typeFormatted = ucfirst($config['types'][$type]);
+$typeFormatted = ucfirst(Config::read('gene.types')[$type]);
 $infoContent['g_title'] = $typeFormatted;
 $cardsList = $groupTOC = "";
 
-$groups = $db->prepare("SELECT groupe FROM {$config['database']['table']} WHERE hidden = 0 AND type = ? ORDER BY groupe");
+$groups = $core->db->prepare("SELECT groupe FROM ".Config::read('db.table')." WHERE hidden = 0 AND type = ? ORDER BY groupe");
 $groups->execute(array($type));
 $groupsArray = $groups->fetchAll(PDO::FETCH_COLUMN);
 $groupsArray = array_unique($groupsArray);
 
 foreach ($groupsArray as $group) {
-	$cards = $db->prepare("SELECT name FROM {$config['database']['table']} WHERE hidden = 0 AND type = ? AND groupe = ? ORDER BY name");
+	$cards = $core->db->prepare("SELECT name FROM ".Config::read('db.table')." WHERE hidden = 0 AND type = ? AND groupe = ? ORDER BY name");
 	$cards->execute(array($type,$group));
 	$cardsArray = $cards->fetchAll(PDO::FETCH_ASSOC);
 	$cardsPerGroup = count($cardsArray);
