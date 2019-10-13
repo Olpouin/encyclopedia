@@ -87,7 +87,7 @@ function closeNav() {
 //Larger size pictures
 function fullscreen(e) {
 	let fullscrID = "fullscreen-"+UUID();
-	console.log("Generating fullscreen with ID "+fullscrID);
+	console.debug("%cGallery","color:#003399;background-color:#FFFFFF;border-radius:100%;padding:5px;","Generating fullscreen image with ID "+fullscrID);
 
 	document.body.appendChild(newElement("div",{'class':'fullscreen-image','attr':{'id':fullscrID}}));//Main div
 	fullscr = document.getElementById(fullscrID);
@@ -99,9 +99,9 @@ function fullscreen(e) {
 	fullscr.appendChild(newElement("button",{'class':'button-x','txt':'× '+langNotifClose,'attr':{'onclick':'deleteElement(\''+fullscrID+'\')'}}));
 }
 //notification system
-function notify(title,text,param) {
+function notify(title,text = "",buttons = {}) {
 	let notifID = "notif-"+UUID();
-	console.log("Generating notification with ID "+notifID);
+	console.debug("%cGallery","color:#003399;background-color:#FFFFFF;border-radius:100%;padding:5px;","Generating notification with ID "+notifID);
 
 	document.body.appendChild(newElement("div",{'class':'notif','attr':{'id':notifID}}));//Main div
 	notif = document.getElementById(notifID);
@@ -112,6 +112,6 @@ function notify(title,text,param) {
 
 	notifZone.insertBefore(newElement("h1",{'txt':title}), notifButtons);
 	notifZone.insertBefore(newElement("p",{'txt':text}), notifButtons);
-	if ('url' in param) notifButtons.appendChild(newElement("a",{'txt':langNotifShow,'class':'button','attr':{'href':param.url}}));
+	if ('url' in buttons) notifButtons.appendChild(newElement("a",{'txt':langNotifShow,'class':'button','attr':{'href':buttons.url}}));
 	notifButtons.appendChild(newElement("a",{'txt':langNotifClose,'class':'button','attr':{'onclick':'deleteElement(\''+notifID+'\')'}}))
 }
