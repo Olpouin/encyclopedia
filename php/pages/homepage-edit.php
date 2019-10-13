@@ -7,17 +7,20 @@ $noPassword = <<<NOPASS
 </form>
 NOPASS;
 if (isset($_POST['pass'])) {
-	if ($checkPassword($_POST['pass'])) {
+	if (Config::checkPassword($_POST['pass'])) {
+		$isAdmin = true;
 		$langForm = "";
 		foreach ($config['lang'] as $key => $value) {
-			$langSelected = ($key == $config['general']['default_language']) ? "selected='selected'" : "";
+			$langSelected = ($key == Config::read('gene.default_lang')) ? "selected='selected'" : "";
 			$langForm .= "<option {$langSelected} value='{$key}'>{$value}</option>";
 		}
 		$typesForm = '';
-		foreach ($config['types'] as $key => $value) {
+		foreach (Config::read('gene.types') as $key => $value) {
 			$typesForm .= '<option value="'.$key.'">'.ucfirst($value).'</option>';
 		}
 
+		$siteName = Config::read('gene.site_name');
+		$defaultImg = Config::read('gene.default_img');
 		$content['card'] = <<<HOMEPAGEEDITMAIN
 <h1>{$lang['admin-title']}</h1><br>
 <input id="pass" value="{$_POST['pass']}" type="hidden">
@@ -45,9 +48,9 @@ if (isset($_POST['pass'])) {
 			{$langForm}
 		</select>
 		<label for="gene-lang">{$lang['edition-gene-deflang_placeholder']}</label><br><br>
-		<input id="gene-sitename" type="text" placeholder="{$lang['edition-gene-sitename_placeholder']}" value="{$config['general']['site_name']}">
+		<input id="gene-sitename" type="text" placeholder="{$lang['edition-gene-sitename_placeholder']}" value="{$siteName}">
 		<label for="gene-sitename">{$lang['edition-gene-sitename_placeholder']}</label><br><br>
-		<input id="gene-defimg" type="text" placeholder="{$lang['edition-gene-defimg_placeholder']}" value="{$config['general']['box-default_image']}">
+		<input id="gene-defimg" type="text" placeholder="{$lang['edition-gene-defimg_placeholder']}" value="{$defaultImg}">
 		<label for="gene-defimg">{$lang['edition-gene-defimg_placeholder']}</label><br><br>
 		<button class="submit" onclick="changeMainParam()">{$lang['send']}</button>
 	</div>
