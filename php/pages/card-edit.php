@@ -1,5 +1,6 @@
 <?php
 Config::add('head.js', 'editor/editor.min');
+Config::add('head.js', 'editor/tools/embed');
 Config::add('head.js', 'editor/tools/header');
 Config::add('head.js', 'editor/tools/list');
 Config::add('head.js', 'editor/tools/quote');
@@ -61,6 +62,14 @@ const editor = new EditorJS({
 		list: {
 			class: List,
 			inlineToolbar: true
+		},
+		embed: {
+			class: Embed,
+			config: {
+				services: {
+					youtube:true
+				}
+			}
 		},
 		table: {
 			class: Table,

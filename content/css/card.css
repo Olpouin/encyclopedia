@@ -160,6 +160,23 @@ hr + br {
 	display: inline-block;
 	clear: none;
 }
+.format .embed {
+	display:inline-block;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: 5px;
+}
+.format .embed iframe {
+	display: block;
+	border: none;
+}
+.format .embed div {
+	text-align:center;
+	background-color: var(--general-color);
+	color: var(--infobox-text_h1);
+	font-weight: bold;
+	padding: 5px 0;
+}
 .infobox-data {
 	display: block;
 	margin: 10px 10px;

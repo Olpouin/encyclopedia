@@ -45,6 +45,13 @@ class Card {
 				foreach ($ARRAYtext as $key => $value) {
 					$data = $ARRAYtext[$key]['data'];
 					switch ($ARRAYtext[$key]['type']) {
+						case 'embed':
+							switch ($data['service']) {
+								case 'youtube':
+									$text .= "<div class=\"embed\"><iframe src=\"".$data['embed']."\" allowfullscreen></iframe><div>".$data['caption']."</div></div>";
+									break;
+							}
+							break;
 						case 'header':
 							if (!is_numeric($data['level']) OR $data['level'] > 6 OR $data['level'] < 1) $data['level'] = 1;
 							$text .= "<h{$this->secure($data['level'])}>{$this->secure($data['text'])}</h{$this->secure($data['level'])}>";
