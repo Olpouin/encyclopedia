@@ -72,6 +72,9 @@ $configGeneralArray = json_decode($configGeneralJSON['text'], true);
 Config::write('gene.site_name', $configGeneralArray['site_name']);
 Config::write('gene.default_img', $configGeneralArray['box-default_image']);
 
+Config::write('gene.visibility', '0');
+Config::write('gene.isEditing', '0');
+
 require_once('src/class/card.php');
 require_once('src/functions.php');
 ?>
