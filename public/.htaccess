@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteRule ^admin/ index.php?admin
+RewriteRule ^edit index.php?edit
+RewriteRule ^(.)/(.*)/edit index.php?type=$1&name=$2&edit
+RewriteRule ^(.)/(.*)/ index.php?type=$1&name=$2
+RewriteRule ^(.)/ index.php?type=$1
+ErrorDocument 403 /gallery/index.php?error=403
+ErrorDocument 404 /gallery/index.php?error=404
+ErrorDocument 408 /gallery/index.php?error=408
+ErrorDocument 414 /gallery/index.php?error=414
