@@ -111,7 +111,7 @@ function editCardOC() { //Edit a card
 				'pass': value('pass'),
 				'hide': document.getElementById('hide-card').checked
 			},
-			window.location.pathname.slice(0,-5)
+			window.location.pathname.slice(0,-4)
 		);
 	}).catch((error) => {
 		console.log('Error : ',error);

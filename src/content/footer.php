@@ -3,7 +3,7 @@ if (!isset($_GET['edit'])) {
 	$footerEditURL = "edit";
 	$footerEditTXT = "Modifier la page";
 } else {
-	$footerEditURL = substr($_SERVER['REQUEST_URI'], 0, -5);
+	$footerEditURL = substr($_SERVER['REQUEST_URI'], 0, -4);
 	$footerEditTXT = "Afficher la page";
 }
 if (!isset($_GET['type']) AND !isset($_GET['admin'])) $admin = "<a href=\"".Config::read('gene.path')."/admin/\">Interface d'administration</a>";
