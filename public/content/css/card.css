@@ -30,6 +30,10 @@ hr + br {
 	display: none;
 }
 
+.format {
+	word-wrap: break-word;
+	white-space: pre-line;
+}
 .format p {
 	text-indent: 30px;
 }
@@ -273,23 +277,4 @@ hr + br {
 	max-height: 75vh;
 	overflow-y: scroll;
 	border: 2px solid var(--general-border);
-}
-.cdx-input {
-	background-color: var(--general-background);
-	color: var(--general-text);
-	border: 2px solid var(--general-border);
-	transition: border 200ms linear 0s;
-	border-radius: 5px;
-	padding: 10px 15px;
-}
-.cdx-input:hover {
-	border: 2px solid var(--general-color);
-	transition: border 400ms linear 0s;
-}
-.cdx-input:focus {
-	border: 2px ridge var(--general-color);
-}
-
-.cdx-quote__caption {
-	color: #999999;
 }
