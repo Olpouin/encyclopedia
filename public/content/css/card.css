@@ -30,7 +30,7 @@ hr + br {
 	display: none;
 }
 
-.format {
+.format, #editor {
 	word-wrap: break-word;
 	white-space: pre-line;
 }
