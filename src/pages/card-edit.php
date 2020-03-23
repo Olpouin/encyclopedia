@@ -17,13 +17,15 @@ if ($card->load($_GET['type'], $cardName)) {
 
 if ($card->hidden()) $hideCheckboxValue = "checked=\"checked\"";
 else $hideCheckboxValue = "";
-$text = nl2br($card->text());
+$text = $card->text();
+
+$jsonCardName = json_encode($cardName);
 
 $content['title'] = "Édition : ".$cardName." (".ucfirst(Config::read('gene.types')[$_GET['type']]).")";
 $content['page'] = <<<CARDEDIT
 <h1>Modifier la fiche "{$cardName}"</h1>
 <input id="cardsName" value="{$cardName}" type="hidden">
-<div id="editor" class="format"></div>
+<div id="editor"></div>
 <label for="hide-card">Cacher la fiche (ne pas afficher dans la barre de navigation)</label>
 <input id="hide-card" type="checkbox" name="hide-card" {$hideCheckboxValue}><br><br>
 <label for="group">Groupe de la fiche</label>
@@ -105,7 +107,7 @@ function editCardOC() { //Edit a card
 			'edit',
 			{
 				'type': '{$_GET['type']}',
-				'name': '{$cardName}',
+				'name': {$jsonCardName},
 				'text': text,
 				'group': value('group'),
 				'pass': value('pass'),

@@ -96,7 +96,7 @@ function fullscreen(e) {
 
 	imgDiv.appendChild(newElement("img",{'attr':{'src':e.target.getAttribute('src'),'alt':e.target.getAttribute('alt')}}));
 	fullscr.appendChild(newElement("h1",{'txt':e.target.getAttribute('alt')}));
-	fullscr.appendChild(newElement("button",{'class':'button-x','txt':'× '+langNotifClose,'attr':{'onclick':'deleteElement(\''+fullscrID+'\')'}}));
+	fullscr.appendChild(newElement("button",{'class':'button-x','txt':'× Fermer','attr':{'onclick':'deleteElement(\''+fullscrID+'\')'}}));
 }
 //notification system
 function notify(title,text = "",buttons = {}) {

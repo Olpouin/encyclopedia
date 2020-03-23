@@ -126,7 +126,8 @@ class Card {
 		return true;
 	}
 	public function setText($text) {
-		$realText = json_encode($text);
+		if (is_array($text)) $realText = json_encode($text);
+		else $realText = $text;
 
 		if (strlen($realText) > 10000000 OR strlen($realText) < 0) return false;
 

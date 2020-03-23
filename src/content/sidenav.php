@@ -19,12 +19,12 @@ foreach ($cardListArray as $type => $groups) {
 	else $opened = 'open=""';
 	$content['sidenav'] .= '<details '.$opened.' class="type"><summary>'.Config::read('gene.types')[$type].'</summary>';
 	foreach ($groups as $group => $cards) {
-		$content['sidenav'] .= "<ul><span>".$group."</span>";
+		$content['sidenav'] .= "<ul><span>".htmlspecialchars($group)."</span>";
 		foreach ($cards as $card => $data) {
 			$selectedClass = $scrollTo = "";
 			if (isset($_GET['name'])) {
 				if (urldecode($_GET['name']) == $card) $selectedClass .= "selectedPage";
-				if ($card == $_GET['name']) $scrollTo = "<script>window.onload = function(){document.getElementById('sidenav-".$card."').scrollIntoView()}</script>";
+				if ($card == $_GET['name']) $scrollTo = "<script>window.onload = function(){document.getElementById(".json_encode("sidenav-".$card).").scrollIntoView()}</script>";
 			}
 			if ($data['hidden'] == 1) $selectedClass .= " hiddenPage";
 			$content['sidenav'] .= '<li><a id="sidenav-'.$card.'" class="'.$selectedClass.'" href="'.hrefGen($type,$card).'">'.htmlentities($card).'</a></li>'.$scrollTo;

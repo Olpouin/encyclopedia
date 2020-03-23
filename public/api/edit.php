@@ -16,7 +16,7 @@ $name = urldecode($data['name']);
 if (!$card->load($data['type'], $name)) exit(APIresponse('error','notfound'));
 
 if (!$card->password($data['pass'])) exit(APIresponse('error','wrong-password'));
-if (!$card->setText($data['text'])) exit(APIresponse('error','size-text'));
+if (!$card->setText(html_entity_decode(json_encode($data['text'])))) exit(APIresponse('error','size-text'));
 $hidden = ($data['hide']) ? 1 : 0;
 $card->setHidden($hidden);
 if (!$card->setGroup($data['group'])) exit(APIresponse('error','size-group'));
