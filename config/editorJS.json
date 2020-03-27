@@ -47,10 +47,15 @@
 		"table": {
 			"content": {
 				"type": "array",
-				"-": {
-					"type": "array",
+				"data": {
 					"-": {
-						"type": "string"
+						"type":"array",
+						"data": {
+							"-": {
+								"type": "string",
+								"allowedTags": "i,b,u,s,sub,sup,a[href],br"
+							}
+						}
 					}
 				}
 			}

@@ -25,6 +25,7 @@ class Config {
 require_once('config/database.php');
 require_once('config/general.php');
 Config::write('gene.editorconfig', file_get_contents("config/editorJS.json", FILE_USE_INCLUDE_PATH));
+$config = new Config();
 
 class Core {
 	public $db;
@@ -35,7 +36,7 @@ class Core {
 		$user = Config::read('db.user');
 		$password = Config::read('db.password');
 
-		$this->db = new PDO($dsn, $user, $password);
+		$this->db = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 	}
 
 	public static function getInstance() {

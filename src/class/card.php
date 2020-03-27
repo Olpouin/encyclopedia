@@ -84,7 +84,7 @@ class Card {
 				return $text;
 				break;
 			default:
-				if (empty($this->_text)) return "[]";
+				if (empty($this->_text) OR strlen($this->_text) < 22) return '{"time":0,"blocks":[]}';
 				return $this->_text;
 				break;
 		}
