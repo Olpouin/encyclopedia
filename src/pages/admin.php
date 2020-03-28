@@ -11,9 +11,6 @@ if (isset($_POST['pass'])) {
 		foreach (Config::read('gene.types') as $key => $value) {
 			$typesForm .= '<option value="'.$key.'">'.ucfirst($value).'</option>';
 		}
-
-		$siteName = Config::read('gene.site_name');
-		$defaultImg = Config::read('gene.default_img');
 		$content['page'] = <<<HOMEPAGEEDITMAIN
 <h1>Interface d'administration</h1><br>
 <input id="pass" value="{$_POST['pass']}" type="hidden">
@@ -33,15 +30,28 @@ if (isset($_POST['pass'])) {
 		<button class="submit" onclick="addCardOC()">Envoyer</button>
 	</div>
 	<div>
-		<h2>Gérer les types</h2>
+		<h2>Paramètres généraux</h2>
+		<form action="" onsubmit="changeMainParam();return false;">
+			<input id="gene-sitename" type="text" placeholder="Nom du site" value="{$config->read('gene.site_name')}" pattern=".{1,20}" required="">
+			<label for="gene-sitename">Nom du site</label><br><br>
+			<input id="gene-defimg" type="text" placeholder="Image par défaut" value="{$config->read('gene.default_img')}" pattern=".{7,100}" required="">
+			<label for="gene-defimg">Image par défaut des cadres d'aperçu</label><br><br>
+			<input type="submit">
+		</form>
 	</div>
 	<div>
-		<h2>Paramètres généraux</h2>
-		<input id="gene-sitename" type="text" placeholder="Nom du site" value="{$siteName}">
-		<label for="gene-sitename">Nom du site</label><br><br>
-		<input id="gene-defimg" type="text" placeholder="Image par défaut" value="{$defaultImg}">
-		<label for="gene-defimg">Image par défaut des cadres d'aperçu</label><br><br>
-		<button class="submit" onclick="changeMainParam()">Envoyer</button>
+		<h2>Créer une catégorie</h2>
+		<form action="" onsubmit="addNewType();return false;">
+			<input id="type-add-id" type="text" placeholder="b" pattern="[a-z0-9]*" required="">
+			<label for="type-add-id">ID de la catégorie</label><br><br>
+			<input id="type-add-name" type="text" placeholder="Bestiaire" required="">
+			<label for="type-add-name">Nom de la catégorie</label><br><br>
+			<input type="submit">
+		</form>
+	</div>
+	<div>
+		<h2>Supprimer une catégorie</h2>
+
 	</div>
 	<div>
 	</div>

@@ -35,10 +35,23 @@ function addCardOC() { //Add a card
 }
 function changeMainParam() { //Edit general config
 	API(
-		'admin-config',
+		'admin',
 		{
+			'action': 'edit-config',
 			'site_name': value('gene-sitename'),
 			'box-default_image': value('gene-defimg'),
+			'pass': value('pass')
+		},
+		window.location.pathname
+	);
+}
+function addNewType() {
+	API(
+		'admin',
+		{
+			'action': 'add-type',
+			'id': value('type-add-id'),
+			'name': value('type-add-name'),
 			'pass': value('pass')
 		},
 		window.location.pathname

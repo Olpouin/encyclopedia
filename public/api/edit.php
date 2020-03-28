@@ -28,6 +28,7 @@ logging(
 	'Fiche modifiée',
 	"**Nom :** ".$name.
 	"\n**Type :** ".$data['type']." (".Config::read('gene.types')[$data['type']].")".
-	"\n[Accéder à la fiche](https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')."/".$data['type']."/".urlencode($name).")"
+	"\n[Accéder à la fiche](https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')."/".$data['type']."/".urlencode($name).")",
+	"16312092"
 );
 ?>
