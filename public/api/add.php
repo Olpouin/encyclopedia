@@ -28,8 +28,7 @@ logging(
 	'Fiche crée',
 	"**Nom :** ".$data['name'].
 	"\n**Groupe :** ".$data['group'].
-	"\n**Type :** ".$data['type']." (".Config::read('gene.types')[$data['type']].")".
-	"\n[Accéder à la fiche](https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')."/".$data['type']."/".urlencode($data['name']).")",
-	"8311585"
+	"\n**Type :** ".$data['type']." (".Config::read('gene.types')[$data['type']].")",
+	["color"=>"8311585","url"=>"https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')."/".$data['type']."/".urlencode($data['name'])]
 );
 ?>

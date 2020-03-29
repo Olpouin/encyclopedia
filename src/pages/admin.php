@@ -16,28 +16,23 @@ if (isset($_POST['pass'])) {
 <input id="pass" value="{$_POST['pass']}" type="hidden">
 <div class="flexboxData">
 	<div>
-		<h2>Créer une fiche</h2><br>
-		<input id="add-name" type="text" required="" placeholder="Nom">
-		<label for="add-name">Nom</label><br><br>
-		<input id="add-group" type="text" required="" placeholder="Groupe">
-		<label for="add-group">Groupe</label><br><br>
-		<select id="add-type" required="">
-			{$typesForm}
-		</select>
-		<label for="add-type">Type</label><br><br>
-		<input id="add-pass" type="password" required="" placeholder="Mot de passe">
-		<label for="add-pass">Mot de passe (Optionel)</label><br><br>
-		<button class="submit" onclick="addCardOC()">Envoyer</button>
-	</div>
-	<div>
-		<h2>Paramètres généraux</h2>
-		<form action="" onsubmit="changeMainParam();return false;">
-			<input id="gene-sitename" type="text" placeholder="Nom du site" value="{$config->read('gene.site_name')}" pattern=".{1,20}" required="">
-			<label for="gene-sitename">Nom du site</label><br><br>
-			<input id="gene-defimg" type="text" placeholder="Image par défaut" value="{$config->read('gene.default_img')}" pattern=".{7,100}" required="">
-			<label for="gene-defimg">Image par défaut des cadres d'aperçu</label><br><br>
+		<h2>Créer une fiche</h2>
+		<form action="" onsubmit="addCardOC();return false;">
+			<input id="add-name" type="text" placeholder="Nom" required="">
+			<label for="add-name">Nom</label><br><br>
+			<input id="add-group" type="text" placeholder="Groupe" required="">
+			<label for="add-group">Groupe</label><br><br>
+			<select id="add-type" required="">
+				{$typesForm}
+			</select>
+			<label for="add-type">Type</label><br><br>
+			<input id="add-pass" type="password" placeholder="Mot de passe">
+			<label for="add-pass">Mot de passe (Optionel)</label><br><br>
 			<input type="submit">
 		</form>
+	</div>
+	<div>
+		<h2>Supprimer une fiche</h2>
 	</div>
 	<div>
 		<h2>Créer une catégorie</h2>
@@ -54,6 +49,14 @@ if (isset($_POST['pass'])) {
 
 	</div>
 	<div>
+		<h2>Paramètres généraux</h2>
+		<form action="" onsubmit="changeMainParam();return false;">
+			<input id="gene-sitename" type="text" placeholder="Nom du site" value="{$config->read('gene.site_name')}" pattern=".{1,20}" required="">
+			<label for="gene-sitename">Nom du site</label><br><br>
+			<input id="gene-defimg" type="text" placeholder="Image par défaut" value="{$config->read('gene.default_img')}" pattern=".{7,100}" required="">
+			<label for="gene-defimg">Image par défaut des cadres d'aperçu</label><br><br>
+			<input type="submit">
+		</form>
 	</div>
 </div>
 HOMEPAGEEDITMAIN;

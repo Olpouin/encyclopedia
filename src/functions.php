@@ -16,22 +16,25 @@ function APIresponse($title, $msg) {
 	return json_encode($resp);
 };
 
-function logging($title, $desc = '', $color="3447003") {
+function logging($title, $desc = '', $options=[]) {
 	/*
 	You can do whatever you want to log informations here.
 	To make it quicker and easier to read, I just redirect everything to a Discord channel with the webhook feature because I frequently use Discord.
 	Here's the code if you would like to use it.*/
 	/*$url = '';
+	$color = (array_key_exists('color',$options)) ? $options['color'] : "3447003";
+	$embed = [
+		'title' => $title,
+		'description' => $desc,
+		'color' => $color,
+		'timestamp' => date('c')
+	];
+	if (array_key_exists('url',$options)) $embed['url'] = $options['url'];
 	$data = [
 		'content' => '',
 		'username' => '',
 		'embeds' => [
-			[
-				'title' => $title,
-				'description' => $desc,
-				'color' => $color,
-				'timestamp' => date('c')
-			]
+			$embed
 		]
 	];
 
