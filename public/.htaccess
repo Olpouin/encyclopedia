@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^admin/$ index.php?admin
+RewriteRule ^edit$ index.php?edit
+RewriteRule ^(.*)/(.*)/edit$ index.php?type=$1&name=$2&edit
+RewriteRule ^([0-9a-z]*)/(.*)/$ index.php?type=$1&name=$2
+RewriteRule ^([0-9a-z]*)/$ index.php?type=$1

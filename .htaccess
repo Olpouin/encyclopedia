@@ -1,6 +1,0 @@
-RewriteEngine On
-RewriteRule ^(.)/(.*)/? index.php?type=$1&name=$2
-ErrorDocument 403 /gallery/index.php?error=403
-ErrorDocument 404 /gallery/index.php?error=404
-ErrorDocument 408 /gallery/index.php?error=408
-ErrorDocument 414 /gallery/index.php?error=414

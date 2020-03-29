@@ -1,0 +1,22 @@
+:root {
+	--general-color: #7289DA;
+	--general-background: #2C2F33;
+	--general-shadow: #99AAB5;
+	--general-text: #FFFFFF;
+	--general-text_second: #CCCCCC;
+	--general-text_third: #CCCCCC;
+	--general-link: #7289DA;
+	--general-border: #23272A;
+	--general-scrollbar: #99AAB5;
+	--sidenav-background: #23272A;
+	--sidenav-border: #23272A;
+	--table-border: #23272A;
+	--button-background_hover: #00050F;
+	--button-background_active: #000A1F;
+	--toc-background: #23272A;
+	--footer-background: #2C2F33;
+	--hr: #FFFFFF;
+	--infobox-text_h1: #F8F8F8;
+	--infobox-background: #23272A;
+	--toolbar-icons: 90%;
+}
