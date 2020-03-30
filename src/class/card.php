@@ -170,6 +170,20 @@ class Card {
 					$this->_type
 				)
 			);
+			if ($this->_type != "[SERVERDATA]") {
+				logging(
+					'Fiche modifiée',
+					"**Nom :** ".$this->_name.
+					"\n**Type :** ".$this->_type." (".Config::read('gene.types')[$this->_type].")",
+					["color"=>"16312092","url"=>"https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')."/".$this->_type."/".urlencode($this->_name)]
+				);
+			} else {
+				logging(
+					'Page d\'accueil modifiée',
+					"La page d'accueil du site a été modifiée.",
+					["url"=>"https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')]
+				);
+			}
 			return true;
 		} catch (Exception $e) {
 			die('Error : '.$e->getMessage());

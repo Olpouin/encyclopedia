@@ -4,10 +4,10 @@ Config::add('head.css', 'chart.min');
 
 $content['hp']['themeForm'] = "";
 //Main text
-$homepageReq = $core->db->prepare("SELECT * FROM ".Config::read('db.table')." WHERE type = '[SERVERDATA]' AND name = 'homepage'");
-$homepageReq->execute();
-$homepage = $homepageReq->fetch();
-$homepage = $homepage['text'];
+$homepage = new Card();
+$homepage->load("[SERVERDATA]", "homepage");
+
+$homepage = $homepage->text('html');
 
 foreach (Config::read('gene.themes') as $value) {
 	$themeSelected = ($value == $_COOKIE['theme']) ? "selected" : "";
