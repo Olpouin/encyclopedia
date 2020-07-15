@@ -163,7 +163,7 @@ class Card {
 			$searchDB = $core->db->prepare($sql);
 			$searchDB->execute(
 				array (
-					$this->_text,
+					html_entity_decode(preg_replace('/\\\\u([\da-fA-F]{4})/', '&#x\1;', $this->_text)),
 					$this->_group,
 					$this->_hidden,
 					$this->_name,
