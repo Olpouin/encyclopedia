@@ -43,8 +43,9 @@ foreach (Config::read('head.css') as $key => $value) {
 		<meta property="og:type" content="article">
 		<meta charset="utf-8">
 		<script>var path = "<?=Config::read('gene.path')?>";</script>
-		<script src="<?=Config::read('gene.path')?>/content/js/script.js" defer></script>
 		<script src="<?=Config::read('gene.path')?>/content/js/onclick.js"></script>
+		<script src="<?=Config::read('gene.path')?>/content/js/script.js"></script>
+		<script src="<?=Config::read('gene.path')?>/content/js/defer.js" defer></script>
 		<!--<script src="<?=Config::read('gene.path')?>/content/js/stats.js" defer></script>-->
 		<link rel="stylesheet" href="<?=Config::read('gene.path')?>/content/css/sidenav.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=Config::read('gene.path')?>/content/css/card.css" type="text/css" media="screen">
@@ -52,6 +53,7 @@ foreach (Config::read('head.css') as $key => $value) {
 		<link rel="stylesheet" href="<?=Config::read('gene.path')?>/content/css/themes/discord.css" type="text/css" media="screen">
 	</head>
 	<body>
+		<div id="notifs" class="notifs-box"></div>
 		<nav id="sidenav">
 			<?=$content['sidenav']?>
 		</nav>

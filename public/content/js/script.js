@@ -1,19 +1,3 @@
-//Get Cookies's data
-function getCookie(cname) {
-	var name = cname + "=";
-	var decodedCookie = decodeURIComponent(document.cookie);
-	var ca = decodedCookie.split(';');
-	for(var i = 0; i <ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
-}
 //generate special ID
 function UUID() {
 	var S4 = function() {
@@ -24,7 +8,7 @@ function UUID() {
 //Page elements creations/removing
 function newElement(type,param) {
 	var elem = document.createElement(type);
-	if ('txt' in param) elem.appendChild(document.createTextNode(param.txt));
+	if ('txt' in param) elem.innerHTML = param.txt;
 	if ('class' in param) elem.classList.add(param.class);
 	if ('attr' in param) {
 		for (prop in param.attr) {
@@ -33,85 +17,24 @@ function newElement(type,param) {
 	}
 	return elem;
 }
-//smalls functions to make code shorter
-function deleteElement(id) {
-	document.getElementById(id).parentNode.removeChild(document.getElementById(id));
-}
-function value(ID) {
-	return document.getElementById(ID).value;
-}
-////Parameters
-//Change
-function changeParameters() {
-	document.cookie = "theme="+document.getElementById('pref-theme').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
-
-	document.cookie = "lang="+document.getElementById('pref-chooseLang').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
-
-	document.cookie = (document.querySelector('#prefeditor').checked) ? "prefeditor=txt; expires=Thu, 18 Dec 9999 12:00:00 UTC;" : "prefeditor=html; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
-
-	document.cookie = (document.querySelector('#dyslexic').checked) ? "dyslexic=true; expires=Thu, 18 Dec 9999 12:00:00 UTC;" : "dyslexic=false; expires=Thu, 18 Dec 9999 12:00:00 UTC;";
-
-	location.reload();
-}
-//http requests function
-function API(APIname,data,redirect) {
-	document.documentElement.classList.add("wait");
-	let url = path+"/api/"+APIname+".php";
-	let xhr = new XMLHttpRequest();
-	xhr.responseType = "json";
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4) {
-			if (xhr.response === null) {;
-				var title = "Erreur serveur";
-				var message = "Nous n'avons pas pu obtenir de réponse du serveur.";
-			} else {
-				var title = xhr.response.title;
-				var message = xhr.response.message;
-			}
-			notify(title,message,{'url':redirect});
-			document.documentElement.classList.remove("wait");
-		}
-	}
-
-	xhr.send(JSON.stringify(data));
-}
-//Navigation bar for mobile users
-function openNav() {
-    document.getElementById("sidenav").classList.add("open");
-}
-function closeNav() {
-    document.getElementById("sidenav").classList.remove("open");
-}
-//Larger size pictures
-function fullscreen(e) {
-	let fullscrID = "fullscreen-"+UUID();
-	console.debug("%cGallery","color:#003399;background-color:#FFFFFF;border-radius:100%;padding:5px;","Generating fullscreen image with ID "+fullscrID);
-
-	document.body.appendChild(newElement("div",{'class':'fullscreen-image','attr':{'id':fullscrID}}));//Main div
-	fullscr = document.getElementById(fullscrID);
-	fullscr.appendChild(newElement("div",{}));
-	let imgDiv = fullscr.firstChild;
-
-	imgDiv.appendChild(newElement("img",{'attr':{'src':e.target.getAttribute('src'),'alt':e.target.getAttribute('alt')}}));
-	fullscr.appendChild(newElement("h1",{'txt':e.target.getAttribute('alt')}));
-	fullscr.appendChild(newElement("button",{'class':'button-x','txt':'× Fermer','attr':{'onclick':'deleteElement(\''+fullscrID+'\')'}}));
-}
 //notification system
-function notify(title,text = "",buttons = {}) {
-	let notifID = "notif-"+UUID();
-	console.debug("%cGallery","color:#003399;background-color:#FFFFFF;border-radius:100%;padding:5px;","Generating notification with ID "+notifID);
+function notify(text, param) { //notify('text',{'title':'Text.','delTime': '1000','btn':[{'txt':'btn1','onclick':"func()"},{'txt':'btn2','onclick':"func2()"}]})
+	var notifID = "notif-"+UUID();
+	console.debug("%cDTK Notification","color:#003399;background-color:#FFFFFF;padding:5px;font-weight:bold;","Generating notification with ID "+notifID,{'text':text,'param':param});
 
-	document.body.appendChild(newElement("div",{'class':'notif','attr':{'id':notifID}}));//Main div
-	notif = document.getElementById(notifID);
-	notif.appendChild(newElement("div",{'class':'notif-zone'}));//Notif div
-	let notifZone = notif.firstChild;
-	notifZone.appendChild(newElement("div",{'class':'button-area'}));
-	let notifButtons = notifZone.firstChild;
+	document.getElementById("notifs").appendChild(newElement("div",{'class':'notif','attr':{'id':notifID}}));
+	let notif = document.getElementById(notifID);
 
-	notifZone.insertBefore(newElement("h1",{'txt':title}), notifButtons);
-	notifZone.insertBefore(newElement("p",{'txt':text}), notifButtons);
-	if ('url' in buttons) notifButtons.appendChild(newElement("a",{'txt':'Afficher','class':'button','attr':{'href':buttons.url}}));
-	notifButtons.appendChild(newElement("a",{'txt':'Fermer','class':'button','attr':{'onclick':'deleteElement(\''+notifID+'\')'}}))
+	let textSpan = notif.appendChild(newElement("span",{'txt':text}));
+	if (param) if ('title' in param) notif.insertBefore(newElement("b",{'txt':param.title}), textSpan);
+	if (param) if ('btn' in param) {
+		param.btn.forEach((item)=>{
+			notif.appendChild(newElement("button",{'txt':item.txt,'attr':{'onclick':item.onclick}}));
+		})
+	}
+	notif.innerHTML += '<svg onclick="this.parentNode.remove();" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path class="svg-color" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+	if (param) if ('delTime' in param) notif.appendChild(newElement("div",{'attr':{'style':'animation-duration:'+param.delTime+'ms;'}}));
+
+	if (param) if ('delTime' in param) setTimeout(()=>{try{document.getElementById(notifID).remove()}catch{}}, param.delTime);
+	return notif;
 }

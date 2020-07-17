@@ -35,27 +35,6 @@ $content['page'] = <<<CARDEDIT
 <button class="submit" onclick="editCardOC()">Envoyer</button>
 <br>
 <h1 style="text-align:center;display:block;">Aide</h1>
-<div class="flexboxData">
-	<div>
-		<h2>Les infobox</h2>
-		- Une infobox se délimite par [ib]Données de l'infobox...[/ib]<br>
-		- Dans les infobox, les tags [h1] et les images fonctionnent.<br>
-		- Vous pouvez entrer des informations avec [ibd]Titre/nom|Information[/ibd]<br>
-	</div>
-	<div>
-		<h2>Exemple</h2>
-		<pre>
-[ib]
-[h1]Debitis et qui[/h1]
-![Quisquam quo enim](URL)
-[h1]Nobis ut voluptatem[/h1]
-[ibd]voluptates|24[/ibd]
-[ibd]Cupiditate quas|Rem[/ibd]
-[ibd]Est sit omnis|Occaecati labore soluta nam[/ibd]
-[/ib]
-		</pre>
-	</div>
-</div>
 <script>
 const editor = new EditorJS({
 	holder: 'editor',
@@ -121,6 +100,19 @@ function editCardOC() { //Edit a card
 }
 </script>
 CARDEDIT;
+if (!isset($_COOKIE['editor'])) {
+	$content['page'] .= '<script>document.onload = notify(
+	"SHIFT+Entrer - Sauter une ligne sans créer un nouveau paragraphe<br>CTRL+SHIFT+V - Coller du texte sans le formattage<br><br>Pour faire une infobox, il faut la laisser entièrement dans le même paragraphe.<br>",
+	{\'title\':"Bienvenue sur l\'éditeur !",
+	\'btn\':[
+		{\'txt\':\'Exemple d\\\'infobox\', onclick:"window.open(\"https://encyclopedia.windersteel.ml/t/Exemple+d%27Infobox/edit\",\"_blank\")"},
+		{\'txt\':\'Exemple de texte\', onclick:"window.open(\"https://encyclopedia.windersteel.ml/t/Exemple+de+texte/edit\",\"_blank\")"},
+		{\'txt\':\'Ne plus afficher ce message\',\'onclick\':\'setCookie(\\\'editor\\\',true);this.parentNode.remove();\'}
+		]
+	}
+);</script>';
+
+}
 }
 
 

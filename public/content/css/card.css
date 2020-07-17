@@ -75,7 +75,7 @@ hr + br {
 	width: 560px;
 	height: 315px;
 }
-.format a {
+.format a, .link {
 	text-decoration: none;
 	color: var(--general-link);
 }

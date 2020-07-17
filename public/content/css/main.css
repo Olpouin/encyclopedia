@@ -70,40 +70,84 @@ footer a:last-of-type::after, .navMenuGroups a:last-of-type::after {
 	white-space: nowrap;
 }
 /*Notif*/
-.notif {
+.notifs-box {
 	position: fixed;
-	z-index: 2;
-	top: 0;
+	z-index: 10;
+	bottom: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	text-align: center;
+	padding: 0;
+	margin-bottom: 15px;
 }
-.notif-zone {
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	top: 35%;
-	left: 35%;
-	right: 35%;
+.notif {
+	position: relative;
+	display: inline-block;
 	background-color: var(--general-background);
-	box-shadow: 0 6px 20px 0 var(--general-shadow);
+	padding: 8px 16px;
+	margin: 0 10px;
+	padding-right: 40px;
 	border-radius: 5px;
-	z-index: 3;
-	padding: 20px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+	text-align: left;
 }
-.notif .button-area {
-	display: flex;
-	justify-content: flex-end;
-	padding-top: 15px;
+.notif > b {
+	display: block;
 }
-.notif h1 {
-	margin: 0;
+.notif > span {
+	vertical-align: middle;
 }
-.notif p {
-	margin: 0;
-	font-size: 1.2em;
-	height: 60%;
-	color: var(--general-text_second);
+.notif > button {
+	color: var(--color_main);
+	text-transform: uppercase;
+	font-weight: bold;
+	background-color: inherit;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	margin: 0 8px;
+	border-radius: 5px;
+	vertical-align: middle;
+}
+.notif > button:hover {
+	background-color: var(--general-color);
+}
+.notif > svg {
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	border-radius: 100%;
+	cursor: pointer;
+	padding: 6px;
+	vertical-align: middle;
+}
+.notif > svg > .svg-color {
+	fill: var(--general-text);
+}
+.notif > svg:hover {
+	background-color: var(--general-color);
+}
+.notif > div {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 4px;
+	animation-name: autodelete-bar;
+	animation-timing-function: linear;
+	background-color: var(--general-color);
+}
+@keyframes autodelete-bar {
+	from {
+		width: 100%;
+		border-radius: 0 0 5px 5px;
+	}
+	5% {
+		border-radius: 0 0 0 5px;
+	}
+	to {
+		width: 0%;
+		border-radius: 0 0 0 5px;
+	}
 }
 /*Diverse*/
 .cardSearchBox {
