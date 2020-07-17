@@ -21,7 +21,7 @@ function logging($title, $desc = '', $options=[]) {
 	You can do whatever you want to log informations here.
 	To make it quicker and easier to read, I just redirect everything to a Discord channel with the webhook feature because I frequently use Discord.
 	Here's the code if you would like to use it.*/
-	/*$url = '';
+	$url = Config::read('gene.discordWebhook');
 	$color = (array_key_exists('color',$options)) ? $options['color'] : "3447003";
 	$embed = [
 		'title' => $title,
@@ -46,7 +46,7 @@ function logging($title, $desc = '', $options=[]) {
 		)
 	);
 	$context  = stream_context_create($options);
-	file_get_contents($url, false, $context);*/
+	file_get_contents($url, false, $context);
 }
 
 
