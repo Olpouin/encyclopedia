@@ -9,6 +9,6 @@ $content['footer'] = <<<FOOTER
 {$footerEdit}
 <a href="{$config->read('gene.path')}/admin/">Interface d'administration</a>
 <a href="{$footerPath}/#pref">Préférences</a>
-<a href="#card">Retour en hauit de page</a>
+<a href="#card">Retour en haut de page</a>
 FOOTER;
 ?>

@@ -76,9 +76,12 @@ function fullscreen(e) {
 	document.body.appendChild(newElement("div",{'class':'fullscreen-image','attr':{'id':fullscrID}}));//Main div
 	fullscr = document.getElementById(fullscrID);
 	fullscr.appendChild(newElement("div",{}));
-	let imgDiv = fullscr.firstChild;
+	let buttonsDiv = fullscr.firstChild;
 
-	imgDiv.appendChild(newElement("img",{'attr':{'src':e.target.getAttribute('src'),'alt':e.target.getAttribute('alt')}}));
-	fullscr.appendChild(newElement("h1",{'txt':e.target.getAttribute('alt')}));
-	fullscr.appendChild(newElement("button",{'class':'button-x','txt':'× Fermer','attr':{'onclick':'deleteElement(\''+fullscrID+'\')'}}));
+	fullscr.appendChild(newElement("img",{'attr':{'src':e.target.getAttribute('src'),'alt':e.target.getAttribute('alt')}}));
+	fullscr.appendChild(newElement("span",{'txt':e.target.getAttribute('alt')}));
+
+	document.body.style.overflow = "hidden";
+
+	buttonsDiv.appendChild(newElement("button",{'class':'button-x','txt':'× Fermer','attr':{'onclick':'deleteElement(\''+fullscrID+'\');document.body.style.overflow="auto"'}}));
 }
