@@ -1,6 +1,7 @@
 # Install
 1. Download and put the folder somewhere in your server.
-2. Create a new database with the following SQL ```
+2. Create a new database with the following SQL :
+```
 CREATE TABLE `gallery` (
   `id` int(11) NOT NULL,
   `password` text CHARACTER SET latin1,
