@@ -14,12 +14,12 @@ CREATE TABLE `gallery` (
 
 INSERT INTO `gallery` (`id`, `password`, `name`, `type`, `groupe`, `text`, `hidden`) VALUES
 (1, '', 'general', '[SERVERDATA]', '', '{\"site_name\":\"Encyclopedia\",\"box-default_image\":\"\",\"types\":{\"b\":\"Bestiaire\",\"p\":\"Personnages\",\"l\":\"Lieux\",\"e\":\"Entités\",\"s\":\"Souvenirs\"}}', 1),
-(46, NULL, 'homepage', '[SERVERDATA]', '', '{\"time\":0,\"blocks\":[]}', 1);
+(2, NULL, 'homepage', '[SERVERDATA]', '', '{\"time\":0,\"blocks\":[]}', 1);
 
 ALTER TABLE `gallery`
   ADD PRIMARY KEY (`id`);
   ALTER TABLE `gallery`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
   COMMIT;
 ```
 3. Configure `config/database.php`.
