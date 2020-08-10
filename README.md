@@ -18,9 +18,9 @@ INSERT INTO `gallery` (`id`, `password`, `name`, `type`, `groupe`, `text`, `hidd
 
 ALTER TABLE `gallery`
   ADD PRIMARY KEY (`id`);
-  ALTER TABLE `gallery`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-  COMMIT;
+ALTER TABLE `gallery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
 ```
 3. Configure `config/database.php`.
 4. Set encrypted admin password(s) in `config/general.php`. You can use `test/password.php` to encrypt your passwords.
