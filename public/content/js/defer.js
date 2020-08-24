@@ -24,7 +24,7 @@ function value(ID) {
 ////Parameters
 //Change
 function setCookie(name,value) {
-	document.cookie = name+"="+value+";expires=Thu, 18 Dec 9999 12:00:00 UTC;"
+	document.cookie = name+"="+value+";expires=Thu, 18 Dec 9999 12:00:00 UTC;SameSite=None;path=/; Secure"
 }
 function changeParameters() {
 	document.cookie = "theme="+document.getElementById('pref-theme').value+"; expires=Thu, 18 Dec 9999 12:00:00 UTC;";

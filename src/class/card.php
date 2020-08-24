@@ -175,7 +175,7 @@ class Card {
 					'Fiche modifiée',
 					"**Nom :** ".$this->_name.
 					"\n**Type :** ".$this->_type." (".Config::read('gene.types')[$this->_type].")",
-					["color"=>"16312092","url"=>"https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')."/".$this->_type."/".urlencode($this->_name)]
+					["color"=>"16312092","url"=>"https://".$_SERVER['HTTP_HOST'].Config::read('gene.path')."/".$this->_type."/".urlencode($this->_name)."/"]
 				);
 			} else {
 				logging(
