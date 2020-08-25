@@ -22,7 +22,17 @@ ALTER TABLE `gallery`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 ```
-3. Configure `config/database.php`.
+3. Create a file `../database.php` and complete the following :
+```PHP
+<?php
+$config['db.host'] = '';
+$config['db.name'] = '';
+$config['db.user'] = '';
+$config['db.password'] = '';
+$config['db.table.encyclopedia'] = '';
+$config['db.table.timeline'] = ''; //If you have a timeline
+?>
+```
 4. Set encrypted admin password(s) in `config/general.php`. You can use `test/password.php` to encrypt your passwords.
 5. Setup your website to use the `public/` folder as root for the website.
 6. Go to your website's URL. Everything should work!
