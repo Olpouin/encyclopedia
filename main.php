@@ -5,7 +5,10 @@ class Config {
 	static $confArray;
 
 	public static function read($name) {
-		return self::$confArray[$name];
+		$value = (isset(self::$confArray[$name])) ?
+			self::$confArray[$name] :
+			false;
+		return $value;
 	}
 	public static function write($name, $value) {
 		self::$confArray[$name] = $value;
@@ -21,8 +24,13 @@ class Config {
 		} return false;
 	}
 }
-
-require_once('config/database.php');
+require_once(dirname(__FILE__, 2)."/database.php");
+//require_once('../../database.php');
+Config::write('db.host', $config['db.host']);
+Config::write('db.name', $config['db.name']);
+Config::write('db.user', $config['db.user']);
+Config::write('db.password', $config['db.password']);
+Config::write('db.table', $config['db.table.encyclopedia']);
 require_once('config/general.php');
 Config::write('gene.editorconfig', file_get_contents("config/editorJS.json", FILE_USE_INCLUDE_PATH));
 $config = new Config();
@@ -51,19 +59,6 @@ $core = Core::getInstance();
 require_once('src/class/gallery-parameters.php');
 $galleryParameters = new GalleryParameters();
 $galleryParameters->toConfig();
-
-/*if (!$configGeneralJSON) {
-	$sql = "INSERT INTO ".Config::read('db.table')."(name, type, text, hidden) VALUES(?, ?, ?, 1)";
-	$createConfig = $core->db->prepare($sql);
-	$createConfig->execute(array(
-		'general',
-		'[SERVERDATA]',
-		'{"site_name":"Gallery","box-default_image":"https:\/\/url.com\/img.jpg"}'
-	));
-
-	$configGeneralDB->execute();
-	$configGeneralJSON = $configGeneralDB->fetch();
-}*/
 
 Config::write('gene.visibility', '0');
 Config::write('gene.isEditing', '0');

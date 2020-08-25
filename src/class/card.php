@@ -48,7 +48,7 @@ class Card {
 							}
 							break;
 						case 'header':
-							$text .= "<h{$data['level']}>{$data['text']}</h{$data['level']}>";
+							$text .= "<h{$data['level']} id=\"{$data['text']}\">{$data['text']}</h{$data['level']}>";
 							break;
 						case 'paragraph':
 							$text .= "<p>{$this->format($data['text'])}</p>";

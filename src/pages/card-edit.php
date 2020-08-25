@@ -105,8 +105,8 @@ if (!isset($_COOKIE['editor'])) {
 	"SHIFT+Entrer - Sauter une ligne sans créer un nouveau paragraphe<br>CTRL+SHIFT+V - Coller du texte sans le formattage<br><br>Pour faire une infobox, il faut la laisser entièrement dans le même paragraphe.<br>",
 	{\'title\':"Bienvenue sur l\'éditeur !",
 	\'btn\':[
-		{\'txt\':\'Exemple d\\\'infobox\', onclick:"window.open(\"https://encyclopedia.windersteel.ml/t/Exemple+d%27Infobox/edit\",\"_blank\")"},
-		{\'txt\':\'Exemple de texte\', onclick:"window.open(\"https://encyclopedia.windersteel.ml/t/Exemple+de+texte/edit\",\"_blank\")"},
+		{\'txt\':\'Exemple d\\\'infobox\', onclick:"window.open(\"/t/Exemple+d%27Infobox/edit\",\"_blank\")"},
+		{\'txt\':\'Exemple de texte\', onclick:"window.open(\"/t/Exemple+de+texte/edit\",\"_blank\")"},
 		{\'txt\':\'Ne plus afficher ce message\',\'onclick\':\'setCookie(\\\'editor\\\',true);this.parentNode.remove();\'}
 		]
 	}
