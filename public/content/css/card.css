@@ -148,7 +148,7 @@ hr + br {
 /*.infobox > br {
 	display: none;
 }*/
-.format aside h1 {
+.format aside h1, .format aside h2 {
 	display: inline-block;
 	text-decoration: none;
 	background-color: var(--general-color);
@@ -159,6 +159,10 @@ hr + br {
 	margin: 0;
 	color: var(--infobox-text_h1);
 	font-size: 1.3em;
+}
+.format aside h2 {
+	font-size: 1.2em;
+	padding: 0.2em 0;
 }
 .format aside img {
 	width: 100%;
@@ -198,6 +202,9 @@ hr + br {
 	word-wrap: break-word;
 	word-break: break-all;
 	white-space: pre;
+}
+.infobox-data + br {
+	display: none;
 }
 #textEdit .infobox-data span, #textEdit blockquote > cite, #textEdit h1, #textEdit h2, #textEdit h3, #textEdit h4, #textEdit h5, #textEdit h6 {
 	border: var(--general-color) 1px dotted;

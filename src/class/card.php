@@ -13,7 +13,8 @@ class Card {
 	private $formatArray = array(
 		'/\[ibd\](.*)\|(.*)\[\/ibd\]/Ums' => '<div class="infobox-data"><span class="infobox-data-title">$1</span><span>$2</span></div>',
 		'/\[h1\](.*)\[\/h1\]/Ums' => '<h1>$1</h1>',
-		'/\[ib\](.*)\!\[(.*)\]\((.*)\)(.*)\[\/ib\]/Um' => '[ib]$1<img src="$3" onclick="fullscreen(event)" alt="$2">$4[/ib]',
+		'/\[h2\](.*)\[\/h2\]/Ums' => '<h2>$1</h2>',
+		'/\!\[(.*)\]\((.*)\)/Um' => '<img src="$2" onclick="fullscreen(event)" alt="$1">',
 		'/\[ib\](.*)\[\/ib\]/Ums' => '<aside>$1</aside>'
 	);
 	private function format($txt) {
