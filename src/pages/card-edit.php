@@ -33,8 +33,6 @@ $content['page'] = <<<CARDEDIT
 <label for="pass">Mot de passe</label>
 <input id="pass" type="password" name="pass" required="" placeholder="Mot de passe">
 <button class="submit" onclick="editCardOC()">Envoyer</button>
-<br>
-<h1 style="text-align:center;display:block;">Aide</h1>
 <script>
 const editor = new EditorJS({
 	holder: 'editor',
@@ -98,11 +96,33 @@ function editCardOC() { //Edit a card
 		console.log('Error : ',error);
 	})
 }
+window.onbeforeunload = function() {
+	var e = e || window.event;
+	if (e) e.returnValue = "A";
+	return "A";
+};
+let keysPressed = {};
+let firedOnce = false;
+document.addEventListener('keydown', (event) => {
+	if (event.defaultPrevented) retun;
+	keysPressed[event.key] = true;
+	if (keysPressed["s"] && event.ctrlKey) {
+		event.preventDefault();
+		if (!firedOnce) {
+			firedOnce = true;
+			editCardOC();
+		}
+	}
+});
+document.addEventListener('keyup', (event) => {
+	delete keysPressed[event.key];
+	firedOnce = false;
+});
 </script>
 CARDEDIT;
 if (!isset($_COOKIE['editor'])) {
 	$content['page'] .= '<script>document.onload = notify(
-	"SHIFT+Entrer - Sauter une ligne sans créer un nouveau paragraphe<br>CTRL+SHIFT+V - Coller du texte sans le formattage<br><br>Pour faire une infobox, il faut la laisser entièrement dans le même paragraphe.<br>",
+	"SHIFT+Entrer - Sauter une ligne sans créer un nouveau paragraphe<br>CTRL+SHIFT+V - Coller du texte sans le formattage<br>CTRL+S - Raccourci pour sauvegarder<br><br>Pour faire une infobox, il faut la laisser entièrement dans le même paragraphe.<br>",
 	{\'title\':"Bienvenue sur l\'éditeur !",
 	\'btn\':[
 		{\'txt\':\'Exemple d\\\'infobox\', onclick:"window.open(\"/t/Exemple+d%27Infobox/edit\",\"_blank\")"},

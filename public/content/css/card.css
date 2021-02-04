@@ -201,6 +201,7 @@ hr + br {
 	overflow-x: hidden;
 	word-wrap: break-word;
 	word-break: break-word;
+	text-align: left;
 }
 .infobox-data + br {
 	display: none;
